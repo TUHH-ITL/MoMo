@@ -1,0 +1,12 @@
+[submodule "maxon_epos4_ros1"]
+	path = maxon_epos4_ros1
+	url = https://github.com/Roboprotos/maxon_epos4_ros1.git
+[submodule "ros_canopen-noetic"]
+	path = ros_canopen-noetic
+	url = https://github.com/mknitt/ros_canopen.git
+
+
+
+
+
+

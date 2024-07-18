@@ -1,0 +1,66 @@
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+mecanum_drive_controller:
+  type: "mecanum_drive_controller/MecanumDriveController"
+  left_wheel: 
+   - 'front_left_wheel_joint'
+   - 'back_left_wheel_joint'
+  right_wheel: 
+   - 'front_right_wheel_joint'
+   - 'back_right_wheel_joint'
+  publish_rate: 50.0
+  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  cmd_vel_timeout: 0.2
+  publish_velocity_cmd: true
+  publish_wheel_joint_controller_state: false
+  base_frame_id: base_footprint
+  left_wheel_radius_multiplier: 1.0
+  right_wheel_radius_multiplier: 1.0
+  enable_odom_tf: false
+  wheel_distance: 0.54
+  wheel_radius: 0.1
+  wheel_separation: 0.58
+  
+  required_drive_mode: 9
+  
+
+
+  linear:
+    x:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      max_velocity: 4.0
+      min_velocity: -4.0
+      max_acceleration: 1.0
+      min_acceleration: -1.0
+    y:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      max_velocity: 4.0
+      min_velocity: -4.0
+      max_acceleration: 1.0
+      min_acceleration: -1.0
+  angular:
+    z:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      max_velocity: 3.0
+      min_velocity: -3.0
+      max_acceleration: 1.0
+      min_acceleration: -1.0
+
+ekf_localization:
+  frequency: 50
+  two_d_mode: true
+  odom0: /mecanum_drive_controller/odom
+  odom0_config: [false, false, false,
+                 false, false, false,
+                 true, true, false,
+                 false, false, true,
+                 false, false, false]
+  odom0_differential: false
+  publish_tf: true
+  base_link_frame: base_footprint

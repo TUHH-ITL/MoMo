@@ -1,0 +1,65 @@
+# Teleop configuration for Logitech F710 Gamepad using the x-pad configuration.
+# Left thumb-stick up/down for velocity, left/right for twist
+# LB for enable
+# RB for enable-turbo
+#
+#         (LB)                                 (RB)
+#         (LT)                                 (RT)
+#       _=====_            D(  .)X            _=====_
+#      / _____ \                             / _____ \
+#    +.-'_____'-.---------------------------.-'_____'-.+
+#   /   |     |  '.                       .'  |      |   \
+#  / ___| /|\ |___ \ (back)(Lgtc)(strt)  / ___| (Y)  |___ \
+# / |      |      | ;  __           __  ; |              | |
+# | | <---   ---> | | (__) .       (__) | | (X)       (B)| |
+# | |___   |   ___| ; MODE         VIBE ; |___       ____| /
+# |\    | \|/ |    /  _     ___      _   \    | (A) |    /|
+# | \   |_____|  .','" "', |___|  ,'" "', '.  |_____|  .' |
+# |  '-.______.-' /       \ANALOG/       \  '-._____.-'   |
+# |               |  LJ   |------|   RJ  |                |
+# |              /\       /      \       /\               |
+# |             /  '.___.'        '.___.'  \              |
+# |            /                            \             |
+#  \          /                              \           /
+#   \________/                                \_________/
+#
+# BUTTON         Value
+#   LB             4
+#   RB             5
+#   A              0
+#   B              1
+#   X              2
+#   Y              3
+#
+#    AXIS        Value
+# Left Horiz.      0
+# Left Vert.       1
+# Right Horiz.     3
+# Right Vert.      4
+# Left Trigger     2
+# Right Trigger    5
+# D-pad Horiz.     6
+# D-pad Vert.      7
+
+teleop_twist_joy:
+  axis_linear:
+    x: 1 # Left analog for forward/backward motion
+    y: 0 # Left analog for forward/backward motion
+  scale_linear:
+    x: 0.5 # Linear scaling factor for normal speed
+    y: 0.5 # Linear scaling factor for normal speed
+  scale_linear_turbo: 
+    x: 0.1 # Linear scaling factor for turbo speed
+    y: 0.1 # Linear scaling factor for turbo speed
+  axis_angular: 
+    yaw: 3 # Right analog for rotational motion
+  scale_angular: 
+    yaw: 1.0 # Angular scaling factor for normal speed
+  scale_angular_turbo: 
+    yaw: 0.05  # Angular scaling factor for turbo speed
+  enable_button: 4 # LB button for normal mode
+  enable_button: 5 # RB button for turbo mode
+joy_node:
+  deadzone: 0.1
+  autorepeat_rate: 20
+  dev: /dev/input/f710

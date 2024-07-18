@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- START SOCKET CAN SOCKET INTEFACE -->
+    <node pkg="socketcan_interface" type="socketcan_dump" name="socketcan_dump" output="log" />
+
+    <!-- Run the canopen_motor_node with parameters defined in config files -->
+    <node name="canopen_motor" pkg="canopen_motor_node" type="canopen_motor_node" output="screen" clear_params="true">
+        <rosparam command="load" file="$(find maxon_epos4_ros_canopen)/config/canopen_bus_layer.yaml" />
+        <rosparam command="load" file="$(find maxon_epos4_ros_canopen)/config/node_layer_2dof_pvm.yaml" />
+        <rosparam command="load" file="$(find momo_control)/config/control.yaml" />
+        <!-- <remap from="/canopen_motor/mobile_velocity_controller/cmd_vel" to="/cmd_vel" /> -->
+
+    </node>
+
+    <!-- INITIALIZE DRIVER -->
+    <node pkg="rosservice" type="rosservice" name="rosservice" args="call /driver/init" />
+
+</launch>
+
+

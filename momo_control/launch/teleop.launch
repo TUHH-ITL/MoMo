@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="joy_dev" default="$(optenv JOY_DEVICE /dev/input/js0)" />
+    <arg name="joystick" default="true" />
+
+    <rosparam command="load" file="$(find momo_control)/config/teleop_logitech.yaml" />
+    <param name="joy_node/dev" value="$(arg joy_dev)" />
+
+    <node pkg="joy" type="joy_node" name="joy_node" if="$(arg joystick)" />
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy" />
+
+    <!-- 
+        Description:
+
+            joy_node 
+                    - Input: Joystick 
+                    - Publish: joy (sensor_msgs/Joy)
+
+            teleop_twist_joy node 
+                    - Subsciber: joy (sensor_msgs/Joy)
+                    - Pubisher: cmd_vel (geometry_msgs/Twist)
+
+            twist_mux node:
+                    - Subscribe: too all cmd_vel (joystic, keybords , nav_...)
+            
+     -->
+
+</launch>

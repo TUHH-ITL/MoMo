@@ -1,0 +1,24 @@
+<launch>
+  <arg name="server_address" default="192.168.1.20" />
+  <arg name="fixed_frame_id" default="mocap" />
+  
+  <node pkg="mocap_qualisys" type="mocap_qualisys_node" name="qualisys" output="screen">
+    <param name="server_address" value="$(arg server_address)"/>
+    <param name="server_base_port" value="22222"/>
+    <param name="frame_rate" value="100"/>
+    <param name="max_accel" value="10.0"/>
+    <param name="publish_tf" value="true"/>
+    <param name="fixed_frame_id" value="$(arg fixed_frame_id)"/>
+    <param name="udp_port" value="-1" />
+    <param name="qtm_protocol_version" value="18" />
+    <rosparam param="model_list">["momo2"]</rosparam>
+    
+    
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="momo_QTMframe_to_mocap_odom" args="0 0 0 0 0 0 /momo2 /base_footprint 100" />
+
+  
+  <!-- <node pkg="tf" type="static_transform_publisher" name="momo_QTMframe_to_mocap_odom" args="0 0 0 0 0 0 1 /momo /momo/base_link 100" /> -->
+  
+</launch>

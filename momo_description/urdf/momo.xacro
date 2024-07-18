@@ -1,0 +1,173 @@
+<?xml version="1.0" ?>
+<robot name="momo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find momo_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find momo_description)/urdf/momo.trans" />
+<xacro:include filename="$(find momo_description)/urdf/momo.gazebo" />
+
+<link name="base_footprint"/>
+
+<joint name="base_footprint" type="fixed">
+  <parent link="base_footprint"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.008310910466845343 0.00014524815199220772 0.0624686710846996" rpy="0 0 0"/>
+    <mass value="37.294913479804464"/>
+    <inertia ixx="1.288642" iyy="2.661694" izz="3.530169" ixy="-0.001607" iyz="-0.000766" ixz="0.005407"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_left_wheel_link_1">
+  <inertial>
+    <origin xyz="-8.029755390270843e-06 0.03899889520307448 -2.202022651116853e-06" rpy="0 0 0"/>
+    <mass value="0.8523503892279924"/>
+    <inertia ixx="0.00277" iyy="0.004793" izz="0.002768" ixy="-0.0" iyz="-0.0" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.29 -0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/front_left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.29 -0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/front_left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_left_wheel_link_1">
+  <inertial>
+    <origin xyz="-1.815299962792949e-06 0.0389987326522202 -7.81038290255387e-06" rpy="0 0 0"/>
+    <mass value="0.8523499468726424"/>
+    <inertia ixx="0.002768" iyy="0.004793" izz="0.00277" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.29 -0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/back_left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.29 -0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/back_left_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="front_right_wheel_link_1">
+  <inertial>
+    <origin xyz="-1.31048275220369e-06 -0.039001753016769836 -7.810382932689486e-06" rpy="0 0 0"/>
+    <mass value="0.8523499468726377"/>
+    <inertia ixx="0.002767" iyy="0.004793" izz="0.002769" ixy="-0.0" iyz="-1e-06" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.29 0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/front_right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.29 0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/front_right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="back_right_wheel_link_1">
+  <inertial>
+    <origin xyz="-8.355744479715543e-06 -0.039001418420920864 -2.202022677123827e-06" rpy="0 0 0"/>
+    <mass value="0.8523503892279815"/>
+    <inertia ixx="0.002769" iyy="0.004793" izz="0.002768" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.29 0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/back_right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.29 0.24 -0.06" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://momo_description/meshes/back_right_wheel_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="front_left_wheel_joint" type="continuous">
+  <origin xyz="0.29 0.24 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_left_wheel_link_1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="back_left_wheel_joint" type="continuous">
+  <origin xyz="-0.29 0.24 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_left_wheel_link_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="front_right_wheel_joint" type="continuous">
+  <origin xyz="0.29 -0.24 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="front_right_wheel_link_1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="back_right_wheel_joint" type="continuous">
+  <origin xyz="-0.29 -0.24 0.06" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="back_right_wheel_link_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<gazebo>
+  <plugin name="macanum_wheel_drive" filename="libgazebo_ros_planar_move.so">
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_footprint</robotBaseFrame>
+    <LeftRear>back_left_wheel_joint</LeftRear>
+    <LeftFront>front_left_wheel_joint</LeftFront>
+    <RightFront>front_right_wheel_joint</RightFront>
+    <RightRear>back_right_wheel_joint</RightRear>
+    <odometryRate>20</odometryRate>      
+    <publishWheelTF>false</publishWheelTF>
+    <publishWheelJointState>true</publishWheelJointState>
+    <WheelTorque>30</WheelTorque>
+    <WheelSeparationW>0.558</WheelSeparationW>
+    <WheelSeparationL>0.58</WheelSeparationL>
+    <wheelAccel>5</wheelAccel>
+    <wheelDiameter>0.2</wheelDiameter>
+    <publishOdom>true</publishOdom>
+    <isRollerModel>true</isRollerModel>
+    <cmdTimeout>5.0</cmdTimeout>
+  </plugin>
+</gazebo>
+
+</robot>

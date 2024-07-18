@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+<include file="$(find maxon_epos4_ros_canopen)/launch/start_canopen.launch" />
+
+<include file="$(find momo_control)/launch/control.launch" />
+<node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0 0 0 0 /base_footprint /base_link 100" />
+
+<include file="$(find momo_control)/launch/teleop.launch" />
+
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+  <rosparam command="load" file="$(find momo_control)/config/control.yaml" />
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        args="joint_state_controller mecanum_drive_controller" />
+
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find momo_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="/mecanum_drive_controller/cmd_vel"/>
+  </node>
+
+</launch>

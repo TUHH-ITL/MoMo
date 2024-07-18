@@ -1,0 +1,20 @@
+<launch>
+<arg name = "x" default="0"/>
+<arg name = "y" default="0"/>
+<arg name = "z" default="0"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find momo_description)/urdf/momo.xacro"/>
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model momo"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+  </include>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+     <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+</launch>

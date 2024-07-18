@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- Load Robot Description  -->
+    <include file="$(find momo_description)/launch/momo_description.launch" />
+
+    <!-- Start Robot Control -->
+    <include file="$(find momo_startup)/launch/robot_control.launch" />
+    
+    <!-- Publish static transform from base_footprint to base_link -->
+    <node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link"
+        args="0 0 0 0 0 0 /base_footprint /base_link 100" />
+
+</launch>

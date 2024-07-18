@@ -1,0 +1,52 @@
+joint_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+mobile_velocity_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: ['front_left_wheel_joint','back_left_wheel_joint'] # left_front_wheel_joint  ['front_left_wheel_joint', 'middle_left_wheel_joint' 'rear_left_wheel_joint']
+  right_wheel: ['front_right_wheel_joint','back_right_wheel_joint']
+  publish_rate: 50
+  # pid: {p: 50, i: 50, d: 1} #pid: {p: 100, i: 100, d: 1}
+  pose_covariance_diagonal:
+    [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal:
+    [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  # required_drive_mode: 3
+  required_drive_mode: 9
+
+  # Wheel separation and diameter. These are both optional.
+  # diff_drive_controller will attempt to read either one or both from the
+  # URDF if not specified as a parameter
+  wheel_separation : 0.558
+  wheel_radius : 0.1
+
+  # Base frame_id
+  base_frame_id: base_footprint #default: base_link
+
+  # Odometry fused with IMU is published by robot_localization, so
+  # no need to publish a TF based on encoders alone.
+  enable_odom_tf: false
+
+  # Wheel separation and radius multipliers
+  wheel_separation_multiplier: 1.0 # 1.0 # Drehgeschwindigkeit
+  wheel_radius_multiplier: 1.0 # default: 0.001
+
+  # Velocity and acceleration limits
+  # Whenever a min_* is unspecified, default to -max_*
+  linear:
+    x:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      max_velocity: 100.0
+      min_velocity: -100.0
+      max_acceleration: 90.0
+      min_acceleration: -90.0
+  angular:
+    z:
+      has_velocity_limits: true
+      has_acceleration_limits: true
+      max_velocity: 25.0
+      min_velocity: -25.0
+      max_acceleration: 15.0
+      min_acceleration: -15.0
