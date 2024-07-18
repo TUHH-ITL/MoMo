@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="momo_description">
+<link name="base_footprint">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+</link>
+
+<joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.001" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+</joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0127792259633329 0.00140960979103266 0.0746015432265707"
+        rpy="0 0 0" />
+      <mass
+        value="5.93891084584059" />
+      <inertia
+        ixx="0.0411794594427828"
+        ixy="4.94350718982385E-08"
+        ixz="0.000376608953231852"
+        iyy="0.13406244117567"
+        iyz="2.15636634595472E-07"
+        izz="0.165668175024918" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_right_wheel">
+    <inertial>
+      <origin
+        xyz="-1.22875725550031E-06 -8.818514343166E-07 -0.039000824425845"
+        rpy="0 0 0" />
+      <mass
+        value="0.85235460510222" />
+      <inertia
+        ixx="0.00090683110579868"
+        ixy="9.81283854226774E-07"
+        ixz="2.23619743556755E-11"
+        iyy="0.000906168386374516"
+        iyz="1.91429668016532E-11"
+        izz="0.0010693441512525" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.26849 -0.318 0.059996"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="back_right_wheel">
+    <inertial>
+      <origin
+        xyz="1.44187906664373E-06 -4.58475599108762E-07 -0.0390008242866116"
+        rpy="0 0 0" />
+      <mass
+        value="0.852354640622837" />
+      <inertia
+        ixx="0.000907345514266875"
+        ixy="-5.98068915940171E-07"
+        ixz="-2.00737019610549E-11"
+        iyy="0.000905654311384345"
+        iyz="8.48507894449767E-12"
+        izz="0.00106934438027433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.27349 -0.318 0.059998"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="back_left_wheel">
+    <inertial>
+      <origin
+        xyz="-2.52936868075371E-07 -1.4911503210353E-06 0.0390008244258441"
+        rpy="0 0 0" />
+      <mass
+        value="0.85235460510222" />
+      <inertia
+        ixx="0.000905522012701922"
+        ixy="3.41693853969877E-07"
+        ixz="-7.38335773335202E-12"
+        iyy="0.000907477479471279"
+        iyz="-2.84955602232348E-11"
+        izz="0.00106934415125251" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.2735 0.318 0.059993"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="front_left_wheel">
+    <inertial>
+      <origin
+        xyz="-1.50594706616047E-06 -1.46077234650446E-07 0.0390008242866097"
+        rpy="0 0 0" />
+      <mass
+        value="0.852354640622835" />
+      <inertia
+        ixx="0.000907516356656267"
+        ixy="1.98922509533897E-07"
+        ixz="-2.14062730921471E-11"
+        iyy="0.000905483468994949"
+        iyz="-4.0892033960136E-12"
+        izz="0.00106934438027433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.26849 0.318 0.059999"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+</robot>
