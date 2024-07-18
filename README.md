@@ -2,7 +2,7 @@
 
 This is the repository of **MoMo**: An Open-Source **Mo**dular **Mo**bile Robot.
 
-Find more information about MoMo in the [official documentation](www.pages.tuhh.de/itl-momo).
+Find more information about MoMo in the [official documentation](https://tuhh-itl.github.io/MoMo/).
 
 ## License
 
