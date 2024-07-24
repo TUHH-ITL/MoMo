@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="momo_description">
+<link name="base_footprint">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+</link>
+
+<joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0.001" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="base_link" />
+</joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0224834781318358 0.043147185108824 0.15573045535703"
+        rpy="0 0 0" />
+      <mass
+        value="9.12874381762573" />
+      <inertia
+        ixx="0.0703209223004399"
+        ixy="0.000823792790695999"
+        ixz="0.000375834309002579"
+        iyy="0.18869975254365"
+        iyz="9.82268475527055E-07"
+        izz="0.249106966997589" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_right_wheel">
+    <inertial>
+      <origin
+        xyz="0.00235002849639554 0.00303838901454816 -0.0804375311167912"
+        rpy="0 0 0" />
+      <mass
+        value="0.852354605102217" />
+      <inertia
+        ixx="0.000906831105798678"
+        ixy="9.81283854227688E-07"
+        ixz="2.23619743963333E-11"
+        iyy="0.000906168386374516"
+        iyz="1.91429667110204E-11"
+        izz="0.0010693441512525" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.26849 -0.318 0.059996"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="back_right_wheel">
+    <inertial>
+      <origin
+        xyz="0.00235269913271367 0.00303881239038054 -0.0804375309775529"
+        rpy="0 0 0" />
+      <mass
+        value="0.852354640622838" />
+      <inertia
+        ixx="0.000907345514266878"
+        ixy="-5.98068915940485E-07"
+        ixz="-2.00737014070952E-11"
+        iyy="0.000905654311384346"
+        iyz="8.48507848540578E-12"
+        izz="0.00106934438027434" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.27349334578749 -0.318000000000002 0.0599978846492716"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_right_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="back_left_wheel">
+    <inertial>
+      <origin
+        xyz="0.00235100431678491 0.00303777971566161 -0.00243588226510427"
+        rpy="0 0 0" />
+      <mass
+        value="0.85235460510222" />
+      <inertia
+        ixx="0.000905522012701922"
+        ixy="3.41693853969475E-07"
+        ixz="-7.38335769311773E-12"
+        iyy="0.000907477479471278"
+        iyz="-2.84955602367874E-11"
+        izz="0.00106934415125251" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.273501168246142 0.318000000000003 0.0599931160727954"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="front_left_wheel">
+    <inertial>
+      <origin
+        xyz="0.00234975130658399 0.00303912478874915 -0.00243588240434497"
+        rpy="0 0 0" />
+      <mass
+        value="0.852354640622848" />
+      <inertia
+        ixx="0.000907516356656273"
+        ixy="1.98922509533706E-07"
+        ixz="-2.1406272773239E-11"
+        iyy="0.000905483468994953"
+        iyz="-4.08920321728966E-12"
+        izz="0.00106934438027433" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.268493050220139 0.317999999999998 0.0599993263438537"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_wheel" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="front_logitech">
+    <inertial>
+      <origin
+        xyz="-0.000100619366527013 0.00868433169256161 -0.0237131147679362"
+        rpy="0 0 0" />
+      <mass
+        value="0.0873967458266508" />
+      <inertia
+        ixx="3.99321306212914E-05"
+        ixy="-2.39081067841113E-08"
+        ixz="-7.19738531428668E-08"
+        iyy="6.41203019340331E-05"
+        iyz="1.1807193889875E-05"
+        izz="5.08960858757451E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_logitech.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/front_logitech.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_logitech_joint"
+    type="fixed">
+    <origin
+      xyz="0.154732757253638 0.0412775530270625 0.418952968841513"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_logitech" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="right_logitech">
+    <inertial>
+      <origin
+        xyz="-0.000100619366454141 0.00868433169256244 -0.0237131147679361"
+        rpy="0 0 0" />
+      <mass
+        value="0.0873967458266508" />
+      <inertia
+        ixx="3.99321306212963E-05"
+        ixy="-2.39081065814224E-08"
+        ixz="-7.19738530417854E-08"
+        iyy="6.41203019340384E-05"
+        iyz="1.18071938898757E-05"
+        izz="5.08960858757447E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/right_logitech.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/right_logitech.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_logitech_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00257639641022331 -0.165213293309076 0.418952968841513"
+      rpy="-1.5707963267949 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_logitech" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="back_logitech">
+    <inertial>
+      <origin
+        xyz="-0.000100619366527027 0.00868433169256172 -0.0237131147679362"
+        rpy="0 0 0" />
+      <mass
+        value="0.0873967458266511" />
+      <inertia
+        ixx="3.99321306212934E-05"
+        ixy="-2.39081067841115E-08"
+        ixz="-7.19738531417099E-08"
+        iyy="6.41203019340351E-05"
+        iyz="1.18071938898751E-05"
+        izz="5.08960858757451E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_logitech.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/back_logitech.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="back_logitech_joint"
+    type="fixed">
+    <origin
+      xyz="-0.254567242746362 0.0415958603547848 0.418952968841513"
+      rpy="-1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="back_logitech" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="left_logitech">
+    <inertial>
+      <origin
+        xyz="-0.000100619366454391 0.0086843316925625 -0.0237131147679363"
+        rpy="0 0 0" />
+      <mass
+        value="0.0873967458266511" />
+      <inertia
+        ixx="3.99321306212903E-05"
+        ixy="-2.39081065815171E-08"
+        ixz="-7.19738530421334E-08"
+        iyy="6.41203019340324E-05"
+        iyz="1.18071938898756E-05"
+        izz="5.08960858757447E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/left_logitech.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/left_logitech.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_logitech_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00225808908250899 0.248086706690936 0.418952968841515"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_logitech" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="velodyne">
+    <inertial>
+      <origin
+        xyz="-3.2878099134187E-06 -0.000102126009981357 -0.00210332117212092"
+        rpy="0 0 0" />
+      <mass
+        value="0.605610123538718" />
+      <inertia
+        ixx="0.000670924573306349"
+        ixy="-5.82638316928472E-12"
+        ixz="-6.67755541756334E-08"
+        iyy="0.000667040687285356"
+        iyz="-1.81285167753324E-06"
+        izz="0.000804073760064738" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="-0.00241706738442254 0.0414368820528667 0.478357617954853"
+      rpy="0 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="velodyne" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="realsense_t265">
+    <inertial>
+      <origin
+        xyz="0.000129462657322346 -1.57181139381901E-07 -0.00601066388944044"
+        rpy="0 0 0" />
+      <mass
+        value="0.0311240910368595" />
+      <inertia
+        ixx="1.83337825677375E-06"
+        ixy="-2.85176636894001E-10"
+        ixz="-7.81020859395691E-09"
+        iyy="2.96344209179022E-05"
+        iyz="1.3923224154143E-11"
+        izz="3.06979172999491E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/realsense_t265.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/realsense_t265.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="realsense_t265_joint"
+    type="fixed">
+    <origin
+      xyz="0.184822757253643 0.0443427066909039 0.337457617954855"
+      rpy="-1.5707963267949 0 -1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="realsense_t265" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="realsense_d435i">
+    <inertial>
+      <origin
+        xyz="-0.000995206394463141 2.7881471328095E-05 -0.0125659497249071"
+        rpy="0 0 0" />
+      <mass
+        value="0.0457663452618203" />
+      <inertia
+        ixx="4.14998076783152E-06"
+        ixy="-1.50844318927118E-09"
+        ixz="-4.10538526085445E-07"
+        iyy="2.78843613995507E-05"
+        iyz="-7.38862868090377E-09"
+        izz="2.75878432161684E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/realsense_d435i.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/realsense_d435i.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="realsense_d435i_joint"
+    type="fixed">
+    <origin
+      xyz="-0.404814742746363 0.0344707026853986 0.279039270865987"
+      rpy="-1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="base_link" />
+    <child
+      link="realsense_d435i" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="ifm_camera">
+    <inertial>
+      <origin
+        xyz="-0.0227481615945184 3.06773217939593E-11 -0.0127352941193509"
+        rpy="0 0 0" />
+      <mass
+        value="0.0711675681323896" />
+      <inertia
+        ixx="9.48525117222579E-06"
+        ixy="1.49142424517477E-13"
+        ixz="-6.00059122328344E-08"
+        iyy="5.23565081343951E-05"
+        iyz="-8.51988151121233E-15"
+        izz="5.41536530687776E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/ifm_camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://momo_description/meshes/visual/ifm_camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ifm_camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.30569 0.014587 0.26684"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="ifm_camera" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
