@@ -1,0 +1,35 @@
+parameters:
+  username: momo          # username of control pc
+  ip_address: 192.168.2.1 # static ip address of control pc
+  ros1_ws: catkin_ws      # name of ros1_ws
+  ros2_ws: ros2_humble    # name of ros2_ws
+  password: 1234          # control pc password
+
+windows:
+  - name: tiled
+    layout: tiled
+    splits:
+      - commands:
+          - ssh ${username}@${ip_address}
+          - source /opt/ros/noetic/setup.bash
+          - source ~/${ros1_ws}/devel/setup.bash
+          - echo '${password}' | sudo -S ip link set can0 type can bitrate 1000000
+          - sudo ip link set can0 up
+          - roslaunch momo_description momo_description.launch
+      - commands:
+          - ssh ${username}@${ip_address}
+          - source /opt/ros/noetic/setup.bash
+          - source ~/${ros1_ws}/devel/setup.bash
+          - sleep 10
+          - roslaunch momo_startup robot_control.launch
+      - commands:
+          - ssh ${username}@${ip_address}
+          - source /opt/ros/noetic/setup.bash
+          - source ~/${ros1_ws}/devel/setup.bash
+          - source ~/${ros2_ws}/install/setup.bash
+          - sleep 20
+          - ros2 run ros1_bridge dynamic_bridge
+      - commands:
+          - source /opt/ros/humble/setup.bash
+          - ros2 launch teleop_twist_joy teleop-launch.py
+
