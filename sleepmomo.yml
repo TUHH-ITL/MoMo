@@ -1,0 +1,16 @@
+parameters:
+  username: momo          # username of control pc
+  ip_address: 192.168.2.1 # static ip address of control pc
+  password: 1234          # control pc password
+
+windows:
+  - name: tiled
+    layout: tiled
+    splits:
+      - commands:
+          - ssh ${username}@${ip_address}
+          - echo '1234' | sudo -S shutdown -h now
+      - commands:
+          - echo 'shutting down....'
+          - sleep 3
+          - poweroff
