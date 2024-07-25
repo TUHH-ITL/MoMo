@@ -215,15 +215,6 @@ ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0
 Congratulations! Now you are able to control the robot in ROS1 as well as in ROS2 from the control PC. Now in the next section we add startup scripts to simplify the startup process and setup the SSH connection between the control PC and the Main PC connected via ethernet cable so that we can control the robot from the Main PC in ROS2 Humble without having to enter the password everytime we SSH into the Control PC from the Main PC.
 
 
-## Copy Startup Scripts
-
-Run the following command in the **Control PC** to copy the startup scripts to your home directory: (Please read the comments inside the startup scripts and make changes according to your PC i.e. the Password and the ROS workspace name)
-
-```bash
-cp ~/catkin_ws/src/momo/startup_scripts/start_momo*.sh ~
-
-```
-
 ## Setup SSH connection
 
 Setup an SSH connection between the Main PC (board computer) and the Control PC (Intel NUC) so that you don't have to enter password every time you want to SSH into the NUC. This is also a necessary step in case of using the bash scripts while starting the robot.
@@ -268,27 +259,38 @@ sudo apt install ros-humble-teleop-twist-joy
 
 ```
 
-## Copy Bash Scripts
+## Install catmux
 
-Run the following command in a terminal on your **Main PC** to copy the startup and shutdown bash scripts to the home directory:
-(**Note**: Read comments in the scripts and change IP address and password of NUC if different.)
+Catmux is a command-line tool used to create and manage Tmux sessions using YAML configuration files.
+ 
+ Run this command in the **Main PC** to install catmux :
 
 ```bash
-cp ~/ros2_ws/src/momo/bash_scripts/wakeupmomo.sh ~
-
-cp ~/ros2_ws/src/momo/bash_scripts/stopmomo.sh ~
+pip3 install --user catmux
 
 ```
 
-Set up aliases for starting and shutting down the robot in the **Main PC**:
+## Add alias for startup and shutdown
+
+We setup some aliases in the **Main PC** so that we don't have to type long commands everytime working with the robot.
+
+Set the path for yml files: (change if it looks different for you)
 
 ```bash
-echo "alias wakeupmomo='./wakeupmomo.sh'" >> ~/.bashrc
+export MOMO_PATH=~/ros2_humble/src/MoMo
+```
+Set up aliases for starting, stopping and shutting down the robot in the **Main PC**:
 
-echo "alias stopmomo='./stopmomo.sh'" >> ~/.bashrc
+```bash
+echo "alias wakeupmomo='catmux_create_session $MOMO_PATH/wakeupmomo.yml --session_name wakeupmomo'" >> ~/.bashrc
 
+echo "alias stopmomo='catmux kill-session -t wakeupmomo'" >> ~/.bashrc
+
+echo "alias sleepmomo='catmux_create_session $MOMO_PATH/sleepmomo.yml'" >> ~/.bashrc
 
 ```
+
+(**Note**: Read comments in the **wakeupmomo.yml** and **sleepmomo.yml** in the MoMo repository and set variables according to your system)
 
 ## Building the documentation locally (for developers only)
 
