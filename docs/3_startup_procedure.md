@@ -25,41 +25,26 @@ Open up a terminal on the main computer and run the following command:
 wakeupmomo
 ```
 
-**wakeupmomo** is an alias which runs the ./wakeupmomo.sh bash script on the Main PC.
+**wakeupmomo** is an alias which starts a catmux session.
 
-**wakeupmomo** command opens up four terminals, three of them SSHs into the NUC and one of them starts the joystick node in ros2.
+**wakeupmomo** command opens up four terminals, three of them SSHs into the NUC and one of them starts the joystick node in ROS 2. 
 
-## Start bash scripts
-
-Enter the following commands in the opened terminals in sequence.
-
-In terminal 1:
-
-```bash
-./start_momo1.sh
-```
-
-In terminal 2:
-
-```bash
-./start_momo2.sh
-```
-
-and in terminal 3:
-
-```bash
-./start_momo3.sh
-```
+More details about catmux can be found [here](https://github.com/fmauch/catmux).
 
 Now you can move the robot using joystick connected to the main board computer in ROS 2. The velocity commands are sent to the robot over the `/cmd_vel` topic.
 
+If it does not work, kill the session using the below command and try again: 
+```bash
+stopmomo
+```
+**Note:** Just closing the terminals is not enough, you need to kill the catmux session using the above command.
 
 ## Shutdown and Cleanup
 
 To completely shutdown the robot including both the computers, enter the following command on the main board computer terminal:
 
 ```bash
-stopmomo
+sleepmomo
 ```
 
-**stopmomo** is an alias which runs the /stopmomo.sh on the Main PC.
+
