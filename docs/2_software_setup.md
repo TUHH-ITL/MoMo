@@ -259,6 +259,17 @@ sudo apt install ros-humble-teleop-twist-joy
 
 ```
 
+## Install catmux
+
+Catmux is a command-line tool used to create and manage Tmux sessions using YAML configuration files.
+ 
+ Run this command in the **Main PC** to install catmux :
+
+```bash
+pip3 install --user catmux
+
+```
+
 ## Add alias for startup and shutdown
 
 We setup some aliases in the **Main PC** so that we don't have to type long commands everytime working with the robot.
