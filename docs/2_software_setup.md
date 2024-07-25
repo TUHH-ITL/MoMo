@@ -266,16 +266,16 @@ We setup some aliases in the **Main PC** so that we don't have to type long comm
 Set the path for yml files: (change if it looks different for you)
 
 ```bash
-export MOMO_YML_PATH=~/ros2_humble/src/MoMo
+export MOMO_PATH=~/ros2_humble/src/MoMo
 ```
 Set up aliases for starting, stopping and shutting down the robot in the **Main PC**:
 
 ```bash
-echo "alias wakeupmomo='catmux_create_session $MOMO_YML_PATH/wakeupmomo.yml --session_name wakeupmomo'" >> ~/.bashrc
+echo "alias wakeupmomo='catmux_create_session $MOMO_PATH/wakeupmomo.yml --session_name wakeupmomo'" >> ~/.bashrc
 
 echo "alias stopmomo='catmux kill-session -t wakeupmomo'" >> ~/.bashrc
 
-echo "alias sleepmomo='catmux_create_session $MOMO_YML_PATH/sleepmomo.yml'" >> ~/.bashrc
+echo "alias sleepmomo='catmux_create_session $MOMO_PATH/sleepmomo.yml'" >> ~/.bashrc
 
 ```
 
