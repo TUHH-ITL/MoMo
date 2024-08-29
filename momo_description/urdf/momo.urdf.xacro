@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="momo">
+    <xacro:include filename="$(find momo_description)/urdf/momo_core.xacro" />
+
+</robot>
