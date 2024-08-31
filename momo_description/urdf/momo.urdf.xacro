@@ -2,4 +2,5 @@
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro" name="momo">
     <xacro:include filename="$(find momo_description)/urdf/momo_core.xacro" />
     <xacro:include filename="$(find momo_description)/urdf/momo_perception_module.xacro" />
+    <xacro:include filename="$(find momo_description)/urdf/gazebo_control.xacro" />
 </robot>
