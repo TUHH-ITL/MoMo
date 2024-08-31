@@ -25,6 +25,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="front_logitech">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <joint name="front_logitech_joint" type="fixed">
         <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" />
         <parent link="base_link" />
@@ -56,6 +61,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="right_logitech">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <joint name="right_logitech_joint" type="fixed">
         <origin xyz="-0.00257639641022331 -0.165213293309076 0.418952968841513" rpy="-1.5707963267949 0 3.14159265358979" />
         <parent link="base_link" />
@@ -87,6 +97,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="back_logitech">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <joint name="back_logitech_joint" type="fixed">
         <origin xyz="-0.254567242746362 0.0415958603547848 0.418952968841513" rpy="-1.5707963267949 0 1.5707963267949" />
         <parent link="base_link" />
@@ -118,6 +133,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="left_logitech">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
     <joint name="left_logitech_joint" type="fixed">
         <origin xyz="-0.00225808908250899 0.248086706690936 0.418952968841515" rpy="-1.5707963267949 0 0" />
         <parent link="base_link" />
@@ -149,6 +169,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="lidar">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
     <joint name="lidar_joint" type="fixed">
         <origin xyz="-0.00241706738442254 0.0414368820528667 0.478357617954853" rpy="0 0 0" />
         <parent link="base_link" />
@@ -180,6 +205,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="realsense_t265">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
     <joint name="realsense_t265_joint" type="fixed">
         <origin xyz="0.184822757253643 0.0443427066909039 0.337457617954855" rpy="-1.5707963267949 0 -1.5707963267949" />
         <parent link="base_link" />
@@ -211,6 +241,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="realsense_d435i">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
     <joint name="realsense_d435i_joint" type="fixed">
         <origin xyz="-0.404814742746363 0.0344707026853986 0.279039270865987" rpy="-1.5707963267949 0 1.5707963267949" />
         <parent link="base_link" />
@@ -242,6 +277,11 @@
             </geometry>
         </collision>
     </link>
+
+    <gazebo reference="ifm_camera">
+        <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
     <joint name="ifm_camera_joint" type="fixed">
         <origin xyz="0.30569 0.014587 0.26684" rpy="-1.5708 0 -1.5708" />
         <parent link="base_link" />
