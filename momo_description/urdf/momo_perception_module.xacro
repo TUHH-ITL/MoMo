@@ -12,7 +12,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/front_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/front_logitech.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -21,7 +21,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/front_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/front_logitech.STL" />
             </geometry>
         </collision>
     </link>
@@ -43,7 +43,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/right_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/right_logitech.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -52,7 +52,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/right_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/right_logitech.STL" />
             </geometry>
         </collision>
     </link>
@@ -74,7 +74,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/back_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/back_logitech.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -83,7 +83,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/back_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/back_logitech.STL" />
             </geometry>
         </collision>
     </link>
@@ -105,7 +105,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/left_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/left_logitech.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -114,7 +114,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/left_logitech.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/left_logitech.STL" />
             </geometry>
         </collision>
     </link>
@@ -136,7 +136,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/lidar.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/lidar.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -145,7 +145,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/lidar.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/lidar.STL" />
             </geometry>
         </collision>
     </link>
@@ -167,7 +167,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/realsense_t265.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/realsense_t265.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.627450980392157 0.627450980392157 0.627450980392157 1" />
@@ -176,7 +176,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/realsense_t265.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/realsense_t265.STL" />
             </geometry>
         </collision>
     </link>
@@ -198,7 +198,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/realsense_d435i.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/realsense_d435i.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -207,7 +207,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/realsense_d435i.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/realsense_d435i.STL" />
             </geometry>
         </collision>
     </link>
@@ -229,7 +229,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/ifm_camera.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/ifm_camera.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
@@ -238,7 +238,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://momo_description/meshes/visual/ifm_camera.STL" />
+                <mesh filename="file://$(find momo_description)/meshes/visual/ifm_camera.STL" />
             </geometry>
         </collision>
     </link>
