@@ -10,7 +10,7 @@
                     iyy="6.41203019340331E-05" iyz="1.1807193889875E-05" izz="5.08960858757451E-05" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/front_logitech.STL" />
             </geometry>
@@ -19,7 +19,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/front_logitech.STL" />
             </geometry>
@@ -31,21 +31,22 @@
     </gazebo>
 
     <joint name="front_logitech_joint" type="fixed">
+        <!-- <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" /> -->
         <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="front_logitech" />
         <axis xyz="0 0 0" />
     </joint>
 
-    <!-- for camera plugin -->
     <joint name="front_logitech_optical_joint" type="fixed">
+        <!-- <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" /> -->
         <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
         <parent link="front_logitech" />
         <child link="front_logitech_optical" />
-        <axis xyz="0 0 0" />
+        <axis xyz="0 0 0" /> 
     </joint>
 
-    <link name="front_logitech_optical"></link>    
+    <link name="front_logitech_optical"></link>
 
     <!-- RIGHT LOGITECH CAMERA -->
     <link name="right_logitech">
@@ -56,7 +57,7 @@
                     iyy="6.41203019340384E-05" iyz="1.18071938898757E-05" izz="5.08960858757447E-05" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/right_logitech.STL" />
             </geometry>
@@ -65,7 +66,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/right_logitech.STL" />
             </geometry>
@@ -77,11 +78,22 @@
     </gazebo>
 
     <joint name="right_logitech_joint" type="fixed">
-        <origin xyz="-0.00257639641022331 -0.165213293309076 0.418952968841513" rpy="-1.5707963267949 0 3.14159265358979" />
+        <!-- <origin xyz="-0.00257639641022331 -0.165213293309076 0.418952968841513" rpy="-1.5707963267949 0 3.14159265358979" /> -->
+        <origin xyz="-0.00257639641022331 -0.165213293309076 0.418952968841513" rpy="0 0 -1.57" />
         <parent link="base_link" />
         <child link="right_logitech" />
         <axis xyz="0 0 0" />
     </joint>
+
+    <!-- for camera plugin -->
+    <joint name="right_logitech_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+        <parent link="right_logitech" />
+        <child link="right_logitech_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="right_logitech_optical"></link>
 
     <!-- BACK LOGITECH CAMERA -->
     <link name="back_logitech">
@@ -92,7 +104,7 @@
                     iyy="6.41203019340351E-05" iyz="1.18071938898751E-05" izz="5.08960858757451E-05" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/back_logitech.STL" />
             </geometry>
@@ -101,7 +113,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/back_logitech.STL" />
             </geometry>
@@ -113,11 +125,22 @@
     </gazebo>
 
     <joint name="back_logitech_joint" type="fixed">
-        <origin xyz="-0.254567242746362 0.0415958603547848 0.418952968841513" rpy="-1.5707963267949 0 1.5707963267949" />
+        <!-- <origin xyz="-0.254567242746362 0.0415958603547848 0.418952968841513" rpy="-1.5707963267949 0 1.5707963267949" /> -->
+        <origin xyz="-0.254567242746362 0.0415958603547848 0.418952968841513" rpy="0 0 3.14" />
         <parent link="base_link" />
         <child link="back_logitech" />
         <axis xyz="0 0 0" />
     </joint>
+
+    <!-- for camera plugin -->
+    <joint name="back_logitech_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+        <parent link="back_logitech" />
+        <child link="back_logitech_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="back_logitech_optical"></link>
 
     <!-- LEFT LOGITECH CAMERA -->
     <link name="left_logitech">
@@ -128,7 +151,7 @@
                     iyy="6.41203019340324E-05" iyz="1.18071938898756E-05" izz="5.08960858757447E-05" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/left_logitech.STL" />
             </geometry>
@@ -137,7 +160,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/left_logitech.STL" />
             </geometry>
@@ -149,11 +172,22 @@
     </gazebo>
 
     <joint name="left_logitech_joint" type="fixed">
-        <origin xyz="-0.00225808908250899 0.248086706690936 0.418952968841515" rpy="-1.5707963267949 0 0" />
+        <!-- <origin xyz="-0.00225808908250899 0.248086706690936 0.418952968841515" rpy="-1.5707963267949 0 0" /> -->
+        <origin xyz="-0.00225808908250899 0.248086706690936 0.418952968841515" rpy="0 0 1.57" />
         <parent link="base_link" />
         <child link="left_logitech" />
         <axis xyz="0 0 0" />
     </joint>
+
+    <!-- for camera plugin -->
+    <joint name="left_logitech_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-1.5707963267949 0 0" />
+        <parent link="left_logitech" />
+        <child link="left_logitech_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="left_logitech_optical"></link>
 
     <!-- LIDAR -->
     <link name="lidar">
