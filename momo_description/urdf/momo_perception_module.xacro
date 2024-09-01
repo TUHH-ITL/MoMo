@@ -31,11 +31,21 @@
     </gazebo>
 
     <joint name="front_logitech_joint" type="fixed">
-        <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" />
+        <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="front_logitech" />
         <axis xyz="0 0 0" />
     </joint>
+
+    <!-- for camera plugin -->
+    <joint name="front_logitech_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+        <parent link="front_logitech" />
+        <child link="front_logitech_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="front_logitech_optical"></link>    
 
     <!-- RIGHT LOGITECH CAMERA -->
     <link name="right_logitech">
