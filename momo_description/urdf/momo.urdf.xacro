@@ -4,4 +4,5 @@
     <xacro:include filename="$(find momo_description)/urdf/momo_perception_module.xacro" />
     <xacro:include filename="$(find momo_description)/urdf/gazebo_control.xacro" />
     <xacro:include filename="$(find momo_description)/urdf/lidar_plugin.xacro" />
+    <xacro:include filename="$(find momo_description)/urdf/camera_plugin.xacro" />
 </robot>
