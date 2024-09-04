@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro">
+    
+
+    <gazebo reference="realsense_d435i">  <!-- reference is the link name in the urdf -->
+
+        <sensor name="realsense_d435i_camera" type="depth"> <!-- name is the link_name_camera -->
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+                <camera>
+                    <horizontal_fov>1.089</horizontal_fov>
+                    <image>
+                        <format>B8G8R8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="realsense_d435i_controller" filename="libgazebo_ros_camera.so"> <!-- name refers to the node name-->
+                <frame_name>realsense_d435i_optical</frame_name>
+                <min_depth>0.1</min_depth>
+                <max_depth>100.0</max_depth>
+            </plugin>
+        </sensor> 
+    </gazebo>
+
+
+</robot>
