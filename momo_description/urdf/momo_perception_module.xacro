@@ -31,22 +31,21 @@
     </gazebo>
 
     <joint name="front_logitech_joint" type="fixed">
-        <!-- <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" /> -->
         <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="front_logitech" />
         <axis xyz="0 0 0" />
     </joint>
 
-    <joint name="front_logitech_optical_joint" type="fixed">
-        <!-- <origin xyz="0.154732757253638 0.0412775530270625 0.418952968841513" rpy="-1.5707963267949 0 -1.5707963267949" /> -->
-        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
-        <parent link="front_logitech" />
-        <child link="front_logitech_optical" />
+    <!-- for camera plugin -->
+    <joint name="front_logitech_optical_joint" type="fixed"> <!-- link_name_optical_joint -->
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />     <!-- this line always stays the same -->
+        <parent link="front_logitech" />                     <!-- link_name -->
+        <child link="front_logitech_optical" />              <!-- link_name_optical -->
         <axis xyz="0 0 0" /> 
     </joint>
 
-    <link name="front_logitech_optical"></link>
+    <link name="front_logitech_optical"></link>              <!-- link_name_optical -->
 
     <!-- RIGHT LOGITECH CAMERA -->
     <link name="right_logitech">
@@ -181,7 +180,7 @@
 
     <!-- for camera plugin -->
     <joint name="left_logitech_optical_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="-1.5707963267949 0 0" />
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
         <parent link="left_logitech" />
         <child link="left_logitech_optical" />
         <axis xyz="0 0 0" />
@@ -291,11 +290,22 @@
     </gazebo>
 
     <joint name="realsense_d435i_joint" type="fixed">
-        <origin xyz="-0.404814742746363 0.0344707026853986 0.279039270865987" rpy="-1.5707963267949 0 1.5707963267949" />
+
+        <origin xyz="-0.404814742746363 0.0344707026853986 0.279039270865987" rpy="0 0 3.14" />
         <parent link="base_link" />
         <child link="realsense_d435i" />
         <axis xyz="0 0 0" />
     </joint>
+
+    <!-- for depth camera plugin -->
+    <joint name="realsense_d435i_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+        <parent link="realsense_d435i" />
+        <child link="realsense_d435i_optical" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="realsense_d435i_optical"></link>
 
     <!-- IFM CAMERA -->
     <link name="ifm_camera">
