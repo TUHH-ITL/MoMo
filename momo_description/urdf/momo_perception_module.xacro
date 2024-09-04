@@ -269,7 +269,7 @@
                     iyy="2.78843613995507E-05" iyz="-7.38862868090377E-09" izz="2.75878432161684E-05" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/realsense_d435i.STL" />
             </geometry>
