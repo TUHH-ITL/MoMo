@@ -55,7 +55,7 @@
                      iyy="0.000906168386374516" iyz="1.91429667110204E-11" izz="0.0010693441512525" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.08" rpy="0 0 0" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/front_right_wheel.STL" />
             </geometry>
@@ -64,7 +64,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.08" rpy="0 0 0" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/front_right_wheel.STL" />
             </geometry>
@@ -76,7 +76,8 @@
     </gazebo>
 
     <joint name="front_right_wheel_joint" type="continuous">
-        <origin xyz="0.26849 -0.318 0.059996" rpy="1.5708 0 0" />
+        <!-- <origin xyz="0.26849 -0.318 0.059996" rpy="1.5708 0 0" /> -->
+        <origin xyz="0.26849 -0.238 0.059996" rpy="1.5708 0 0" />
         <parent link="base_link" />
         <child link="front_right_wheel" />
         <axis xyz="0 0 -1" />
@@ -91,7 +92,7 @@
                      iyy="0.000905654311384346" iyz="8.48507848540578E-12" izz="0.00106934438027434" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.08" rpy="0 0 0" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/back_right_wheel.STL" />
             </geometry>
@@ -100,7 +101,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.08" rpy="0 0 0" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/back_right_wheel.STL" />
             </geometry>
@@ -112,7 +113,8 @@
     </gazebo>
 
     <joint name="back_right_wheel_joint" type="continuous">
-        <origin xyz="-0.27349334578749 -0.318000000000002 0.0599978846492716" rpy="1.5707963267949 0 0" />
+        <!-- <origin xyz="-0.27349334578749 -0.318000000000002 0.0599978846492716" rpy="1.5707963267949 0 0" /> -->
+        <origin xyz="-0.27349334578749 -0.238 0.0599978846492716" rpy="1.5707963267949 0 0" />
         <parent link="base_link" />
         <child link="back_right_wheel" />
         <axis xyz="0 0 -1" />

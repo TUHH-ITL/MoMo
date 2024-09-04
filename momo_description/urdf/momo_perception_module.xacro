@@ -278,7 +278,7 @@
             </material>
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="-1.57 0 -1.57" />
             <geometry>
                 <mesh filename="file://$(find momo_description)/meshes/visual/realsense_d435i.STL" />
             </geometry>
