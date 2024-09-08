@@ -90,53 +90,6 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='iss'>
-      <static>1</static>
-      <pose>1.24676 0.787083 4.6 3.14 -0 3.14</pose>
-      <link name='body'>
-        <inertial>
-          <mass>0.1</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <collision name='ISS_Surface'>
-          <geometry>
-            <mesh>
-              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/iss/6/files/meshes/US_Lab_ISS4.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='ISS_Visual'>
-          <geometry>
-            <mesh>
-              <uri>https://fuel.ignitionrobotics.org/1.0/openrobotics/models/iss/6/files/meshes//US_Lab_ISS4.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
     <model name='iscas_museum'>
       <link name='link'>
         <inertial>
@@ -179,10 +132,10 @@
       <pose>0.038172 1.45946 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>47 868000000</sim_time>
-      <real_time>896 464664034</real_time>
-      <wall_time>1725136211 952118872</wall_time>
-      <iterations>47868</iterations>
+      <sim_time>80 809000000</sim_time>
+      <real_time>64 590595375</real_time>
+      <wall_time>1725831573 883992331</wall_time>
+      <iterations>32941</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -198,16 +151,6 @@
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>0.038172 1.45946 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='iss'>
-        <pose>1.24676 0.787083 4.6 3.14 -0 3.14</pose>
-        <scale>1 1 1</scale>
-        <link name='body'>
-          <pose>1.24676 0.787083 4.6 3.14 -0 3.14</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
