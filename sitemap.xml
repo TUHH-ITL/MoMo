@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/1_assembly_instructions/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/2_software_setup/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/3_startup_procedure/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/4_troubleshooting/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/5_top_modules/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/6_simulation/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+    <url>
+         <loc>https://tuhh-itl.github.io/MoMo/7_api_reference/</loc>
+         <lastmod>2024-09-16</lastmod>
+    </url>
+</urlset>

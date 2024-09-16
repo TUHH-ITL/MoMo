@@ -1,0 +1,1960 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://tuhh-itl.github.io/MoMo/1_assembly_instructions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../2_software_setup/">
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Build MoMo - MoMo Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Build MoMo - MoMo Documentation" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://tuhh-itl.github.io/MoMo/assets/images/social/1_assembly_instructions.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://tuhh-itl.github.io/MoMo/1_assembly_instructions/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Build MoMo - MoMo Documentation" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://tuhh-itl.github.io/MoMo/assets/images/social/1_assembly_instructions.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-momo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MoMo Documentation" class="md-header__button md-logo" aria-label="MoMo Documentation" data-md-component="logo">
+      
+  <img src="../assets/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MoMo Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Build MoMo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/TUHH-ITL/MoMo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoMo
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Homepage
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Build MoMo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../2_software_setup/" class="md-tabs__link">
+        
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../3_startup_procedure/" class="md-tabs__link">
+        
+  
+    
+  
+  Startup Procedure
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../4_troubleshooting/" class="md-tabs__link">
+        
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../5_top_modules/" class="md-tabs__link">
+        
+  
+    
+  
+  Top Modules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../6_simulation/" class="md-tabs__link">
+        
+  
+    
+  
+  Simulation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../7_api_reference/" class="md-tabs__link">
+        
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MoMo Documentation" class="md-nav__button md-logo" aria-label="MoMo Documentation" data-md-component="logo">
+      
+  <img src="../assets/favicon.png" alt="logo">
+
+    </a>
+    MoMo Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/TUHH-ITL/MoMo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MoMo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homepage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Build MoMo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Build MoMo
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#bill-of-materials-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bill of Materials (BOM)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manufacture-custom-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manufacture custom components
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instructions-for-assembling-the-motor-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Assembling the Motor Blocks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instructions for Assembling the Motor Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gather-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gather Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-and-secure-ball-bearing-on-shaft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mount and Secure Ball Bearing on Shaft
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-of-the-gearbox-cover-to-the-motor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connection of the Gearbox cover to the Motor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-the-motor-with-the-shaft-and-the-flange" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting the motor with the shaft and the flange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachment-of-the-flange-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attachment of the flange cover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly-of-the-motor-block-on-the-robot-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assembly of the Motor Block on the Robot Frame
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-of-the-mecanum-wheel-on-the-shaft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation of the Mecanum Wheel on the Shaft
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-motor-unit-to-motor-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect Motor Unit to Motor Driver
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connect Motor Unit to Motor Driver">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dip-switch-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIP Switch Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DIP Switch Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-automatic-bit-rate-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAN automatic Bit Rate Detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-bus-termination" class="md-nav__link">
+    <span class="md-ellipsis">
+      CAN Bus Termination
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status Indicators
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Status Indicators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-epos4-features-three-sets-of-led-indicators-to-display-the-device-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      The EPOS4 features three sets of LED indicators to display the device condition
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Device Status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motor-driver-software-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Motor Driver Software Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Motor Driver Software Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firmware-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#startup-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Startup settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regulation-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regulation Tuning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canopen-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      CANopen settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CANopen settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdo-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      SDO parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive-pdos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Receive PDOs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transmit-pdos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transmit PDOs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Dictionary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-direction-of-rotation-vor-motor-control-id-2-and-id-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Change direction of rotation vor motor control ID 2 and ID 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dcfeds-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      DCF/EDS file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dcfeds-file-replace" class="md-nav__link">
+    <span class="md-ellipsis">
+      DCF/EDS file replace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instruction-for-component-configuration-module-electric-connector-mec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instruction for Component Configuration: Module-Electric-Connector (MEC)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#electronics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Electronics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_software_setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_startup_procedure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Startup Procedure
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_top_modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Top Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_simulation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simulation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_api_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="build-momo">Build MoMo</h1>
+<p>This section guides you to build your own MoMo and outlines the manufacturing and assembly process.</p>
+<p>The following steps roughly describe the assembly procedure:</p>
+<ol>
+<li>Cut SMT aluminum construction profiles and assemble the base station.</li>
+<li>Manufacture custom components</li>
+<li>Install the motor block (see motor block instructions) in the base station.</li>
+<li>Connect PC and PC power supply.  </li>
+<li>Position and wire the electronic components.</li>
+<li>Electronics: First set or test only the power supply and battery monitor (primary side).</li>
+<li>Electronics: Upload the arduino code and test all electronic components. </li>
+<li>Set the motor driver hardware (Maxon_Set_up instructions).</li>
+<li>Prepare Epos Studio and parameterize 4 motor drivers (software)  </li>
+</ol>
+<p><strong>Note:</strong> You could also use different manufacturers for aluminum construction profiles, such as ITEM or Bosch, but some connector parts might vary.</p>
+<h2 id="bill-of-materials-bom">Bill of Materials (BOM)</h2>
+<p>The following list contains all the components required for the assembly of the robot. The components are divided into different categories. The list is not exhaustive and some components may be missing. The list is intended to provide an overview of the components required for the assembly. The ID column is used to identify the components in the assembly instructions. The vendor column provides the name of the vendor where the component can be purchased. 
+The link column provides a link to the vendor's website where the component can be purchased. Of course, the components can also be purchased from other vendors. There is no affiliation with the vendors mentioned in the list. The prices include taxes and are subject to change.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ID</strong></td>
+<td><strong>Item Description</strong></td>
+<td><strong>Provider</strong></td>
+<td><strong>Price (</strong>€<strong>)</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Total Amount</strong></td>
+<td><strong>Product ID</strong></td>
+<td><strong>Link</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Multiblock 8 PA</td>
+<td>SMT</td>
+<td>1,28 €</td>
+<td>20</td>
+<td>25,60 €</td>
+<td>S208MBPA</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/361.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cross Cable Tie Block with Hammer Nut 8-30</td>
+<td>SMT</td>
+<td>0,64 €</td>
+<td>10</td>
+<td>6,40 €</td>
+<td>S208KKMH30</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/739n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cable Tie Block 8</td>
+<td>SMT</td>
+<td>0,41 €</td>
+<td>20</td>
+<td>8,20 €</td>
+<td>S208KBB</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/3290.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cover and Edging Profile 8 Black 1000mm</td>
+<td>SMT</td>
+<td>0,81 €</td>
+<td>5</td>
+<td>4,05 €</td>
+<td>S208AEPSCHK</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/1422n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Angle Bracket Set 8 30x30 Aluminum</td>
+<td>SMT</td>
+<td>1,22 €</td>
+<td>10</td>
+<td>12,20 €</td>
+<td>S208WS30A</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/341n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cube Connector Set 8 30x30 3D</td>
+<td>SMT</td>
+<td>3,08 €</td>
+<td>10</td>
+<td>30,80 €</td>
+<td>S208WV30303DS</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/1410n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Slot Nut 8, with Bridge, M5</td>
+<td>SMT</td>
+<td>0,23 €</td>
+<td>30</td>
+<td>6,90 €</td>
+<td>S208NSMS5</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/43.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Slot Nut 8, with Bridge, M6</td>
+<td>SMT</td>
+<td>0,23 €</td>
+<td>30</td>
+<td>6,90 €</td>
+<td>S208NSMS6</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/44.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Slot Nut 8, with Bridge, M8</td>
+<td>SMT</td>
+<td>0,23 €</td>
+<td>30</td>
+<td>6,90 €</td>
+<td>S208NSMS8</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/45.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Joint 30x30</td>
+<td>SMT</td>
+<td>7,13 €</td>
+<td>6</td>
+<td>42,78 €</td>
+<td>S208G30</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/1210n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Profile 8 30x30 Black</td>
+<td>SMT</td>
+<td>21,35 €</td>
+<td>6</td>
+<td>128,10 €</td>
+<td>S1083030SCH</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/1273n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Slot Nut 8, with Bridge, M3</td>
+<td>SMT</td>
+<td>0,23 €</td>
+<td>30</td>
+<td>6,90 €</td>
+<td>S208NSMS3</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/3420.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Slot Nut 8, with Bridge, M4</td>
+<td>SMT</td>
+<td>0,23 €</td>
+<td>30</td>
+<td>6,90 €</td>
+<td>S208NSMS4</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/42.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>T-Connector Plate 30</td>
+<td>SMT</td>
+<td>1,14 €</td>
+<td>20</td>
+<td>22,80 €</td>
+<td>S208TVP30</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/1739n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Cover Profile 8 32x4</td>
+<td>SMT</td>
+<td>5,38 €</td>
+<td>4</td>
+<td>21,52 €</td>
+<td>S208AP324</td>
+<td><a href="https://www.smt-montagetechnik.de/produkte/504n.htm">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Mecanum wheel set<br></td>
+<td>Robotshop</td>
+<td>554,74 €</td>
+<td>1</td>
+<td>554,74 €</td>
+<td>RB-Nex-74</td>
+<td><a href="https://eu.robotshop.com/de/products/203mm-stahl-mecanum-radsatz-2x-links-2x-rechts?_gl=1%2Amrjgbs%2A_up%2AMQ..&amp;gclid=CjwKCAjw6IiiBhAOEiwALNqncVad6xE44pMZ95tl3s81Hvl753T9tH9SZwepu-FLE1pLpo1TOeRvgBoCPr0QAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>ID1-ID4</td>
+<td>Motor Controller</td>
+<td>Maxon Motor</td>
+<td>916,30 €</td>
+<td>4</td>
+<td>3.665,20 €</td>
+<td>594385</td>
+<td><a href="https://www.maxongroup.de/maxon/view/product/control/Positionierung/EPOS-4/594385?etcc_cu=onsite&amp;etcc_med=Header%20Suche&amp;etcc_cmp=mit%20Ergebnis&amp;etcc_ctv=Layer&amp;query=594385">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Encoder</td>
+<td>Maxon Motor</td>
+<td>247,19 €</td>
+<td>4</td>
+<td>988,76 €</td>
+<td>607515</td>
+<td><a href="https://www.maxongroup.de/maxon/view/product/sensor/encoder/Induktive-Encoder/Encoder-MILE-512-6400-/607515">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Motors</td>
+<td>Maxon Motor</td>
+<td>294,16 €</td>
+<td>4</td>
+<td>1.176,64 €</td>
+<td>607946</td>
+<td><a href="https://www.maxongroup.de/maxon/view/product/motor/ecmotor/ecflat/ecflat90/607946">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Planetary Gearbox</td>
+<td>Maxon Motor</td>
+<td>507,04 €</td>
+<td>4</td>
+<td>2.028,16 €</td>
+<td>223086</td>
+<td><a href="https://www.maxongroup.de/maxon/view/product/gear/planetary/gp52/223086">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Power Cable</td>
+<td>Maxon Motor</td>
+<td>17,90 €</td>
+<td>4</td>
+<td>71,60 €</td>
+<td>275829</td>
+<td><a href="https://www.maxongroup.de/maxon/view/product/accessory/1-mmckabel/275829">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Intelligent connector system from Harting (1 male, 1 female connector)</td>
+<td>Harting</td>
+<td>512,00 €</td>
+<td>1</td>
+<td>512,00 €</td>
+<td></td>
+<td><a href="#instruction-for-component-configuration-module-electric-connector-mec">Click Here</a></td>
+</tr>
+<tr>
+<td>BAT1</td>
+<td>Lithium-ion battery 24V 60Ah 1440Wh 60A</td>
+<td>Akkushop-24</td>
+<td>569,00 €</td>
+<td>1</td>
+<td>569,00 €</td>
+<td>2460</td>
+<td><a href="https://www.akkushop-24.de/Lithium-Ionen-Akku-24V-60Ah-1440Wh-Akkupack-incl-60A-BMS-Ladegeraet-fuer-Scooter-E-Bike-Pedelec-Camping-Boot">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X5</td>
+<td>Clamp ptfix 6/...X1.5 blue</td>
+<td>reichelt</td>
+<td>3,35 €</td>
+<td>1</td>
+<td>3,35 €</td>
+<td>PHOE 3273332</td>
+<td><a href="https://www.reichelt.de/verteilerblock-ptfix-6-6x2-5-bu-ptfix-6x2-5-bu-p207663.html?PROVID=2788&amp;gclid=Cj0KCQjwsIejBhDOARIsANYqkD0AlSDGtOVlEb4zSLWkYki5iJIvxwnJ8L0vs2A6c9AuUX0GYdNRta0aAuK9EALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X4</td>
+<td>Clamp ptfix 6/...X1.5 red</td>
+<td>reichelt</td>
+<td>3,25 €</td>
+<td>1</td>
+<td>3,25 €</td>
+<td>PHOE 3273334</td>
+<td><a href="https://www.reichelt.de/verteilerblock-ptfix-6-6x2-5-rd-ptfix-6x2-5-rd-p207665.html?&amp;trstct=vrt_pdn&amp;nbc=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Flange PTFIX 1.5</td>
+<td>reichelt</td>
+<td>0,36 €</td>
+<td>4</td>
+<td>1,44 €</td>
+<td>104524</td>
+<td><a href="https://www.automation24.de/flansch-phoenix-1049503-ptfix-1-5-f?refID=adwords_DSA_DE&amp;gad_source=1&amp;gclid=CjwKCAjw1920BhA3EiwAJT3lSbhTfnlPvWZmIEsm_zT0XBuARnjS8t4hMd5zS1ZxM6u5AvufEsRNbBoCM10QAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>Flange PTFIX 2.5</td>
+<td>reichelt</td>
+<td>0,36 €</td>
+<td>4</td>
+<td>1,44 €</td>
+<td>104525</td>
+<td><a href="https://www.automation24.de/flansch-phoenix-3274060-ptfix-f?previewPriceListId=8&amp;gad_source=1&amp;gclid=CjwKCAjw1920BhA3EiwAJT3lSRSPUUDB7KAr3K7-EG7cUzGGo5I3sRBOcMQcWw4_QdGztZ46LyKYIBoCLIoQAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X1</td>
+<td>Distribution block PTFIX, 12x2.5 Gray</td>
+<td>reichelt</td>
+<td>6,10 €</td>
+<td>1</td>
+<td>6,10 €</td>
+<td>PHOE 3273352</td>
+<td><a href="https://www.reichelt.de/verteilerblock-ptfix-12x2-5-grau-ptfix-12x2-5-gy-p262113.html?&amp;trstct=pos_4&amp;nbc=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X2</td>
+<td>Distribution block PTFIX, 12x2.5 Red</td>
+<td>reichelt</td>
+<td>6,20 €</td>
+<td>1</td>
+<td>6,20 €</td>
+<td>PHOE 3273356</td>
+<td><a href="https://www.reichelt.de/verteilerblock-ptfix-12x2-5-rot-ptfix-12x2-5-rd-p262115.html?&amp;trstct=pos_11&amp;nbc=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X3</td>
+<td>Distribution block PTFIX, 12x2.5 Blue</td>
+<td>reichelt</td>
+<td>6,10 €</td>
+<td>1</td>
+<td>6,10 €</td>
+<td>PHOE 3273354</td>
+<td><a href="https://www.reichelt.de/verteilerblock-ptfix-12x2-5-blau-ptfix-12x2-5-bu-p262114.html?&amp;trstct=pos_7&amp;nbc=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td>S1</td>
+<td>Stainless steel pressure switch Ø19mm</td>
+<td>Metzler<br></td>
+<td>14,99 €</td>
+<td>2</td>
+<td>29,98 €</td>
+<td>P19-RF-RGB</td>
+<td><a href="https://metzler-electronics.com/metzler-druckschalter-19mm-led-ringbeleuchtung-rgb-ip67-ik10-edelstahl-flach-loetkontakte">Link to vendor</a></td>
+</tr>
+<tr>
+<td>U1</td>
+<td>Battery monitor 50A / 70A BW801e</td>
+<td>LEAB</td>
+<td>137,00 €</td>
+<td>1</td>
+<td>137,00 €</td>
+<td>1305041043</td>
+<td><a href="https://signaltech.de/leab-batteriewaechter-50a-70a-unterspannungsschutz.html">Link to vendor</a></td>
+</tr>
+<tr>
+<td>U3</td>
+<td>Can Master Module Kvaser Leaf Light HS v2</td>
+<td>distrelec</td>
+<td>285,00 €</td>
+<td>1</td>
+<td>285,00 €</td>
+<td>110-70-530</td>
+<td><a href="https://www.distrelec.de/de/can-bus-kanaele-usb-kvaser-00685/p/11070530?srsltid=AR57-fDjo9uxdqC7g0Ehi9veDB46bEmmg4VAraZevWJD1vyGPAyUt7Bq6Ww">Link to vendor</a></td>
+</tr>
+<tr>
+<td>S2</td>
+<td>Emergency stop button</td>
+<td>conrad</td>
+<td>13,44 €</td>
+<td>1</td>
+<td>13,44 €</td>
+<td>2304760 - 62</td>
+<td><a href="https://www.conrad.de/de/p/tru-components-not-aus-schalter-3-a-1-oeffner-ip65-1-st-2304760.html?hk=SEM&amp;WT.mc_id=google_pla&amp;gclid=Cj0KCQjwu-KiBhCsARIsAPztUF3kGh-cgnpeN6dj0_xiBnBx47u3IvGZOP3-sYAk4Kd2U-SBO9w8z6saAqjxEALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>K1</td>
+<td>Solid state relay TC-GSR-1-100DD 100 A</td>
+<td>conrad</td>
+<td>26,04 €</td>
+<td>2</td>
+<td>52,08 €</td>
+<td>2527195 - 62</td>
+<td><a href="https://www.conrad.de/de/p/tru-components-halbleiterrelais-tc-gsr-1-100dd-100-a-schaltspannung-max-220-v-dc-gleichstromschaltung-1-st-2527195.html?hk=SEM&amp;WT.mc_id=google_pla&amp;gclid=Cj0KCQjwpPKiBhDvARIsACn-gzCxjVu7Zf-64OcgkGWAOq9xAMo0d3udpGCEiM2V7yjAwmEdRKTZbtQaAtLsEALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>F1</td>
+<td>4x circuit distributor FHA504 flat fuse</td>
+<td>conrad</td>
+<td>25,20 €</td>
+<td>1</td>
+<td>25,20 €</td>
+<td>1628982 - 62</td>
+<td><a href="https://www.conrad.de/de/p/secoruet-fha504-led-stromkreisverteiler-flachsicherung-standard-pole-4-30-a-1-st-1628982.html?gclid=Cj0KCQjwl7qSBhD-ARIsACvV1X1Dn3QoKmx6G6jWQlv8yP37dwaOnF2A3XIFKkvL5jfbOKgSLhv7aioaAry5EALw_wcB&amp;hk=SEM&amp;WT.srch=1&amp;WT.mc_id=google_pla&amp;s_kwcid=AL%21222%213%21544530452548%21%21%21u%21%21&amp;ef_id=Cj0KCQjwl7qSBhD-ARIsACvV1X1Dn3QoKmx6G6jWQlv8yP37dwaOnF2A3XIFKkvL5jfbOKgSLhv7aioaAry5EALw_wcB%3AG%3As">Link to vendor</a></td>
+</tr>
+<tr>
+<td>F2</td>
+<td>6x FHA506 flat fuse circuit distributor</td>
+<td>conrad</td>
+<td>24,36 €</td>
+<td>1</td>
+<td>24,36 €</td>
+<td>1628986 - 62</td>
+<td><a href="https://www.conrad.de/de/p/secoruet-fha506-led-stromkreisverteiler-flachsicherung-standard-pole-6-30-a-1-st-1628986.html?gclid=Cj0KCQjwl7qSBhD-ARIsACvV1X1Dn3QoKmx6G6jWQlv8yP37dwaOnF2A3XIFKkvL5jfbOKgSLhv7aioaAry5EALw_wcB&amp;hk=SEM&amp;WT.srch=1&amp;WT.mc_id=google_pla&amp;s_kwcid=AL%21222%213%21544530452548%21%21%21u%21%21&amp;ef_id=Cj0KCQjwl7qSBhD-ARIsACvV1X1Dn3QoKmx6G6jWQlv8yP37dwaOnF2A3XIFKkvL5jfbOKgSLhv7aioaAry5EALw_wcB%3AG%3As">Link to vendor</a></td>
+</tr>
+<tr>
+<td>F3</td>
+<td>Flat fuse 50A</td>
+<td>conrad</td>
+<td>3,44 €</td>
+<td>1</td>
+<td>3,44 €</td>
+<td>839760 - 62</td>
+<td><a href="https://www.conrad.de/de/p/mta-automotive-mta-340029-standard-flachsicherung-15-a-blau-1-st-839760.html">Link to vendor</a></td>
+</tr>
+<tr>
+<td>T1</td>
+<td>30V to 12V voltage converter</td>
+<td>Amazon</td>
+<td>24,99 €</td>
+<td>1</td>
+<td>24,99 €</td>
+<td></td>
+<td><a href="https://www.amazon.de/Bauer-Electronics-12V-Spannungswandler-240W/dp/B09CYX2B4M/ref=sr_1_12?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;crid=22SHV6XVGR0CQ&amp;keywords=24V%2B20A%2Bnetzteil%2Bmit%2Bdisplay&amp;qid=1649322873&amp;sprefix=24v%2B20a%2Bnetzteil%2Bmit%2Bdisplay%2Caps%2C75&amp;sr=8-12&amp;th=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td></td>
+<td>7-inch display</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>K2</td>
+<td>Schneider Electric ZBRRA receiver for wireless push-button</td>
+<td>voelkner</td>
+<td>165,04 €</td>
+<td>1</td>
+<td>165,04 €</td>
+<td>W14844</td>
+<td><a href="https://www.voelkner.de/products/431170/Schneider-Electric-ZBRRA-Empfaenger-fuer-Funktaster-1St..html?ref=11&amp;offer=599f36e99ec35d3e5eb8df2b07d554ad&amp;utm_source=billiger&amp;utm_medium=CPC&amp;utm_campaign=W14844&amp;utm_content=intern">Link to vendor</a></td>
+</tr>
+<tr>
+<td>S3</td>
+<td>Schneider Electric XB4BA21 Harmony XB4BA21 Push-button Actuator flat</td>
+<td>voelkner</td>
+<td>11,18 €</td>
+<td>1</td>
+<td>11,18 €</td>
+<td>W11012</td>
+<td><a href="https://www.voelkner.de/products/431571/Schneider-Electric-XB4BA21-Harmony-XB4BA21-Drucktaster-Betaetiger-flach-1-Taste-Schwarz-Druckentriegelung-1St..html?offer=0afd0b646b01ef998e6e4e6c4cfa1b74">Link to vendor</a></td>
+</tr>
+<tr>
+<td>B1</td>
+<td>Battery Voltage Meter</td>
+<td>Amazon</td>
+<td>12,50 €</td>
+<td>1</td>
+<td>12,50 €</td>
+<td></td>
+<td><a href="https://www.amazon.de/Multifunktionaler-Batteriekapazit%C3%A4tsmonitor-Programmierbarer-Batteriestand-Spannungs-Temperaturmesser/dp/B0793PJSJM/ref=sr_1_28?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;crid=PFB5K2BJL3B1&amp;dib=eyJ2IjoiMSJ9.GKd5oL9vf9OnpKXrjJfsp2uimvOiAWSqrcekDWXYDd1mZnuoTmh7QMa0cxQYfxSCsv0rETPPwoKG7mDAXxTZQZRuif7KN8SZA3HSP2HFaVrc4jOXDBiJxJvyQYWJ5q24PKi2NFm1aksfaO-lYX0QvNUQUFCnE7bzGtL0BhjwwADeAW7ajj3bxeueM1wccyIAZlThfzMfuhXcaIK7ovXwOwKGlezOBdAFoVx_jSNFoaEv8BUMhu33hyfVIkQTv8oPG47AjvUs43-eQAbThhN35aMVJ6wBls5EGl-I8u1Myo8.jmdAdQQU5td-IoTcquonuj0R_hHhfAvHjdHe_0yBBQ8&amp;dib_tag=se&amp;keywords=Voltage%2BDisplay&amp;qid=1715934908&amp;sprefix=voltage%2Bdisplay%2Caps%2C122&amp;sr=8-28&amp;th=1">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X6-X10</td>
+<td>Molex crimp housing - micro-fit - 2x2-pin - plug</td>
+<td>reichelt</td>
+<td>0,60 €</td>
+<td>4</td>
+<td>2,40 €</td>
+<td>MOLEX 430200401</td>
+<td><a href="https://www.reichelt.de/molex-crimpgehaeuse-micro-fit-2x2-polig-stecker-molex-430200401-p236633.html?&amp;nbc=1&amp;trstct=lsbght_sldr::185681">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X16</td>
+<td>USB3 Socket</td>
+<td>Reichelt</td>
+<td>8,74 €</td>
+<td>1</td>
+<td>8,74 €</td>
+<td></td>
+<td><a href="https://www.reichelt.de/usb-adapter-ft-1-x-usb-3-0-a-buchse-1-x-usb-3-0-a-buchse-cliff-cp30205nx-p227640.html?PROVID=2788&amp;gad_source=1&amp;gclid=CjwKCAjw34qzBhBmEiwAOUQcF63Lqd-gt399wzk9gZ8FwcJBCKz1O7iTXOb5u37ZQZs-eYYXnLkPGRoCP4oQAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X15</td>
+<td>USB2 Socket</td>
+<td>Reichelt</td>
+<td>6,39 €</td>
+<td>1</td>
+<td>6,39 €</td>
+<td></td>
+<td><a href="https://www.reichelt.de/d-typ-modul-usb-2-0-typ-a-buchse-buchse-delock-86784-p292552.html?PROVID=2788&amp;gad_source=1&amp;gclid=CjwKCAjw34qzBhBmEiwAOUQcF15GVtKm17Wz7MQBUeV-VmWX88guievV709286pG9TRYVMyZAtZXaRoC-GwQAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X20</td>
+<td>HDMI Socket</td>
+<td>conrad</td>
+<td>17,99 €</td>
+<td>1</td>
+<td>17,99 €</td>
+<td></td>
+<td><a href="https://www.conrad.de/de/p/neutrik-nahdmi-w-b-hdmi-steckverbinder-flanschbuchse-kontakte-gerade-polzahl-19-schwarz-1-st-733868.html?hk=SEM&amp;WT.mc_id=google_pla&amp;gad_source=1&amp;gclid=CjwKCAjw34qzBhBmEiwAOUQcFxGX8HxvL9Tey1Q6g0Zh4fJPx9Ur3-h-CpIkSYD86mkNw2s0YWYpRRoCnaYQAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>X19</td>
+<td>Ethernet Socket</td>
+<td>conrad</td>
+<td>6,99 €</td>
+<td>1</td>
+<td>6,99 €</td>
+<td></td>
+<td><a href="https://www.conrad.de/de/p/tru-components-tc-9554644-rj45-durchgangs-einbaubuchse-d-form-cat-6a-buchse-gerade-polzahl-8p8c-schwarz-1-st-2388661.html?hk=SEM&amp;WT.mc_id=google_pla&amp;gad_source=1&amp;gclid=CjwKCAjw34qzBhBmEiwAOUQcF9NkPhTUIKAwlcT9-Lofgy_XZOYgYrt-pNHCgeCd5ML8_nQv4KssJBoC0SsQAvD_BwE">Link to vendor</a></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>Motherboard</td>
+<td>bicker</td>
+<td>380,80 €</td>
+<td>1</td>
+<td>380,80 €</td>
+<td></td>
+<td><a href="https://www.bicker.de/q670ei-im-a_mini-itx_asus_industrie_serie_intel-q670e_alder_lake_lga1700_socket_12_gen_max_65w_tdp_mainboard">Link to vendor</a></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>CPU Fan</td>
+<td>Voelkner</td>
+<td>52,65 €</td>
+<td>1</td>
+<td>52,65 €</td>
+<td></td>
+<td><a href="https://www.voelkner.de/products/5227857/Noctua-NH-L9i-17xx-CPU-Kuehler-mit-Luefter.html?ref=43&amp;offer=0&amp;utm_source=google&amp;utm_medium=organic&amp;utm_campaign=fpla&amp;gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8kEhuzKGjw_Yh3bl250rXOk176e_mMEh1uvcilgkAF_mC4i6vPJTewaAuuzEALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>WiFi</td>
+<td>reichelt</td>
+<td>16,76 €</td>
+<td>1</td>
+<td>16,76 €</td>
+<td></td>
+<td><a href="https://www.reichelt.de/wlan-adapter-m-2-2230-card-wi-fi-6-intel-ax200-p267572.html?PROVID=2788&amp;gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8lFQp6k8WGkuYKUDCyHWEdV0z0E7X8LVEovhgBkl9gPMeFqN_pVlY8aAosBEALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>64 GB RAM</td>
+<td>cyberport</td>
+<td>268,00 €</td>
+<td>1</td>
+<td>268,00 €</td>
+<td></td>
+<td><a href="https://www.cyberport.de/?DEEP=2622-01Z&amp;APID=639&amp;gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8lmnEps1_0lHVrJWzF_y68RZOaFnO-iqENbBjIQRGsuhJCDqT48bmcaAjz7EALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>i9 12900T Processor</td>
+<td>alternate</td>
+<td>625,00 €</td>
+<td>1</td>
+<td>625,00 €</td>
+<td></td>
+<td><a href="https://www.alternate.de/html/product/1778364?partner=goadwoPLA&amp;partner=goadwomPer&amp;campaign=300310992&amp;adgroup=23549733792//&amp;campaignCode=STREICHP_OFFPAGE&amp;gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8kFSwSmK6kLiqukF8opL3nCxwk1UwxrdirNE3TG3Ug8IEuNPZ1iUA0aAnYREALw_wcB">Link to vendor</a></td>
+</tr>
+<tr>
+<td>T2</td>
+<td>M3-ATX-HV 6-34V DC/DC (95 W)</td>
+<td>minipc</td>
+<td>69,95 €</td>
+<td>1</td>
+<td>69,95 €</td>
+<td>1217</td>
+<td><a href="https://www.minipc.de/de/catalog/il/1217?gclid=CjwKCAjw2K6lBhBXEiwA5RjtCbwAVppkQG4ITdDYe3kyV_7s95VNdMrUlZnjSDIfqCKNVtSpzDZbIRoCahQQAvD_BwE">Link to vendor</a></td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Note:</strong> Depending on your floor it might be good to choose rubber mecanum wheels instead of nylon mecanum wheels in order to ensure better traction. <a href="https://eu.robotshop.com/de/products/203mm-stahl-mecanum-rad-mit-gummirollen-2xlinks-2xrechts">Rubber mecanum wheels</a> are recommended for smooth floors (e.g. smooth concrete) and nylon wheels are recommended for floors that have more rough texture.</em></p>
+<h2 id="manufacture-custom-components">Manufacture custom components</h2>
+<p>Before the assembly can begin, some custom parts need to be manufactured using a lathe and a milling machine.
+For the manufacturing we provide the 2D drawings of the individual components. The PDFs contain important data for the production of each part.</p>
+<ul>
+<li><a href="../assets/Abdeckung_Lager_Motor.pdf">Gear cover</a></li>
+<li><a href="../assets/Abstandsh%C3%BClse_Lager_Rad.pdf">Spacer bearing wheel</a>  </li>
+<li><a href="../assets/Flansch_Getriebemotor.pdf">Flange gear motor</a>  </li>
+<li><a href="../assets/Abdeckkappe_Flansch.pdf">Flange cover</a>  </li>
+<li><a href="../assets/Rad_Befestigungsscheibe.pdf">Wheel mounting disc</a>  </li>
+<li><a href="../assets/Rad-Welle-1.pdf">Wheel shaft</a>  </li>
+<li><a href="../assets/Motorblock_Gesamt.pdf">Motor block assembly</a>  </li>
+</ul>
+<h2 id="instructions-for-assembling-the-motor-blocks">Instructions for Assembling the Motor Blocks</h2>
+<p>In the following the instructions for assembling the motor blocks are explained step-by-step. The entire process is visualized below:</p>
+<p><img alt="GIF_video" src="../assets/motorblock_v16.gif" /></p>
+<h3 id="gather-components">Gather Components</h3>
+<p>For the assembly of <strong>one</strong> motor block you require the following parts:</p>
+<ul>
+<li>2 ball bearings: 6003-2Z, Deep groove ball bearing, single row, Inner diameter 17mm / Outer diameter 35mm, Width 10mm</li>
+<li>1 retaining ring (DIN 471 17x1 VE200)</li>
+<li>1 wheel Shaft</li>
+<li>4 countersunk screws (DIN7991 M5 x 12mm)</li>
+<li>1 motor with gearbox (motor and gearbox are delivered pre-assembled)</li>
+<li>1 gearbox cover</li>
+<li>1 flange</li>
+<li>4 cylinder screws (DIN912 M5 x 70 mm)</li>
+<li>4 countersunk screws (M4 x 8mm)</li>
+<li>1 spacer bearing wheel</li>
+<li>4 slot nuts (M8)</li>
+<li>4 cylinder screws (M8)</li>
+<li>1 flange cover</li>
+<li>4 countersunk screws (M4 x 8mm)</li>
+<li>1 mecanum wheel (should be delivered pre-assembled)</li>
+<li>1 wheel mounting disk</li>
+<li>1 fine screw (DIN 912 M8 x 16)</li>
+</ul>
+<h3 id="mount-and-secure-ball-bearing-on-shaft">Mount and Secure Ball Bearing on Shaft</h3>
+<p>A ball bearing with a retaining ring for a 17mm shaft must be installed as shown in the picture below.</p>
+<p><img alt="Schritt 1" src="../assets/motorblock1.jpg" /></p>
+<h3 id="connection-of-the-gearbox-cover-to-the-motor">Connection of the Gearbox cover to the Motor</h3>
+<p>On the motor, the gearbox cover is attached and secured with 4 countersunk screws (DIN7991 M5 x 12mm). Please refer to the image below!</p>
+<p><img alt="Schritt 2" src="../assets/motorblock2.jpg" /></p>
+<h3 id="connecting-the-motor-with-the-shaft-and-the-flange">Connecting the motor with the shaft and the flange</h3>
+<p>Then, connect the pre-assembled shaft (Step 1) 1 to the flange and secure it with 4 cylinder screws (DIN912 M5 x 70 mm). Please refer to the image below!</p>
+<p><img alt="Schritt 3" src="../assets/motorblock3.jpg" /></p>
+<h3 id="attachment-of-the-flange-cover">Attachment of the flange cover</h3>
+<p>The next step is to attach the second ball bearing with the flange cover and secure it with 4 countersunk screws (M4 x 8mm). The second ball bearing should be attached carefully as it has little slack. The flange cover must be completely closed, there should be no gap.</p>
+<p><img alt="Schritt 4" src="../assets/motorblock4.jpg" /></p>
+<h3 id="assembly-of-the-motor-block-on-the-robot-frame">Assembly of the Motor Block on the Robot Frame</h3>
+<p>The assembled motor block must be mounted on the robot frame and secured. When all steps have been completed, the motor block must be attached to the robot frame and secured with the appropriate 4 cylinder screws (M4) into fitting slot nuts.</p>
+<p>Insert the custom feather key into the corresponding slot.</p>
+<p><img alt="Schritt 5" src="../assets/motorblock5.jpg" /></p>
+<h3 id="installation-of-the-mecanum-wheel-on-the-shaft">Installation of the Mecanum Wheel on the Shaft</h3>
+<p>Move the Mecanum wheel onto the shaft. Secure with a wheel mounting disk and a fine screw (DIN 912 M8 x 16).</p>
+<p><img alt="Schritt 6" src="../assets/motorblock6.jpg" /></p>
+<p>Below you can see the assembled motor block attached to the robot frame.</p>
+<p><img alt="Motorblock mit Mecanumrad komplett" src="../assets/motorblock7.jpg" /></p>
+<h2 id="connect-motor-unit-to-motor-driver">Connect Motor Unit to Motor Driver</h2>
+<p>After following the assembly instruction for the motor unit, the next step is connecting the motor to the motor driver. In the following, the electronic connection of the motor unit with the motor driver will be explained.
+<img alt="motor_unit_with_cabels" src="../assets/motor_unit.jpg" /><br />
+<em>Motor unit with cables</em></p>
+<p>First you have to connect the motor unit to the motor driver. There are only 3 cables (see the image below):</p>
+<ul>
+<li>Hall sensor 6 pole Molex mini connector (X4)</li>
+<li>Encoder 10 pole pin connector (X5)</li>
+<li>Motor power supply (X3a) (with white/black/red cable with 4-pin Molex connector)</li>
+</ul>
+<p><img alt="Maxon Controller with Labels" src="../assets/stecker.jpg" />
+<em>Connectors  X4(left), X3a(middle), X5(right)</em>  </p>
+<p>The following image shows where to connect the cables to the motor driver.
+<img alt="Maxon Controller with Labels" src="../assets/hardwaremotor.jpg" /><br />
+<em>Relevant ports on the motor driver</em></p>
+<p>Once the previous steps are completed, connect power supply (24-30V) to the port X1.</p>
+<h3 id="dip-switch-configuration">DIP Switch Configuration</h3>
+<p>Locate the DIP switch <em>SW1</em> on the motor driver.<br />
+<img alt="dip schalter" src="../assets/dip_schalter.PNG" /><br />
+<em>DIP switch SW1</em></p>
+<p>Each controller should have its own ID. It is important to identify exactly in the CAN node
+first motor gets ID1 and last ID4
+ID must not only be changed manually on the switch, but also in the Epos Studio software under CAN settings. This is exactly where the CAN setting is entered</p>
+<ul>
+<li>ID1: Switch 1 to <strong>on</strong> all others to <strong>off</strong>  </li>
+<li>ID2: Switch 2 to <strong>on</strong> all others to <strong>off</strong>  </li>
+<li>ID3: Switch 1 and Switch 2 to <strong>on</strong> all others to <strong>off</strong></li>
+<li>ID4: Switch 3 set to <strong>on</strong> all others set to <strong>off</strong></li>
+</ul>
+<p><img alt="dip switch" src="../assets/dip_schalter_id.PNG" /><br />
+<em>Binary code values for the DIP switch SW1</em></p>
+<h4 id="can-automatic-bit-rate-detection">CAN automatic Bit Rate Detection</h4>
+<p><img alt="DIP switch SW1 - CAN automatic bit rate detection" src="../assets/dip_schalter1.PNG" /><br />
+<em>DIP switch setting for enabling automatic bit rate detection</em><br />
+We recommend using the <strong>automatic bitrate</strong> setting for CAN node.
+To use this, switch 6 must be active.</p>
+<h4 id="can-bus-termination">CAN Bus Termination</h4>
+<p>for CAN nodes always 2 terminating resistors each 120 Ohm. You can connect manually at the beginning/end or use internal resistors from the controller.
+<img alt="epos4_CAN-Bus-Topology" src="../assets/epos4_CAN_Bus_Topology.png" />
+To do this, connect as shown in the picture and set switch 7 to "on" for controller 1 and 4
+<img alt="DIP switch SW1 – CAN bus termination" src="../assets/dip_schalter2.PNG" />
+<em>Set DIP switch SW7 to "on" for CAN bus termination</em>  </p>
+<h3 id="status-indicators">Status Indicators</h3>
+<h4 id="the-epos4-features-three-sets-of-led-indicators-to-display-the-device-condition">The EPOS4 features three sets of LED indicators to display the device condition</h4>
+<ul>
+<li>A NET Status; the LEDs display communication RUN states and errors conditions.</li>
+<li>B Device Status; the LEDs display the device’s operation status and error conditions</li>
+</ul>
+<p><img alt="NET_Status_LEDs" src="../assets/led.png" /><br />
+<em>Location of Status LEDs</em></p>
+<h4 id="device-status">Device Status</h4>
+<p>The LEDs (B Device Status) display the actual status and possible errors of the EPOS4:</p>
+<ul>
+<li>Green LED shows the status</li>
+<li>Red LED indicates errors</li>
+</ul>
+<p><img alt="Device_Status_LEDs" src="../assets/Device_Status_LEDs.png" /><br />
+<em>Status LEDs for the EPOS 4 Motor Controller</em></p>
+<h2 id="motor-driver-software-configuration">Motor Driver Software Configuration</h2>
+<p>Software setup with EPOS Studio</p>
+<h3 id="installation">Installation</h3>
+<p>Install the latest EPOS-IDX Studio: EPOS Studio 3.7. The best way to get it is using the button “Download EPOS Setup” at the bottom of maxon EPOS website <a href="http://epos.maxongroup.com">http://epos.maxongroup.com</a>. After installation you can find various documentations under the following folders:
+C:\Program Files (x86)\maxon motor ag\EPOS IDX\EPOS4\04 Programming
+C:\Program Files (x86)\maxon motor ag\EPOS IDX\EPOS4\05 Applications\Application Notes
+Alternatively, you can find it at the bottom of the link above (§2.1), or under the Download section of any EPOS4 product detail.</p>
+<h3 id="firmware-update">Firmware Update</h3>
+<p>Update all EPOS4 boards to the latest firmware using EPOS Studio. Once you created an EPOS4 project and connected to your controller, just right click on it, and go to Wizard and then Firmware Update.</p>
+<h3 id="startup-settings">Startup settings</h3>
+<p>Open the Startup Wizard and fill the parameters based on your motor data. The following screenshots show the settings for the motor, gear, sensors, commutation, regulation, unit, limit, device control, and windows as we used them for the specific motor.</p>
+<p><img alt="startup_motor" src="../assets/software01_startup_motor.png" /><br />
+<em>Motor parameters in EPOS Studio</em>
+<img alt="startup_gear" src="../assets/software02_startup_gear.png" />
+<em>Gear parameters in EPOS Studio</em></p>
+<p><img alt="startup_sensors" src="../assets/software03_startup_sensors.png" />
+<em>Sensor parameters in EPOS Studio</em></p>
+<p><img alt="startup_commutation" src="../assets/software04_startup_commutation.png" /><br />
+<em>Communication settings</em></p>
+<p><img alt="startup_regulation" src="../assets/software05_startup_regulation.png" /><br />
+<em>Regulation settings</em></p>
+<p><img alt="startup_unit" src="../assets/software06_startup_unit.png" />
+<em>Controller Unit settings</em></p>
+<p><img alt="startup_limit" src="../assets/software07_startup_limit.png" />
+<em>Operating Limits</em></p>
+<p><img alt="startup_device_control" src="../assets/software08_startup_deviceControl.png" /><br />
+<em>Device control settings</em></p>
+<p><img alt="startup_windows" src="../assets/software09_startup_windows.png" />
+<em>Specify standstill window limits</em></p>
+<p><img alt="startup_startup_touch_probes" src="../assets/software10_startup_touchprobe.png" />
+<em>Touch probe functionality parameters</em>  </p>
+<h3 id="regulation-tuning">Regulation Tuning</h3>
+<p>Open the Regulation Tuning Wizard and proceed to the auto tuning steps while making sure the motor can move safely. </p>
+<p><strong>Important: Lift the robot. The wheels should touch the ground!</strong></p>
+<h3 id="canopen-settings">CANopen settings</h3>
+<h4 id="sdo-parameters">SDO parameters</h4>
+<p>Open the CANopen Wizard and leave the first page as it is for the SDO parameters
+<img alt="DService Data Objects" src="../assets/software_can1_service.png" /><br />
+<em>Service Data Objects for ID 1</em><br />
+The ros_canopen package expects specific PDO settings in order to function properly</p>
+<h4 id="receive-pdos">Receive PDOs</h4>
+<p>For the Receive PDOs, map the CAN objects as the following screenshot, by choosing from the list on the right.
+<img alt="Receive PDOs" src="../assets/software_can1_receive.png" /><br />
+<em>Receive PDOs for ID 1</em></p>
+<p>Please make sure to keep the correct order.<br />
+Verify that the COB-IDs have the correct Node ID hexadecimal value added at the end.<br />
+For example, ID1 in this case (for Node-ID 1) the RxPDO COB-ID is 0x0000 0200 + 0x1 = 0x0000 0201.<br />
+For example, ID2 in this case (for Node-ID 2) the RxPDO COB-ID is 0x0000 0200 + 0x2 = 0x0000 0202.<br />
+For example, ID3 in this case (for Node-ID 3) the RxPDO COB-ID is 0x0000 0200 + 0x3 = 0x0000 0203.<br />
+For example, ID4 in this case (for Node-ID 4) the RxPDO COB-ID is 0x0000 0200 + 0x4 = 0x0000 0204.  </p>
+<h4 id="transmit-pdos">Transmit PDOs</h4>
+<p>For the Transmit PDOs, select RTR and you can leave the inhibit time as 1 ms. Proceed similarly as above to do the following CAN objects mapping:
+<img alt="Receive PDOs" src="../assets/software_can1_transmit.png" /><br />
+<em>Transmit PDOs for ID 1</em></p>
+<p>In the Error Protocol tab, you can leave the Heartbeat consumer and producer unchecked.
+Verify that the COB-IDs have the correct Node ID hexadecimal value added at the end.<br />
+For example, ID1 in this case (for Node-ID 1) the RxPDO COB-ID is 0x0000 0200 + 0x1 = 0x0000 0201.<br />
+For example, ID2 in this case (for Node-ID 2) the RxPDO COB-ID is 0x0000 0200 + 0x2 = 0x0000 0202.<br />
+For example, ID3 in this case (for Node-ID 3) the RxPDO COB-ID is 0x0000 0200 + 0x3 = 0x0000 0203.<br />
+For example, ID4 in this case (for Node-ID 4) the RxPDO COB-ID is 0x0000 0200 + 0x4 = 0x0000 0204.</p>
+<h3 id="object-dictionary">Object Dictionary</h3>
+<p>In case you are using CSP Mode with MoveIt!, it is important to adjust the CAN bus cycle time of updated “Target position” data properly by setting the EPOS4 object “Interpolation time period value” (0x60C2/01).</p>
+<p><em>It is recommended to use a value of 10ms.</em></p>
+<p>Please find more information about this by maxon’s public Support Center document “EPOS4 / IDX: CSP Mode -&gt; Relevance of "Interpolation Time Period Value"?”.
+<a href="https://support.maxongroup.com/hc/en-us/articles/4402184834322-EPOS4-IDX-CSP-or-CSV-Mode-Relevance-of-Interpolation-Time-Period-Value">https://support.maxongroup.com/hc/en-us/articles/4402184834322-EPOS4-IDX-CSP-or-CSV-Mode-Relevance-of-Interpolation-Time-Period-Value</a></p>
+<h3 id="change-direction-of-rotation-vor-motor-control-id-2-and-id-4">Change direction of rotation vor motor control ID 2 and ID 4</h3>
+<p>If you want to change the default direction of rotation of the EPOS, you can do so in Object 0x3000 0x04.<br />
+Write 0x00000001 (i.e., Bit0) to the Object.<br />
+<img alt="Axis configuration miscellaneous" src="../assets/ID2ID4_drehrichtung_wechseln.png" /><br />
+<em>Axis configuration miscellaneous</em>
+You can make the change using the EPOS Studio -&gt; Tools -&gt; Object Dictionary.
+Important: after the change, you must also save this parameter. Right-click on the Object -&gt; Save All Parameters.</p>
+<p><img alt="Object Dictionary" src="../assets/ID2ID4_drehrichtung_wechseln2.png" />
+<em>Object Dictionary</em></p>
+<h3 id="dcfeds-file">DCF/EDS file</h3>
+<p>The ros_canopen package can be used with both DCF or EDS files. The current examples use DCF files.
+To export a DCF file, just right click on your EPOS4 controller, go to Wizards -&gt; Parameter Import/Export, type a file name and do “Export Parameters to File”.
+To export an EDS file, go to the Object Dictionary window, right click on any line and select “Export EDS file”, as explained in the following maxon support documentation: <a href="https://support.maxongroup.com/hc/en-us/articles/360012778713">https://support.maxongroup.com/hc/en-us/articles/360012778713</a>.</p>
+<h3 id="dcfeds-file-replace">DCF/EDS file replace</h3>
+<p>Replace the current DCF files with the ones you generated earlier in "DCF/EDS file" and make the changes in the node layer files accordingly, so that the “eds_file” tag matches your file name.
+The current official version of ros_canopen can’t parse boolean DataType (0x1) objects. It is therefore necessary to delete the only boolean DataType object, [2200sub2] (Internal valid logic supply), then change the SubNumber of [2200] to 2 and ParameterValue of [2200sub0] to 1 (lines in bold):</p>
+<p>[2200]<br />
+~~SubNumber=3~~
+SubNumber=2
+ParameterName=Power supply
+ObjectType=0x9</p>
+<p>[2200sub0]<br />
+ParameterName=Highest sub-index supported<br />
+ObjectType=0x7<br />
+DataType=0x5<br />
+AccessType=ro<br />
+DefaultValue=2<br />
+PDOMapping=0<br />
+ObjFlags=1<br />
+~~ParameterValue=2~~<br />
+ParameterValue=1  </p>
+<p><del>[2200sub2]<br />
+ParameterName=Internal valid logic supply<br />
+ObjectType=0x7<br />
+DataType=0x1<br />
+AccessType=ro<br />
+PDOMapping=0<br />
+ObjFlags=1</p>
+<p>[6098]<br />
+ParameterName=Homing method<br />
+ObjectType=0x7<br />
+DataType=0x2<br />
+AccessType=rww<br />
+~~DefaultValue=7~~<br />
+DefaultValue=0<br />
+PDOMapping=0<br />
+ObjFlags=0<br />
+~~ParameterValue=7~~<br />
+ParameterValue=0  </p>
+<p>The Homing method value 0 means “no Homing method required” according to CiA 402 standard.</p>
+<h2 id="instruction-for-component-configuration-module-electric-connector-mec">Instruction for Component Configuration: Module-Electric-Connector (MEC)</h2>
+<p>Visit the homepage: <a href="https://b2b.harting.com/ebusiness/en/">https://b2b.harting.com/ebusiness/en/</a><br />
+CLICK ON "<em>Configurators</em>" at the top right corner.<br />
+In the next tab under "<em>Industrial Connectors</em>", CLICK ON "<em>Configure now</em>".
+You can start the configuration with or without logging in.
+CLICK ON "<em>Start new configuration</em>" in the further tab.<br />
+On the current tab, you should see the following selection table:<br />
+Hood<br />
+Insert top<br />
+Insert bottom<br />
+Housing</p>
+<p>CLICK ON "<em>Configure</em>" below Hood.
+Enter the product number in the window: "Search for product number" for the first component:<br />
+<em>Han 24B-KG-Docking Frame (35 mm) product number: 09 30 024 1704</em></p>
+<p>(this part will also be used later for Housing Subpart as these components are asymmetrically designed)
+CLICK ON the plus-symbol next to the component, so that now you see a checkmark.<br />
+The component appears left in the picture as a 3-D model. CLICK ON "<em>Apply</em>“.</p>
+<p>If you do not see now two components left next to the table, the selected docking frame with the belonging:<br />
+<em>Han hinged frame plus, for 6 modules A-F with the product number: 09 14 024 0361</em>
+(hover the mouse-icon over Insert top)
+ CLICK ON "<em>Configure</em>" below Insert top although. CHOOSE the insert type: "<em>Connector with modular insert</em>"<br />
+You should see now in the left picture the Han hinged frame plus, for 6 modules A-F.
+Now CHOOSE for the slots A to F in the top row of the docking frame the following assembly components for the upper module. Proceed with the plus-symbols as with the first selection, so that each component is marked with a checkmark, in this order, slot for slot:</p>
+<p><em>slot A and B: Han USB 3.0 module   product number:  09 14 001 4703<br />
+slot C and D: Han RJ45 module, female gender changer product number: 09 14 001 4721<br />
+slot E and F: Han EE Quick-Lock module, male 1,5mm² product number: 09 14 008 2634</em>  </p>
+<p>CLICK ON "<em>Guiding</em>" in the top row and CHOOSE: "<em>4 M, 0 F, hood-housing, modular</em>" for the mounting fixation.
+If you see all components in this order left in the picture. CLICK ON "<em>Apply</em>“.
+Now you see the progress of your configuration next to the table.
+For the lower part for the MEC proceed as before.
+Begin with the subpart Housing. CLICK ON "<em>Configure</em>" below Housing for Housing Subpart.<br />
+Very likely the docking frame is already pre-selected.<br />
+<em>Han 24B-KG-Docking Frame (35 mm) product number: 09 30 024 1704</em>
+CLICK ON "<em>Apply</em>“
+You see the almost finished configuration next to the table.<br />
+Here you have also already through the system a pre-selection of the required assembly components in the correct order. Choose for:<br />
+<em>Slot A and B: Han USB module, male for patch cord product number: 09 14 001 4601<br />
+Slot C and D: Adapter Han RJ45 module-RJ45 patch cabel product number: 09 14 000 9966<br />
+Slot E and F: Han EE Quick-Lock module, female 1,5mm² product number: 09 14 008 2734</em></p>
+<p>CLICK ON "<em>Guiding</em>" in the top row and CHOOSE: "<em>4 M, 0 F, hood-housing, modular</em>" for the mounting fixation.
+CLICK ON "<em>Apply</em>“.</p>
+<p>When you hower the mouse-icon over Insert top and Insert bottom can see now in the Product List all required
+parts, also form the system pre-selected
+<em>Han-Modular Guiding Bush product number: 09 14 000 9909</em>
+and <em>Han-Modular Guide pin product number: 09 14 000 9908</em>
+to go to the overall CLICK ON "<em>Continue</em>“</p>
+<p>Make sure that all components are listed with the corresponding product numbers.</p>
+<p>If all components are correctly configured according to the instructions, you have successfully completed the setup of your Electric-Connector-Module.<br />
+CLICK ON "<em>Add to shopping cart</em>".  </p>
+<p>Now you need to log in or register first.
+ <img alt="harting1" src="../assets/harting1.png" />
+ <img alt="harting2" src="../assets/harting2.png" />
+ <img alt="harting3" src="../assets/harting3.png" />
+ <img alt="harting4" src="../assets/harting4.png" />  </p>
+<h2 id="electronics">Electronics</h2>
+<p>Make sure that you have the necessary experience in electronics before starting the assembly. The authors do not take any responsibility for any damage caused by the assembly of the electronics.
+The following figure shows a high-level view of all the electronics.
+<img alt="circuit-diagram" src="../assets/circuit_diagram.png" />
+For a more detailed visualization of all electronic connections, take a look at the circuit diagrams here: <a href="../assets/circuit_diagrams.pdf">Circuit Diagrams</a></p>
+<p>Once the arduino is connected to the PC, you can upload the code to the arduino. Install the arduino IDE and open the <code>main.ino</code> from the arduino folder. Load the code to the arduino.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://www3.tuhh.de/itl/"  target="_blank" rel="noopener">Institut für Technische Logistik</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/TUHH-ITL" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/itlhamburg/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141m0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7m146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8m76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/school/institut-fuer-technische-logistik-tuhh/mycompany/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/channel/UCjfr0QytTA29dJInXSUQz8w" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
