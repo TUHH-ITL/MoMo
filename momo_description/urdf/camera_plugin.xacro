@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="https://www.ros.org/wiki/xacro">
+    
+
+    <gazebo reference="front_logitech">
+
+        <sensor name="front_logitech_camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+                <camera>
+                    <horizontal_fov>1.089</horizontal_fov>
+                    <image>
+                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="front_camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>front_logitech_optical</frame_name>
+            </plugin>
+        </sensor> 
+    </gazebo>
+
+    <gazebo reference="right_logitech">
+
+        <sensor name="right_logitech_camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+                <camera>
+                    <horizontal_fov>1.089</horizontal_fov>
+                    <image>
+                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="right_camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>right_logitech_optical</frame_name>
+            </plugin>
+        </sensor> 
+    </gazebo>
+
+    <gazebo reference="back_logitech">
+
+        <sensor name="back_logitech_camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+                <camera>
+                    <horizontal_fov>1.089</horizontal_fov>
+                    <image>
+                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="back_camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>back_logitech_optical</frame_name>
+            </plugin>
+        </sensor> 
+    </gazebo>
+
+    <gazebo reference="left_logitech">
+
+        <sensor name="left_logitech_camera" type="camera">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+                <camera>
+                    <horizontal_fov>1.089</horizontal_fov>
+                    <image>
+                        <format>R8G8B8</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="left_camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>left_logitech_optical</frame_name>
+            </plugin>
+        </sensor> 
+    </gazebo>
+
+</robot>
