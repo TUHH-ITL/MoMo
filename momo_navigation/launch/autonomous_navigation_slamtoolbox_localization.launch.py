@@ -59,7 +59,7 @@ def generate_launch_description():
         get_package_share_directory('momo_navigation'), 'launch', 'ekf.launch.py'
     )
     slam_toolbox_launch = os.path.join(
-        get_package_share_directory('slam_toolbox'), 'launch', 'online_async_launch.py'
+        get_package_share_directory('slam_toolbox'), 'launch', 'localization_launch.py'
     )
     nav2_launch = os.path.join(
         get_package_share_directory('nav2_bringup'), 'launch', 'navigation_launch.py'
