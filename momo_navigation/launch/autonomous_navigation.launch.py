@@ -13,8 +13,8 @@ This is equivalent to launching the following:
 ros2 launch velodyne velodyne-all-nodes-VLP16-launch.py
 ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points
 ros2 launch momo_navigation {only_lidar_ekf.launch.py , only_wheel_ekf.launch.py, ekf.launch.py} 
-ros2 launch nav2_bringup localization_launch.py map:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/maps/map_7.yaml 
-ros2 launch nav2_bringup navigation_launch.py params_file:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/config/nav2_params.yaml
+ros2 launch momo_navigation localization_launch.py map:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/maps/map_7.yaml 
+ros2 launch momo_navigation navigation_launch.py params_file:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/config/nav2_params.yaml
 rviz2 (with a config file nav2_default_view.rviz)
 
 
@@ -50,7 +50,6 @@ def generate_launch_description():
     pkg_momo_navigation = get_package_share_directory('momo_navigation')
     pkg_velodyne = get_package_share_directory('velodyne')
     pkg_kiss_icp = get_package_share_directory('kiss_icp')
-    pkg_nav2_bringup = get_package_share_directory('nav2_bringup')
     
     # File paths
     map_file = '/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/maps/map_7.yaml'
@@ -92,13 +91,13 @@ def generate_launch_description():
 
         # Launch Localization
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(pkg_nav2_bringup, 'launch', 'localization_launch.py')),
+            PythonLaunchDescriptionSource(os.path.join(pkg_momo_navigation, 'launch', 'localization_launch.py')),
             launch_arguments={'map': map_file}.items()
         ),
 
         # Launch Navigation
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(pkg_nav2_bringup, 'launch', 'navigation_launch.py')),
+            PythonLaunchDescriptionSource(os.path.join(pkg_momo_navigation, 'launch', 'navigation_launch.py')),
             launch_arguments={'params_file': nav2_params_file}.items()
         ),
 
