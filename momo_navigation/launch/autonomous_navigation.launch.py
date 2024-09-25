@@ -4,7 +4,7 @@ Autonomous Navigation Launch File for momo_navigation Package
 This launch file is designed to set up autonomous navigation using the following components:
 - Velodyne LiDAR
 - KISS ICP for odometry
-- Extended Kalman Filter (EKF) for sensor fusion (lidar - default, wheel, or both) 
+- Extended Kalman Filter (EKF) for sensor fusion (lidar - default, wheel, or  lidar_wheel) 
 - Nav2 for localization (amcl) and navigation
 - RViz for visualization
 
@@ -12,7 +12,7 @@ This is equivalent to launching the following:
 
 ros2 launch velodyne velodyne-all-nodes-VLP16-launch.py
 ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points
-ros2 launch momo_navigation {only_lidar_ekf.launch.py , only_wheel_ekf.launch.py, ekf.launch.py} 
+ros2 launch momo_navigation {only_lidar_ekf.launch.py , only_wheel_ekf.launch.py, lidar_wheel_ekf.launch.py} 
 ros2 launch momo_navigation localization_launch.py map:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/maps/map_7.yaml 
 ros2 launch momo_navigation navigation_launch.py params_file:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/config/nav2_params.yaml
 rviz2 (with a config file nav2_default_view.rviz)
@@ -24,7 +24,7 @@ ros2 launch momo_navigation autonomous_navigation.launch.py ekf_type:=lidar
 
 ros2 launch momo_navigation autonomous_navigation.launch.py ekf_type:=wheel
 
-ros2 launch momo_navigation autonomous_navigation.launch.py ekf_type:=both
+ros2 launch momo_navigation autonomous_navigation.launch.py ekf_type:= lidar_wheel
 
 
 Additional Notes:
@@ -61,7 +61,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'ekf_type',
             default_value='lidar',
-            description='Select EKF type: lidar, wheel, or both'
+            description='Select EKF type: lidar, wheel, or  lidar_wheel'
         ),
         
         # Launch Velodyne
@@ -85,8 +85,8 @@ def generate_launch_description():
             condition=IfCondition(PythonExpression(["'", ekf_type, "' == 'wheel'"]))
         ),
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(pkg_momo_navigation, 'launch', 'ekf.launch.py')),
-            condition=IfCondition(PythonExpression(["'", ekf_type, "' == 'both'"]))
+            PythonLaunchDescriptionSource(os.path.join(pkg_momo_navigation, 'launch',  'lidar_wheel_ekf.launch.py')),
+            condition=IfCondition(PythonExpression(["'", ekf_type, "' == ' lidar_wheel'"]))
         ),
 
         # Launch Localization
