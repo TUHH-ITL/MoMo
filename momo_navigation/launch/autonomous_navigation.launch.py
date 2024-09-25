@@ -11,7 +11,7 @@ This launch file is designed to set up autonomous navigation using the following
 This is equivalent to launching the following:
 
 ros2 launch velodyne velodyne-all-nodes-VLP16-launch.py
-ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points
+ros2 launch kiss_icp odometry.launch.py topic:=/velodyne_points visualize:=false
 ros2 launch momo_navigation {only_lidar_ekf.launch.py , only_wheel_ekf.launch.py, lidar_wheel_ekf.launch.py} 
 ros2 launch momo_navigation localization_launch.py map:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/maps/map_7.yaml 
 ros2 launch momo_navigation navigation_launch.py params_file:=/home/itlbot2/ros2_humble/src/MoMo/momo_navigation/config/nav2_params.yaml
@@ -72,7 +72,8 @@ def generate_launch_description():
         # Launch KISS ICP Odometry
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(pkg_kiss_icp, 'launch', 'odometry.launch.py')),
-            launch_arguments={'topic': '/velodyne_points'}.items()
+            launch_arguments={'topic': '/velodyne_points',
+                              'visualize': 'false'}.items()
         ),
 
         # Launch EKF based on ekf_type
