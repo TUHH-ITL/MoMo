@@ -125,7 +125,7 @@ controller_server:
       temperature: 0.3
       gamma: 0.015
       motion_model: "Omni"
-      visualize: false
+      visualize: true
       reset_period: 1.0 # (only in Humble)
       regenerate_noises: false
       TrajectoryVisualizer:
@@ -174,7 +174,7 @@ controller_server:
       PathAlignCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 9.0
+        cost_weight: 12.0 # 10
         max_path_occupancy_ratio: 0.05
         trajectory_point_step: 3
         threshold_to_consider: 0.5
@@ -183,11 +183,11 @@ controller_server:
       PathFollowCritic:
         enabled: true
         cost_power: 1
-        cost_weight: 12.0
+        cost_weight: 7.0 # 12
         offset_from_furthest: 3
         threshold_to_consider: 1.0
       PathAngleCritic:
-        enabled: true
+        enabled: false
         cost_power: 1
         cost_weight: 8.0
         offset_from_furthest: 4
@@ -310,6 +310,18 @@ map_saver:
     occupied_thresh_default: 0.65
     map_subscribe_transient_local: True
 
+# planner_server:
+#   ros__parameters:
+#     expected_planner_frequency: 20.0
+#     use_sim_time: True
+#     planner_plugins: ["GridBased"]
+#     GridBased:
+#       plugin: "nav2_theta_star_planner::ThetaStarPlanner" # In Iron and older versions, "/" was used instead of "::"
+#       how_many_corners: 8
+#       w_euc_cost: 1.0
+#       w_traversal_cost: 2.0
+#       w_heuristic_cost: 1.0
+
 planner_server:
   ros__parameters:
     expected_planner_frequency: 20.0
@@ -359,3 +371,19 @@ waypoint_follower:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: True
       waypoint_pause_duration: 200
+
+velocity_smoother:
+  ros__parameters:
+    smoothing_frequency: 20.0
+    scale_velocities: false
+    feedback: "OPEN_LOOP"
+    max_velocity: [0.5, 0.5, 2.5]
+    min_velocity: [-0.5, -0.5, -2.5]
+    deadband_velocity: [0.0, 0.0, 0.0]
+    velocity_timeout: 1.0
+    max_accel: [2.5, 2.5, 3.2]
+    max_decel: [-2.5, -2.5, -3.2]
+    odom_topic: "/odometry/filtered"
+    odom_duration: 0.1
+    use_realtime_priority: false
+    enable_stamped_cmd_vel: false
