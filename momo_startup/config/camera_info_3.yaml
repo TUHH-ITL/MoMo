@@ -1,6 +1,6 @@
 image_width: 640
 image_height: 480
-camera_name: camera_3
+camera_name: front_cameara #camera_3
 camera_matrix:
   rows: 3
   cols: 3

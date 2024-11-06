@@ -1,0 +1,157 @@
+<launch>
+    <arg name="serial_no"           default=""/>
+    <arg name="usb_port_id"         default=""/>
+    <arg name="device_type"         default=""/>
+    <arg name="json_file_path"      default=""/>
+    <arg name="camera"              default="camera"/>
+    <arg name="tf_prefix"           default="$(var camera)"/>
+    <arg name="external_manager"    default="false"/>
+    <arg name="manager"             default="realsense2_camera_manager"/>
+    <arg name="output"              default="screen"/>
+    <arg name="respawn"              default="false"/>
+
+    <arg name="fisheye_width"       default="-1"/>
+    <arg name="fisheye_height"      default="-1"/>
+    <arg name="enable_fisheye"      default="false"/>
+
+    <arg name="depth_width"         default="-1"/>
+    <arg name="depth_height"        default="-1"/>
+    <arg name="enable_depth"        default="true"/>
+
+    <arg name="confidence_width"    default="-1"/>
+    <arg name="confidence_height"   default="-1"/>
+    <arg name="enable_confidence"   default="true"/>
+    <arg name="confidence_fps"      default="-1"/>
+
+    <arg name="infra_width"         default="848"/>
+    <arg name="infra_height"        default="480"/>
+    <arg name="enable_infra"        default="false"/>
+    <arg name="enable_infra1"       default="true"/>
+    <arg name="enable_infra2"       default="true"/>
+    <arg name="infra_rgb"           default="false"/>
+
+    <arg name="color_width"         default="-1"/>
+    <arg name="color_height"        default="-1"/>
+    <arg name="enable_color"        default="true"/>
+
+    <arg name="fisheye_fps"         default="-1"/>
+    <arg name="depth_fps"           default="-1"/>
+    <arg name="infra_fps"           default="30"/>
+    <arg name="color_fps"           default="-1"/>
+    <arg name="gyro_fps"            default="-1"/>
+    <arg name="accel_fps"           default="-1"/>
+    <arg name="enable_gyro"         default="true"/>
+    <arg name="enable_accel"        default="true"/>
+
+    <arg name="enable_pointcloud"         default="false"/>
+    <arg name="pointcloud_texture_stream" default="RS2_STREAM_COLOR"/>
+    <arg name="pointcloud_texture_index"  default="0"/>
+    <arg name="allow_no_texture_points"   default="false"/>
+    <arg name="ordered_pc"                default="false"/>
+
+    <arg name="enable_sync"               default="true"/>
+    <arg name="align_depth"               default="false"/>
+
+    <arg name="publish_tf"                default="true"/>
+    <arg name="tf_publish_rate"           default="0"/>
+
+    <arg name="filters"                   default=""/>
+    <arg name="clip_distance"             default="-2"/>
+    <arg name="linear_accel_cov"          default="0.01"/>
+    <arg name="initial_reset"             default="true"/>
+    <arg name="reconnect_timeout"         default="6.0"/>
+    <arg name="wait_for_device_timeout"   default="-1.0"/>
+    <arg name="unite_imu_method"          default="2"/>
+    <arg name="topic_odom_in"             default="odom_in"/>
+    <arg name="calib_odom_file"           default=""/>
+    <arg name="publish_odom_tf"           default="false"/>
+
+    <arg name="stereo_module/exposure/1"  default="7500"/>
+    <arg name="stereo_module/gain/1"      default="16"/>
+    <arg name="stereo_module/exposure/2"  default="1"/>
+    <arg name="stereo_module/gain/2"      default="16"/>
+    <arg name="global_time_enabled"       default="false"/>
+    <arg name="accel_qos"       default="SENSOR_DATA"/>
+    <arg name="gyro_qos"       default="SENSOR_DATA"/>
+    <arg name="hold_back_imu_for_frames" default="false"/>
+  
+  
+    <node name="d435i_node" pkg="realsense2_camera" exec="realsense2_camera_node">
+        <param name="global_time_enabled"       value="false"/>
+        <param name="accel_qos"       value="SENSOR_DATA"/>
+        <param name="gyro_qos"       value="SENSOR_DATA"/>
+        <param name="hold_back_imu_for_frames" value="false"/>
+        <param name="tf_prefix"                value="$(var tf_prefix)"/>
+        <param name="external_manager"         value="$(var external_manager)"/>
+        <param name="manager"                  value="$(var manager)"/>
+        <param name="output"                   value="$(var output)"/>
+        <param name="respawn"                  value="$(var respawn)"/>
+        <param name="serial_no"                value="$(var serial_no)"/>
+        <param name="usb_port_id"              value="$(var usb_port_id)"/>
+        <param name="device_type"              value="$(var device_type)"/>
+        <param name="json_file_path"           value="$(var json_file_path)"/>
+
+        <param name="enable_pointcloud"        value="$(var enable_pointcloud)"/>
+        <param name="pointcloud_texture_stream" value="$(var pointcloud_texture_stream)"/>
+        <param name="pointcloud_texture_index"  value="$(var pointcloud_texture_index)"/>
+        <param name="enable_sync"              value="$(var enable_sync)"/>
+        <param name="align_depth"              value="$(var align_depth)"/>
+
+        <param name="fisheye_width"            value="$(var fisheye_width)"/>
+        <param name="fisheye_height"           value="$(var fisheye_height)"/>
+        <param name="enable_fisheye"           value="$(var enable_fisheye)"/>
+
+        <param name="depth_width"              value="$(var depth_width)"/>
+        <param name="depth_height"             value="$(var depth_height)"/>
+        <param name="enable_depth"             value="$(var enable_depth)"/>
+
+        <param name="confidence_width"         value="$(var confidence_width)"/>
+        <param name="confidence_height"        value="$(var confidence_height)"/>
+        <param name="enable_confidence"        value="$(var enable_confidence)"/>
+        <param name="confidence_fps"           value="$(var confidence_fps)"/>
+
+        <param name="color_width"              value="$(var color_width)"/>
+        <param name="color_height"             value="$(var color_height)"/>
+        <param name="enable_color"             value="$(var enable_color)"/>
+
+        <param name="infra_width"              value="$(var infra_width)"/>
+        <param name="infra_height"             value="$(var infra_height)"/>
+        <param name="enable_infra"             value="$(var enable_infra)"/>
+        <param name="enable_infra1"            value="$(var enable_infra1)"/>
+        <param name="enable_infra2"            value="$(var enable_infra2)"/>
+        <param name="infra_rgb"                value="$(var infra_rgb)"/>
+
+        <param name="fisheye_fps"              value="$(var fisheye_fps)"/>
+        <param name="depth_fps"                value="$(var depth_fps)"/>
+        <param name="infra_fps"                value="$(var infra_fps)"/>
+        <param name="color_fps"                value="$(var color_fps)"/>
+        <param name="gyro_fps"                 value="$(var gyro_fps)"/>
+        <param name="accel_fps"                value="$(var accel_fps)"/>
+        <param name="enable_gyro"              value="$(var enable_gyro)"/>
+        <param name="enable_accel"             value="$(var enable_accel)"/>
+
+        <param name="publish_tf"               value="$(var publish_tf)"/>
+        <param name="tf_publish_rate"          value="$(var tf_publish_rate)"/>
+
+        <param name="filters"                  value="$(var filters)"/>
+        <param name="clip_distance"            value="$(var clip_distance)"/>
+        <param name="linear_accel_cov"         value="$(var linear_accel_cov)"/>
+        <param name="initial_reset"            value="$(var initial_reset)"/>
+        <param name="reconnect_timeout"        value="$(var reconnect_timeout)"/>
+        <param name="wait_for_device_timeout"  value="$(var wait_for_device_timeout)"/>
+        <param name="unite_imu_method"         value="$(var unite_imu_method)"/>
+        <param name="topic_odom_in"            value="$(var topic_odom_in)"/>
+        <param name="calib_odom_file"          value="$(var calib_odom_file)"/>
+        <param name="publish_odom_tf"          value="$(var publish_odom_tf)"/>
+        <param name="stereo_module/exposure/1" value="$(var stereo_module/exposure/1)"/>
+        <param name="stereo_module/gain/1"     value="$(var stereo_module/gain/1)"/>
+        <param name="stereo_module/exposure/2" value="$(var stereo_module/exposure/2)"/>
+        <param name="stereo_module/gain/2"     value="$(var stereo_module/gain/2)"/>
+
+        <param name="allow_no_texture_points"  value="$(var allow_no_texture_points)"/>
+        <param name="ordered_pc"               value="$(var ordered_pc)"/>
+    </node>
+
+    
+
+</launch>

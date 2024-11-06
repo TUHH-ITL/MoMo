@@ -1,6 +1,6 @@
 /**:
     ros__parameters:
-      video_device: "/dev/video6"
+      video_device: "/dev/v4l/by-id/usb-Sunplus_IT_Co_Trust_USB_Camera_20200415001-video-index0"
       framerate: 12.0
       io_method: "mmap"
       frame_id: "logitech_c920_right_link"
@@ -9,7 +9,7 @@
       image_width: 1280
       image_height: 720
       camera_name: "right_camera"
-      camera_info_url: "package://usb_cam/config/camera_info.yaml"
+      camera_info_url: "package://robot_localization_monitor/config/camera_info_2.yaml"
       brightness: -1
       contrast: -1
       saturation: -1

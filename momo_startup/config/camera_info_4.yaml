@@ -1,6 +1,6 @@
 image_width: 640
 image_height: 480
-camera_name: camera_4
+camera_name: back_camera #camera_4
 camera_matrix:
   rows: 3
   cols: 3

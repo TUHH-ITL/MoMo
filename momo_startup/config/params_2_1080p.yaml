@@ -9,7 +9,7 @@
       image_width: 1920
       image_height: 1080
       camera_name: "right_camera"
-      camera_info_url: "package://usb_cam/config/camera_info.yaml"
+      camera_info_url: "package://robot_localization_monitor/config/camera_info.yaml"
       brightness: -1
       contrast: -1
       saturation: -1

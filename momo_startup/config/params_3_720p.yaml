@@ -1,6 +1,6 @@
 /**:
     ros__parameters:
-      video_device: "/dev/video4"
+      video_device: "/dev/v4l/by-id/usb-046d_0809_0E65FACF-video-index0"
       framerate: 12.0
       io_method: "mmap"
       frame_id: "logitech_c920_front_link"
@@ -9,7 +9,7 @@
       image_width: 1280
       image_height: 720
       camera_name: "front_camera"
-      camera_info_url: "package://usb_cam/config/camera_info.yaml"
+      camera_info_url: "package://robot_localization_monitor/config/camera_info.yaml"
       brightness: -1
       contrast: -1
       saturation: -1
