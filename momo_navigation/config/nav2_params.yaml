@@ -1,12 +1,12 @@
 amcl:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
     alpha1: 0.2
     alpha2: 0.2
     alpha3: 0.2
     alpha4: 0.2
     alpha5: 0.2
-    base_frame_id: "base_footprint"
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -31,8 +31,8 @@ amcl:
     sigma_hit: 0.2
     tf_broadcast: true 
     transform_tolerance: 1.2
-    update_min_a: 0.1
-    update_min_d: 0.1
+    update_min_a: -1.0 # 0.1
+    update_min_d: -1.0 # 0.1
     z_hit: 0.5
     z_max: 0.05
     z_rand: 0.5
@@ -41,18 +41,18 @@ amcl:
 
 amcl_map_client:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 amcl_rclcpp_node:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 bt_navigator:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
     global_frame: map
-    robot_base_frame: base_footprint 
-    odom_topic: /odometry/filtered
+    robot_base_frame: base_link 
+    odom_topic: /kiss/odometry
     bt_loop_duration: 10
     default_server_timeout: 20
     enable_groot_monitoring: True
@@ -97,7 +97,7 @@ bt_navigator:
 
 bt_navigator_rclcpp_node:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 controller_server:
   ros__parameters:
@@ -114,14 +114,14 @@ controller_server:
       vx_min: -0.5
       vy_max: 0.5
       vy_min: -0.5
-      wz_max: 1.9
+      wz_max: 0.6
       ax_max: 3.0
       ax_min: -3.0
       ay_max: 3.0
-      az_max: 3.5
+      az_max: 2.5
       iteration_count: 1
       prune_distance: 1.7
-      transform_tolerance: 0.1
+      transform_tolerance: 2.0 #0.1
       temperature: 0.3
       gamma: 0.015
       motion_model: "Omni"
@@ -147,7 +147,7 @@ controller_server:
         cost_weight: 3.0
         threshold_to_consider: 0.5
       PreferForwardCritic:
-        enabled: false
+        enabled: true
         cost_power: 1
         cost_weight: 5.0
         threshold_to_consider: 0.5
@@ -206,7 +206,7 @@ controller_server:
 
 controller_server_rclcpp_node:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 local_costmap:
   local_costmap:
@@ -214,8 +214,8 @@ local_costmap:
       update_frequency: 5.0
       publish_frequency: 2.0
       global_frame: odom
-      robot_base_frame: base_footprint 
-      use_sim_time: False
+      robot_base_frame: base_link 
+      use_sim_time: True
       rolling_window: true
       width: 3
       height: 3
@@ -251,10 +251,10 @@ local_costmap:
       always_send_full_costmap: True
   local_costmap_client:
     ros__parameters:
-      use_sim_time: False
+      use_sim_time: True
   local_costmap_rclcpp_node:
     ros__parameters:
-      use_sim_time: False
+      use_sim_time: True
 
 global_costmap:
   global_costmap:
@@ -263,7 +263,7 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      use_sim_time: False
+      use_sim_time: True
       robot_radius: 0.3
       resolution: 0.05
       track_unknown_space: true
@@ -292,19 +292,19 @@ global_costmap:
       always_send_full_costmap: True
   global_costmap_client:
     ros__parameters:
-      use_sim_time: False
+      use_sim_time: True
   global_costmap_rclcpp_node:
     ros__parameters:
-      use_sim_time: False
+      use_sim_time: True
 
 map_server:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
     yaml_filename: "default.yaml"
 
 map_saver:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
     save_map_timeout: 5.0
     free_thresh_default: 0.25
     occupied_thresh_default: 0.65
@@ -313,7 +313,7 @@ map_saver:
 planner_server:
   ros__parameters:
     expected_planner_frequency: 20.0
-    use_sim_time: False
+    use_sim_time: True
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
@@ -323,7 +323,7 @@ planner_server:
 
 planner_server_rclcpp_node:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 recoveries_server:
   ros__parameters:
@@ -338,17 +338,17 @@ recoveries_server:
     wait:
       plugin: "nav2_recoveries/Wait"
     global_frame: odom
-    robot_base_frame: base_footprint
-    transform_timeout: 0.1
-    use_sim_time: False
+    robot_base_frame: base_link
+    transform_timeout: 1.0 # 0.1
+    use_sim_time: True
     simulate_ahead_time: 2.0
-    max_rotational_vel: 1.0
+    max_rotational_vel: 0.6 #1.0
     min_rotational_vel: 0.4
-    rotational_acc_lim: 3.2
+    rotational_acc_lim: 2.5
 
 robot_state_publisher:
   ros__parameters:
-    use_sim_time: False
+    use_sim_time: True
 
 waypoint_follower:
   ros__parameters:
@@ -365,13 +365,13 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: false
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.5, 2.5]
-    min_velocity: [-0.5, -0.5, -2.5]
+    max_velocity: [1.0, 0.7, 0.6]
+    min_velocity: [-1.0, -0.7, -0.6]
     deadband_velocity: [0.0, 0.0, 0.0]
     velocity_timeout: 1.0
-    max_accel: [2.5, 2.5, 3.2]
-    max_decel: [-2.5, -2.5, -3.2]
-    odom_topic: "/odometry/filtered"
+    max_accel: [2.5, 2.5, 2.5]
+    max_decel: [-2.5, -2.5, -2.5]
+    odom_topic: "/kiss/odometry"
     odom_duration: 0.1
     use_realtime_priority: false
     enable_stamped_cmd_vel: false

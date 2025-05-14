@@ -7,8 +7,12 @@ Panels:
         - /Global Options1
         - /TF1/Frames1
         - /TF1/Tree1
+        - /Map1
+        - /Map1/Topic1
+        - /Map1/Update Topic1
+        - /Odometry1
       Splitter Ratio: 0.5833333134651184
-    Tree Height: 336
+    Tree Height: 400
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -81,35 +85,113 @@ Visualization Manager:
         All Enabled: false
         back_left_wheel:
           Value: true
-        back_logitech:
-          Value: true
         back_right_wheel:
-          Value: true
-        base_footprint:
           Value: true
         base_link:
           Value: true
         front_left_wheel:
           Value: true
-        front_logitech:
-          Value: true
         front_right_wheel:
-          Value: true
-        ifm_camera:
-          Value: true
-        left_logitech:
           Value: true
         map:
           Value: true
         odom:
           Value: true
-        odom_lidar:
+        roller:
           Value: true
-        realsense_d435i:
+        roller_10:
           Value: true
-        realsense_t265:
+        roller_11:
           Value: true
-        right_logitech:
+        roller_12:
+          Value: true
+        roller_13:
+          Value: true
+        roller_14:
+          Value: true
+        roller_15:
+          Value: true
+        roller_16:
+          Value: true
+        roller_17:
+          Value: true
+        roller_18:
+          Value: true
+        roller_19:
+          Value: true
+        roller_2:
+          Value: true
+        roller_20:
+          Value: true
+        roller_21:
+          Value: true
+        roller_22:
+          Value: true
+        roller_23:
+          Value: true
+        roller_24:
+          Value: true
+        roller_25:
+          Value: true
+        roller_26:
+          Value: true
+        roller_27:
+          Value: true
+        roller_28:
+          Value: true
+        roller_29:
+          Value: true
+        roller_3:
+          Value: true
+        roller_30:
+          Value: true
+        roller_31:
+          Value: true
+        roller_32:
+          Value: true
+        roller_33:
+          Value: true
+        roller_34:
+          Value: true
+        roller_35:
+          Value: true
+        roller_36:
+          Value: true
+        roller_37:
+          Value: true
+        roller_38:
+          Value: true
+        roller_39:
+          Value: true
+        roller_4:
+          Value: true
+        roller_40:
+          Value: true
+        roller_41:
+          Value: true
+        roller_42:
+          Value: true
+        roller_43:
+          Value: true
+        roller_44:
+          Value: true
+        roller_45:
+          Value: true
+        roller_46:
+          Value: true
+        roller_47:
+          Value: true
+        roller_48:
+          Value: true
+        roller_5:
+          Value: true
+        roller_6:
+          Value: true
+        roller_7:
+          Value: true
+        roller_8:
+          Value: true
+        roller_9:
           Value: true
         velodyne:
           Value: true
@@ -121,33 +203,109 @@ Visualization Manager:
       Tree:
         map:
           odom:
-            base_footprint:
-              base_link:
-                back_left_wheel:
+            base_link:
+              back_left_wheel:
+                roller_13:
                   {}
-                back_logitech:
+                roller_14:
                   {}
-                back_right_wheel:
+                roller_15:
                   {}
-                front_left_wheel:
+                roller_16:
                   {}
-                front_logitech:
+                roller_17:
                   {}
-                front_right_wheel:
+                roller_18:
                   {}
-                ifm_camera:
+                roller_19:
                   {}
-                left_logitech:
+                roller_20:
                   {}
-                realsense_d435i:
+                roller_21:
                   {}
-                realsense_t265:
+                roller_22:
                   {}
-                right_logitech:
+                roller_23:
                   {}
-                velodyne:
-                  odom_lidar:
-                    {}
+                roller_24:
+                  {}
+              back_right_wheel:
+                roller_37:
+                  {}
+                roller_38:
+                  {}
+                roller_39:
+                  {}
+                roller_40:
+                  {}
+                roller_41:
+                  {}
+                roller_42:
+                  {}
+                roller_43:
+                  {}
+                roller_44:
+                  {}
+                roller_45:
+                  {}
+                roller_46:
+                  {}
+                roller_47:
+                  {}
+                roller_48:
+                  {}
+              front_left_wheel:
+                roller_25:
+                  {}
+                roller_26:
+                  {}
+                roller_27:
+                  {}
+                roller_28:
+                  {}
+                roller_29:
+                  {}
+                roller_30:
+                  {}
+                roller_31:
+                  {}
+                roller_32:
+                  {}
+                roller_33:
+                  {}
+                roller_34:
+                  {}
+                roller_35:
+                  {}
+                roller_36:
+                  {}
+              front_right_wheel:
+                roller:
+                  {}
+                roller_10:
+                  {}
+                roller_11:
+                  {}
+                roller_12:
+                  {}
+                roller_2:
+                  {}
+                roller_3:
+                  {}
+                roller_4:
+                  {}
+                roller_5:
+                  {}
+                roller_6:
+                  {}
+                roller_7:
+                  {}
+                roller_8:
+                  {}
+                roller_9:
+                  {}
+              velodyne:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -165,7 +323,7 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 145
+      Max Intensity: 26
       Min Color: 0; 0; 0
       Min Intensity: 1
       Name: LaserScan
@@ -233,7 +391,7 @@ Visualization Manager:
         Value: /map
       Update Topic:
         Depth: 5
-        Durability Policy: Volatile
+        Durability Policy: Transient Local
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /map_updates
@@ -572,6 +730,45 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /momo/pose
       Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz_default_plugins/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /momo/odom
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -619,23 +816,23 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 101.31925201416016
+      Scale: 15.653090476989746
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: 1.3993277549743652
-      Y: -1.4711633920669556
+      X: -4.122213840484619
+      Y: -7.342152118682861
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
   Docking:
     collapsed: false
-  Height: 1016
+  Height: 1163
   Hide Left Dock: false
   Hide Right Dock: false
   Navigation 2:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001560000039efc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000100044006900730070006c006100790073010000003d0000018d000000c900fffffffb00000018004e0061007600690067006100740069006f006e0020003201000001d00000020b0000013900fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000002800ffffff00000001000001470000039efc0200000005fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d00000173000000a400fffffffb0000000e0044006f0063006b0069006e006701000001b6000001490000006e00fffffffb0000001000530065006c006500630074006f00720100000305000000d60000006e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004910000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000015600000431fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000100044006900730070006c006100790073010000003d000001cd000000c900fffffffb00000018004e0061007600690067006100740069006f006e0020003201000002100000025e0000012600fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000002800ffffff000000010000014700000431fc0200000005fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d000001b0000000a400fffffffb0000000e0044006f0063006b0069006e006701000001f30000017d0000006e00fffffffb0000001000530065006c006500630074006f00720100000376000000f80000006e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004d70000043100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RealsenseCamera:
     collapsed: false
   Selection:
@@ -646,6 +843,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1850
-  X: 70
-  Y: 27
+  Width: 1920
+  X: 1920
+  Y: 0

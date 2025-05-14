@@ -36,11 +36,8 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (
-    DeclareLaunchArgument,
-    ExecuteProcess,
-    IncludeLaunchDescription,
-)
+from launch.actions import (DeclareLaunchArgument, ExecuteProcess,
+                            IncludeLaunchDescription)
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -53,18 +50,14 @@ def generate_launch_description():
     pkg_kiss_icp = get_package_share_directory("kiss_icp")
 
     # File paths
-    map_file = "/home/workstation/ros2_ws/src/robot_localization_monitor/maps/map_sim.yaml"
+    map_file = (
+        "/home/workstation/MoMo/momo_isaac_sim/maps/warehouse_slamtoolbox.yaml"
+    )
     nav2_params_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/config/nav2_params.yaml"
     rviz_config_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/rviz/nav2_default_view.rviz"
 
     return LaunchDescription(
         [
-            # Declare EKF Type Argument
-            DeclareLaunchArgument(
-                "ekf_type",
-                default_value="lidar",
-                description="Select EKF type: lidar, wheel, or  lidar_wheel",
-            ),
             # Launch KISS ICP Odometry
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
@@ -73,44 +66,11 @@ def generate_launch_description():
                 launch_arguments={
                     "topic": "/point_cloud",
                     "visualize": "false",
+                    "publish_odom_tf": "true",
+                    "base_frame": "base_link",
+                    "lidar_odom_frame": "odom",
+                    "use_sim_time": "true",
                 }.items(),
-            ),
-            # Launch EKF based on ekf_type
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    os.path.join(
-                        pkg_momo_navigation,
-                        "launch",
-                        "only_lidar_ekf.launch.py",
-                    )
-                ),
-                condition=IfCondition(
-                    PythonExpression(["'", ekf_type, "' == 'lidar'"])
-                ),
-            ),
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    os.path.join(
-                        pkg_momo_navigation,
-                        "launch",
-                        "only_wheel_ekf.launch.py",
-                    )
-                ),
-                condition=IfCondition(
-                    PythonExpression(["'", ekf_type, "' == 'wheel'"])
-                ),
-            ),
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    os.path.join(
-                        pkg_momo_navigation,
-                        "launch",
-                        "lidar_wheel_ekf.launch.py",
-                    )
-                ),
-                condition=IfCondition(
-                    PythonExpression(["'", ekf_type, "' == ' lidar_wheel'"])
-                ),
             ),
             # Launch Localization
             IncludeLaunchDescription(
@@ -138,7 +98,7 @@ def generate_launch_description():
             ),
             # Launch RViz
             ExecuteProcess(
-                cmd=["rviz2", "-d", rviz_config_file], output="screen"
+                cmd=["rviz2", "-d", rviz_config_file], output="log"
             ),
         ]
     )
