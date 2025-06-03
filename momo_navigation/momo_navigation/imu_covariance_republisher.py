@@ -11,15 +11,15 @@ class IMURepublisher(Node):
 
     def imu_callback(self, msg: Imu):
         # Set small but realistic covariances
-        msg.orientation_covariance = [0.05, 0.0, 0.0,
-                                      0.0, 0.05, 0.0,
-                                      0.0, 0.0, 0.05]
-        msg.angular_velocity_covariance = [0.01, 0.0, 0.0,
-                                           0.0, 0.01, 0.0,
-                                           0.0, 0.0, 0.01]
-        msg.linear_acceleration_covariance = [0.1, 0.0, 0.0,
-                                              0.0, 0.1, 0.0,
-                                              0.0, 0.0, 0.1]
+        msg.orientation_covariance = [1e-10, 0.0, 0.0,
+                                      0.0, 1e-10, 0.0,
+                                      0.0, 0.0, 1e-10]
+        msg.angular_velocity_covariance = [1e-6, 0.0, 0.0,
+                                           0.0, 1e-6, 0.0,
+                                           0.0, 0.0, 1e-6]
+        msg.linear_acceleration_covariance = [0.01, 0.0, 0.0,
+                                              0.0, 0.01, 0.0,
+                                              0.0, 0.0, 0.01]
         self.pub.publish(msg)
 
 def main():
