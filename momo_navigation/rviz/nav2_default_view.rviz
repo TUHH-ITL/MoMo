@@ -7,13 +7,14 @@ Panels:
         - /Global Options1
         - /TF1/Frames1
         - /TF1/Tree1
+        - /LaserScan1
         - /Map1
-        - /Map1/Topic1
         - /Map1/Update Topic1
-        - /Odometry1
+        - /Global Planner1
+        - /Global Planner1/Polygon1
+        - /Controller1/Polygon1/Topic1
         - /PoseWithCovariance1
-        - /Odometry2
-        - /Odometry2/Shape1
+        - /Axes1
       Splitter Ratio: 0.5833333134651184
     Tree Height: 400
   - Class: rviz_common/Selection
@@ -82,239 +83,19 @@ Visualization Manager:
       Value: false
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
-      Enabled: true
+      Enabled: false
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        back_left_wheel:
-          Value: true
-        back_right_wheel:
-          Value: true
-        base_link:
-          Value: true
-        front_left_wheel:
-          Value: true
-        front_right_wheel:
-          Value: true
-        map:
-          Value: true
-        odom:
-          Value: true
-        roller:
-          Value: true
-        roller_10:
-          Value: true
-        roller_11:
-          Value: true
-        roller_12:
-          Value: true
-        roller_13:
-          Value: true
-        roller_14:
-          Value: true
-        roller_15:
-          Value: true
-        roller_16:
-          Value: true
-        roller_17:
-          Value: true
-        roller_18:
-          Value: true
-        roller_19:
-          Value: true
-        roller_2:
-          Value: true
-        roller_20:
-          Value: true
-        roller_21:
-          Value: true
-        roller_22:
-          Value: true
-        roller_23:
-          Value: true
-        roller_24:
-          Value: true
-        roller_25:
-          Value: true
-        roller_26:
-          Value: true
-        roller_27:
-          Value: true
-        roller_28:
-          Value: true
-        roller_29:
-          Value: true
-        roller_3:
-          Value: true
-        roller_30:
-          Value: true
-        roller_31:
-          Value: true
-        roller_32:
-          Value: true
-        roller_33:
-          Value: true
-        roller_34:
-          Value: true
-        roller_35:
-          Value: true
-        roller_36:
-          Value: true
-        roller_37:
-          Value: true
-        roller_38:
-          Value: true
-        roller_39:
-          Value: true
-        roller_4:
-          Value: true
-        roller_40:
-          Value: true
-        roller_41:
-          Value: true
-        roller_42:
-          Value: true
-        roller_43:
-          Value: true
-        roller_44:
-          Value: true
-        roller_45:
-          Value: true
-        roller_46:
-          Value: true
-        roller_47:
-          Value: true
-        roller_48:
-          Value: true
-        roller_5:
-          Value: true
-        roller_6:
-          Value: true
-        roller_7:
-          Value: true
-        roller_8:
-          Value: true
-        roller_9:
-          Value: true
-        sim_imu:
-          Value: true
-        velodyne:
-          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        map:
-          odom:
-            base_link:
-              back_left_wheel:
-                roller_13:
-                  {}
-                roller_14:
-                  {}
-                roller_15:
-                  {}
-                roller_16:
-                  {}
-                roller_17:
-                  {}
-                roller_18:
-                  {}
-                roller_19:
-                  {}
-                roller_20:
-                  {}
-                roller_21:
-                  {}
-                roller_22:
-                  {}
-                roller_23:
-                  {}
-                roller_24:
-                  {}
-              back_right_wheel:
-                roller_37:
-                  {}
-                roller_38:
-                  {}
-                roller_39:
-                  {}
-                roller_40:
-                  {}
-                roller_41:
-                  {}
-                roller_42:
-                  {}
-                roller_43:
-                  {}
-                roller_44:
-                  {}
-                roller_45:
-                  {}
-                roller_46:
-                  {}
-                roller_47:
-                  {}
-                roller_48:
-                  {}
-              front_left_wheel:
-                roller_25:
-                  {}
-                roller_26:
-                  {}
-                roller_27:
-                  {}
-                roller_28:
-                  {}
-                roller_29:
-                  {}
-                roller_30:
-                  {}
-                roller_31:
-                  {}
-                roller_32:
-                  {}
-                roller_33:
-                  {}
-                roller_34:
-                  {}
-                roller_35:
-                  {}
-                roller_36:
-                  {}
-              front_right_wheel:
-                roller:
-                  {}
-                roller_10:
-                  {}
-                roller_11:
-                  {}
-                roller_12:
-                  {}
-                roller_2:
-                  {}
-                roller_3:
-                  {}
-                roller_4:
-                  {}
-                roller_5:
-                  {}
-                roller_6:
-                  {}
-                roller_7:
-                  {}
-                roller_8:
-                  {}
-                roller_9:
-                  {}
-              sim_imu:
-                {}
-              velodyne:
-                {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -330,13 +111,13 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 26
+      Max Intensity: 27
       Min Color: 0; 0; 0
       Min Intensity: 1
       Name: LaserScan
       Position Transformer: XYZ
       Selectable: true
-      Size (Pixels): 3
+      Size (Pixels): 6
       Size (m): 0.009999999776482582
       Style: Points
       Topic:
@@ -447,7 +228,7 @@ Visualization Manager:
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
-          Enabled: true
+          Enabled: false
           Name: Downsampled Costmap
           Topic:
             Depth: 1
@@ -463,7 +244,7 @@ Visualization Manager:
             Reliability Policy: Reliable
             Value: /downsampled_costmap_updates
           Use Timestamp: false
-          Value: true
+          Value: false
         - Alpha: 1
           Buffer Length: 1
           Class: rviz_default_plugins/Path
@@ -482,7 +263,7 @@ Visualization Manager:
           Pose Color: 255; 85; 255
           Pose Style: Arrows
           Radius: 0.029999999329447746
-          Shaft Diameter: 0.004999999888241291
+          Shaft Diameter: 0.10000000149011612
           Shaft Length: 0.019999999552965164
           Topic:
             Depth: 5
@@ -529,7 +310,7 @@ Visualization Manager:
         - Alpha: 1
           Class: rviz_default_plugins/Polygon
           Color: 25; 255; 0
-          Enabled: false
+          Enabled: true
           Name: Polygon
           Topic:
             Depth: 5
@@ -538,7 +319,7 @@ Visualization Manager:
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /global_costmap/published_footprint
-          Value: false
+          Value: true
       Enabled: true
       Name: Global Planner
     - Class: rviz_common/Group
@@ -607,7 +388,7 @@ Visualization Manager:
         - Alpha: 1
           Class: rviz_default_plugins/Polygon
           Color: 25; 255; 0
-          Enabled: true
+          Enabled: false
           Name: Polygon
           Topic:
             Depth: 5
@@ -616,7 +397,7 @@ Visualization Manager:
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: /local_costmap/published_footprint
-          Value: true
+          Value: false
         - Alpha: 1
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
@@ -653,58 +434,6 @@ Visualization Manager:
           Value: true
       Enabled: true
       Name: Controller
-    - Class: rviz_common/Group
-      Displays:
-        - Class: rviz_default_plugins/Image
-          Enabled: true
-          Max Value: 1
-          Median window: 5
-          Min Value: 0
-          Name: RealsenseCamera
-          Normalize Range: true
-          Topic:
-            Depth: 5
-            Durability Policy: Volatile
-            History Policy: Keep Last
-            Reliability Policy: Reliable
-            Value: /intel_realsense_r200_depth/image_raw
-          Value: true
-        - Alpha: 1
-          Autocompute Intensity Bounds: true
-          Autocompute Value Bounds:
-            Max Value: 10
-            Min Value: -10
-            Value: true
-          Axis: Z
-          Channel Name: intensity
-          Class: rviz_default_plugins/PointCloud2
-          Color: 255; 255; 255
-          Color Transformer: RGB8
-          Decay Time: 0
-          Enabled: true
-          Invert Rainbow: false
-          Max Color: 255; 255; 255
-          Max Intensity: 4096
-          Min Color: 0; 0; 0
-          Min Intensity: 0
-          Name: RealsenseDepthImage
-          Position Transformer: XYZ
-          Selectable: true
-          Size (Pixels): 3
-          Size (m): 0.009999999776482582
-          Style: Flat Squares
-          Topic:
-            Depth: 5
-            Durability Policy: Volatile
-            Filter size: 10
-            History Policy: Keep Last
-            Reliability Policy: Reliable
-            Value: /intel_realsense_r200_depth/points
-          Use Fixed Frame: true
-          Use rainbow: true
-          Value: true
-      Enabled: false
-      Name: Realsense
     - Class: rviz_default_plugins/MarkerArray
       Enabled: true
       Name: MarkerArray
@@ -716,65 +445,6 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /waypoints
-      Value: true
-    - Alpha: 1
-      Axes Length: 1
-      Axes Radius: 0.10000000149011612
-      Class: rviz_default_plugins/Pose
-      Color: 255; 25; 0
-      Enabled: true
-      Head Length: 0.30000001192092896
-      Head Radius: 0.10000000149011612
-      Name: Pose
-      Shaft Length: 1
-      Shaft Radius: 0.05000000074505806
-      Shape: Arrow
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /momo/pose
-      Value: true
-    - Angle Tolerance: 0.10000000149011612
-      Class: rviz_default_plugins/Odometry
-      Covariance:
-        Orientation:
-          Alpha: 0.5
-          Color: 255; 255; 127
-          Color Style: Unique
-          Frame: Local
-          Offset: 1
-          Scale: 1
-          Value: true
-        Position:
-          Alpha: 0.30000001192092896
-          Color: 204; 51; 204
-          Scale: 1
-          Value: true
-        Value: true
-      Enabled: true
-      Keep: 100
-      Name: Odometry
-      Position Tolerance: 0.10000000149011612
-      Shape:
-        Alpha: 1
-        Axes Length: 1
-        Axes Radius: 0.10000000149011612
-        Color: 255; 25; 0
-        Head Length: 0.30000001192092896
-        Head Radius: 0.10000000149011612
-        Shaft Length: 1
-        Shaft Radius: 0.05000000074505806
-        Value: Arrow
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /momo/odom
       Value: true
     - Alpha: 1
       Axes Length: 1
@@ -795,13 +465,13 @@ Visualization Manager:
           Color: 204; 51; 204
           Scale: 1
           Value: true
-        Value: false
+        Value: true
       Enabled: true
-      Head Length: 0.30000001192092896
-      Head Radius: 0.10000000149011612
+      Head Length: 1.2000000476837158
+      Head Radius: 0.4000000059604645
       Name: PoseWithCovariance
       Shaft Length: 1
-      Shaft Radius: 0.05000000074505806
+      Shaft Radius: 0.20000000298023224
       Shape: Arrow
       Topic:
         Depth: 5
@@ -811,44 +481,12 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /amcl_pose
       Value: true
-    - Angle Tolerance: 0.10000000149011612
-      Class: rviz_default_plugins/Odometry
-      Covariance:
-        Orientation:
-          Alpha: 0.5
-          Color: 255; 255; 127
-          Color Style: Unique
-          Frame: Local
-          Offset: 1
-          Scale: 1
-          Value: true
-        Position:
-          Alpha: 0.30000001192092896
-          Color: 204; 51; 204
-          Scale: 1
-          Value: true
-        Value: false
+    - Class: rviz_default_plugins/Axes
       Enabled: true
-      Keep: 100
-      Name: Odometry
-      Position Tolerance: 0.10000000149011612
-      Shape:
-        Alpha: 1
-        Axes Length: 1
-        Axes Radius: 0.10000000149011612
-        Color: 0; 255; 0
-        Head Length: 0.30000001192092896
-        Head Radius: 0.10000000149011612
-        Shaft Length: 1
-        Shaft Radius: 0.05000000074505806
-        Value: Arrow
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        Filter size: 10
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /momo/odom
+      Length: 1
+      Name: Axes
+      Radius: 0.10000000149011612
+      Reference Frame: odom
       Value: true
   Enabled: true
   Global Options:
@@ -897,11 +535,11 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 16.942405700683594
+      Scale: 69.70598602294922
       Target Frame: <Fixed Frame>
       Value: TopDownOrtho (rviz_default_plugins)
-      X: -0.34194332361221313
-      Y: -1.8379693031311035
+      X: -0.4614131450653076
+      Y: -1.0962432622909546
     Saved: ~
 Window Geometry:
   Displays:
@@ -913,9 +551,7 @@ Window Geometry:
   Hide Right Dock: false
   Navigation 2:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000015600000431fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000100044006900730070006c006100790073010000003d000001cd000000c900fffffffb00000018004e0061007600690067006100740069006f006e0020003201000002100000025e0000013900fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000002800ffffff000000010000014700000431fc0200000005fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d000001b0000000a400fffffffb0000000e0044006f0063006b0069006e006701000001f30000017d0000006e00fffffffb0000001000530065006c006500630074006f00720100000376000000f80000006e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004d70000043100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  RealsenseCamera:
-    collapsed: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000021300000431fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000100044006900730070006c006100790073010000003d000001cd000000c900fffffffb00000018004e0061007600690067006100740069006f006e0020003201000002100000025e0000013900fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002c6000000c10000000000000000000000010000014700000431fc0200000005fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d000001b0000000a400fffffffb0000000e0044006f0063006b0069006e006701000001f30000017d0000006e00fffffffb0000001000530065006c006500630074006f00720100000376000000f80000006e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d006501000000000000045000000000000000000000041a0000043100000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Selector:

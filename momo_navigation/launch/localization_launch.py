@@ -16,11 +16,8 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (
-    DeclareLaunchArgument,
-    GroupAction,
-    SetEnvironmentVariable,
-)
+from launch.actions import (DeclareLaunchArgument, GroupAction,
+                            SetEnvironmentVariable)
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import LoadComposableNodes, Node
@@ -43,7 +40,10 @@ def generate_launch_description():
     use_respawn = LaunchConfiguration("use_respawn")
     log_level = LaunchConfiguration("log_level")
 
-    lifecycle_nodes = ["map_server", "amcl"]
+    # lifecycle_nodes = ["map_server", "amcl"]
+
+    lifecycle_nodes = ["map_server"]
+
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
@@ -217,7 +217,7 @@ def generate_launch_description():
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
 
-    # Add the actions to launch all of the localiztion nodes
+    # Add the actions to launch all of the localization nodes
     ld.add_action(load_nodes)
     ld.add_action(load_composable_nodes)
 

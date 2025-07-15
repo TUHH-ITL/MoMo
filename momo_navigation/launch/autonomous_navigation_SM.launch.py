@@ -56,22 +56,12 @@ def generate_launch_description():
             name="imu_covariance_republisher",
             parameters=[{'use_sim_time': True}]
         ),
-
-        # 2. Delay 1s, then launch kiss_icp
-        TimerAction(
-            period=1.0,
-            actions=[
-                IncludeLaunchDescription(
-                    PythonLaunchDescriptionSource(
-                        os.path.join(kiss_icp_pkg, 'launch', 'odometry.launch.py')
-                    ),
-                    launch_arguments={
-                        'topic': '/point_cloud',
-                        'visualize': 'false',
-                        'lidar_odom_frame': 'odom'
-                    }.items()
-                )
-            ]
+        # 2. launch imperfect_odometry_publisher
+        Node(
+            package="robot_localization_monitor",
+            executable="imperfect_odometry_publisher",
+            name="imperfect_odometry_publisher",
+            parameters=[{'use_sim_time': True}]
         ),
 
         # 3. Delay 2s total, launch EKF
@@ -80,7 +70,7 @@ def generate_launch_description():
             actions=[
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(
-                        os.path.join(momo_pkg, 'launch', 'lidar_imu_ekf.launch.py')
+                        os.path.join(momo_pkg, 'launch', 'imperfect_odom_ekf.launch.py') # lidar_imu_ekf.launch.py
                     )
                 )
             ]

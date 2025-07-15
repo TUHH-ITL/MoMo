@@ -1,11 +1,11 @@
 amcl:
   ros__parameters:
     use_sim_time: True
-    alpha1: 0.2
-    alpha2: 0.2
-    alpha3: 0.2
-    alpha4: 0.2
-    alpha5: 0.2
+    alpha1: 0.1 # 0.2
+    alpha2: 0.1 # 0.2
+    alpha3: 0.1 # 0.2
+    alpha4: 0.1 # 0.2
+    alpha5: 0.1 # 0.2
     base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
@@ -27,17 +27,18 @@ amcl:
     recovery_alpha_slow: 0.001
     resample_interval: 1
     robot_model_type: "nav2_amcl::OmniMotionModel" 
-    save_pose_rate: 0.5
+    save_pose_rate: -1.0 # before: 0.5, -1 disables resetting amcl with a saved pose
     sigma_hit: 0.2
     tf_broadcast: true 
     transform_tolerance: 1.2
-    update_min_a: -1.0 # 0.1
-    update_min_d: -1.0 # 0.1
+    update_min_a: 0.05 # -1.0 
+    update_min_d: 0.05 # -1.0
     z_hit: 0.5
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
     scan_topic: scan
+    always_reset_initial_pose: True
 
 amcl_map_client:
   ros__parameters:
@@ -52,7 +53,7 @@ bt_navigator:
     use_sim_time: True
     global_frame: map
     robot_base_frame: base_link 
-    odom_topic: /kiss/odometry
+    odom_topic: /odometry/filtered # /kiss/odometry # why was this set to /kiss/odometry ?
     bt_loop_duration: 10
     default_server_timeout: 20
     enable_groot_monitoring: True
@@ -371,7 +372,7 @@ velocity_smoother:
     velocity_timeout: 1.0
     max_accel: [2.5, 2.5, 2.5]
     max_decel: [-2.5, -2.5, -2.5]
-    odom_topic: "/kiss/odometry"
+    odom_topic: "/odometry/filtered" # "/kiss/odometry"
     odom_duration: 0.1
     use_realtime_priority: false
     enable_stamped_cmd_vel: false
