@@ -16,8 +16,11 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (DeclareLaunchArgument, GroupAction,
-                            SetEnvironmentVariable)
+from launch.actions import (
+    DeclareLaunchArgument,
+    GroupAction,
+    SetEnvironmentVariable,
+)
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import LoadComposableNodes, Node
@@ -44,7 +47,6 @@ def generate_launch_description():
 
     lifecycle_nodes = ["map_server"]
 
-
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
     # https://github.com/ros/geometry2/issues/32
@@ -70,15 +72,19 @@ def generate_launch_description():
     )
 
     stdout_linebuf_envvar = SetEnvironmentVariable(
-        "RCUTILS_LOGGING_BUFFERED_STREAM", "1"
+        "RCUTILS_LOGGING_BUFFERED_STREAM",
+        "1",
     )
 
     declare_namespace_cmd = DeclareLaunchArgument(
-        "namespace", default_value="", description="Top-level namespace"
+        "namespace",
+        default_value="",
+        description="Top-level namespace",
     )
 
     declare_map_yaml_cmd = DeclareLaunchArgument(
-        "map", description="Full path to map yaml file to load"
+        "map",
+        description="Full path to map yaml file to load",
     )
 
     declare_use_sim_time_cmd = DeclareLaunchArgument(
@@ -118,7 +124,9 @@ def generate_launch_description():
     )
 
     declare_log_level_cmd = DeclareLaunchArgument(
-        "log_level", default_value="info", description="log level"
+        "log_level",
+        default_value="info",
+        description="log level",
     )
 
     load_nodes = GroupAction(
@@ -194,7 +202,7 @@ def generate_launch_description():
                         "use_sim_time": use_sim_time,
                         "autostart": autostart,
                         "node_names": lifecycle_nodes,
-                    }
+                    },
                 ],
             ),
         ],

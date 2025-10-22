@@ -43,7 +43,7 @@ setup(
         "console_scripts": [
             # 'test_node = momo_navigation.test_node:main',
             "odom_to_pose_node = momo_navigation.odom_to_pose_node:main",
-            "imu_covariance_republisher = momo_navigation.imu_covariance_republisher:main"
+            "imu_covariance_republisher = momo_navigation.imu_covariance_republisher:main",
         ],
     },
 )
