@@ -32,7 +32,7 @@ def generate_launch_description():
     )
 
     # map_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/maps/exp_warehouse_map.yaml"
-    map_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/maps/symmetric_exp_2.yaml"
+    map_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/maps/symmetric_exp_1.yaml"
 
     nav2_params_file = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/config/nav2_params.yaml"
     rviz_config = "/home/workstation/ros2_ws/src/MoMo/momo_navigation/rviz/nav2_default_view.rviz"
