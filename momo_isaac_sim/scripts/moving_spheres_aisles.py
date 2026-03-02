@@ -6,7 +6,7 @@ import random
 stage = omni.usd.get_context().get_stage()
 
 # Parameters
-num_spheres = 25
+num_spheres = 20
 sphere_radius = 0.5
 low_density = 1.0
 max_speed = 5.0
@@ -155,12 +155,14 @@ for i in range(num_spheres):
 if stage.GetPrimAtPath(material_path).IsValid():
     stage.RemovePrim(material_path)
 
-# Create shared physics material
+# Create shared physics material with high bounciness
 material = UsdShade.Material.Define(stage, Sdf.Path(material_path))
 physx_api = PhysxSchema.PhysxMaterialAPI.Apply(material.GetPrim())
-physx_api.GetPrim().CreateAttribute("physxMaterial:staticFriction", Sdf.ValueTypeNames.Float).Set(0.5)
-physx_api.GetPrim().CreateAttribute("physxMaterial:dynamicFriction", Sdf.ValueTypeNames.Float).Set(0.5)
-physx_api.GetPrim().CreateAttribute("physxMaterial:restitution", Sdf.ValueTypeNames.Float).Set(0.1)
+
+# Set friction and high restitution (bounciness)
+physx_api.GetPrim().CreateAttribute("physxMaterial:staticFriction", Sdf.ValueTypeNames.Float).Set(0.1)
+physx_api.GetPrim().CreateAttribute("physxMaterial:dynamicFriction", Sdf.ValueTypeNames.Float).Set(0.1)
+physx_api.GetPrim().CreateAttribute("physxMaterial:restitution", Sdf.ValueTypeNames.Float).Set(0.99)  # ↑ More bounce!
 
 # Define the four corners of the warehouse
 warehouse_corners = [
@@ -260,3 +262,4 @@ for i in range(num_spheres):
     asyncio.ensure_future(keep_moving_sphere(path, max_speed))
 
 print(f"✅ {num_spheres} spheres spawned with warehouse-aware movement, avoiding aisles.")
+
