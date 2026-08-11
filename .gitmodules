@@ -1,0 +1,9 @@
+[submodule "src/sick_scan_xd"]
+	path = src/sick_scan_xd
+	url = https://github.com/SICKAG/sick_scan_xd
+[submodule "src/robotics_base"]
+	path = src/robotics_base
+	url = git@collaborating.tuhh.de:w-6/forschung/robotics/robotics_base.git
+[submodule "mocap4ros2_qualisys"]
+	path = mocap4ros2_qualisys
+	url = https://github.com/MOCAP4ROS2-Project/mocap4ros2_qualisys

@@ -1,0 +1,15 @@
+[Unit]
+Description=Bring up CAN0 (1 Mbit/s, restart-ms 100)
+After=sys-subsystem-net-devices-can0.device
+BindsTo=sys-subsystem-net-devices-can0.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=-/sbin/ip link set can0 down
+ExecStart=/sbin/ip link set can0 type can bitrate 1000000 restart-ms 100
+ExecStart=/sbin/ip link set can0 up
+ExecStop=/sbin/ip link set can0 down
+
+[Install]
+WantedBy=sys-subsystem-net-devices-can0.device

@@ -1,0 +1,14 @@
+publish_tf: False
+reference_coordinate: 'cargo_handling_link'
+load_positions:
+  loc_0: [0.0, 0.0, 0.0] 
+load_types: 
+    box_cml_small: 
+      - loc_0
+    box_cml_medium:
+      - loc_0
+    box_cml_large:
+      - loc_0
+    collab_object:
+      - loc_0
+          

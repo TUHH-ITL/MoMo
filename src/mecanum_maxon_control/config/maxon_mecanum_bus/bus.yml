@@ -1,0 +1,92 @@
+options:
+  dcf_path: "@BUS_CONFIG_PATH@"
+
+master:
+  node_id: 6
+  driver: "ros2_canopen::MasterDriver"
+  package: "canopen_master_driver"
+  sync_period: 10000
+  boot_time: 10000
+  boot_timeout: 60000
+
+defaults:
+  driver: "ros2_canopen::Cia402Driver"
+  package: "canopen_402_driver"
+  # The legacy driver needs polling for its CiA-402 transition state machine,
+  # but 100 Hz starves target-service callbacks. 20 Hz is sufficient here.
+  period: 50
+  polling: true
+  diagnostics_enabled: false
+  # EPOS4 persists many PDO/SDO writes during boot; a complete configuration
+  # can take roughly 25 seconds per drive on the physical Kvaser bus.
+  boot_timeout_ms: 60000
+  sdo_timeout_ms: 10000
+  heartbeat_producer: 1000
+  scale_pos_to_dev: 1.0
+  scale_pos_from_dev: 1.0
+  # target service uses wheel rad/s. EPOS expects motor rpm; 60/(2*pi) is
+  # multiplied by gear_ratio in the controller parameters at runtime.
+  scale_vel_to_dev: 9.549296586
+  scale_vel_from_dev: 0.104719755
+  homing: false
+  sdo:
+    - {index: 0x6040, sub_index: 0, value: 0x80}
+    - {index: 0x6040, sub_index: 0, value: 0x06}
+    - {index: 0x6040, sub_index: 0, value: 0x07}
+    - {index: 0x60C2, sub_index: 1, value: 10}
+    - {index: 0x60C2, sub_index: 2, value: -3}
+    - {index: 0x6081, sub_index: 0, value: 1000}
+    - {index: 0x6083, sub_index: 0, value: 10000}
+    - {index: 0x6084, sub_index: 0, value: 10000}
+    # This ros2_canopen branch always runs homing from /init. Method 37 uses
+    # the current shaft position as home without moving the wheel.
+    - {index: 0x6098, sub_index: 0, value: 37}
+    - {index: 0x6060, sub_index: 0, value: 3}
+  tpdo:
+    1:
+      enabled: true
+      cob_id: "auto"
+      transmission: 0x01
+      mapping:
+        - {index: 0x6041, sub_index: 0}
+        - {index: 0x606C, sub_index: 0}
+        - {index: 0x6061, sub_index: 0}
+    2: {enabled: false}
+    3: {enabled: false}
+    4: {enabled: false}
+  rpdo:
+    1:
+      enabled: true
+      cob_id: "auto"
+      # Profile-velocity commands should be consumed immediately. Event-driven
+      # RPDO also avoids coupling CiA 402 enable transitions to the SYNC cycle.
+      transmission: 0xFF
+      mapping:
+        - {index: 0x6040, sub_index: 0}
+        - {index: 0x60FF, sub_index: 0}
+        - {index: 0x6060, sub_index: 0}
+    2: {enabled: false}
+    3: {enabled: false}
+    4: {enabled: false}
+
+nodes:
+  cia402_device_1:
+    node_id: 1
+    dcf: "motor_1.dcf"
+    reset_communication: true
+    namespace: "/"
+  cia402_device_2:
+    node_id: 2
+    dcf: "motor_2.dcf"
+    reset_communication: true
+    namespace: "/"
+  cia402_device_3:
+    node_id: 3
+    dcf: "motor_3.dcf"
+    reset_communication: true
+    namespace: "/"
+  cia402_device_4:
+    node_id: 4
+    dcf: "motor_4.dcf"
+    reset_communication: true
+    namespace: "/"

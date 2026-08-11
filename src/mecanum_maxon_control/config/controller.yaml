@@ -1,0 +1,31 @@
+mecanum_epos4_controller:
+  ros__parameters:
+    wheel_radius: 0.10
+    # Calibrated MoMo geometry from the original ROS 1 controller config.
+    wheelbase: 0.54
+    track_width: 0.58
+    # Original ros_canopen conversion used 21 motor revolutions per wheel turn.
+    gear_ratio: 21.0
+    # Node order: front-left, front-right, rear-left, rear-right.
+    # All EPOS4 units use the same command sign on this robot.
+    motor_directions: [1.0, 1.0, 1.0, 1.0]
+    # Keep below the EPOS4 max profile velocity of 3170 rpm configured in the
+    # motor DCF files. At 21:1 with 0.10 m wheels, 3000 rpm is about 1.50 m/s.
+    max_motor_rpm: 3000.0
+    max_linear_velocity: 4.0
+    max_angular_velocity: 3.0
+    # Accelerate at about 10000 motor rpm/s, matching the EPOS profile setting.
+    # This reaches the 3000 rpm ceiling in approximately 0.3 seconds.
+    max_wheel_acceleration: 1050.0
+    # Stop at about 10000 motor rpm/s, matching the EPOS profile deceleration.
+    # From the 3000 rpm ceiling this produces an approximately 0.3 second stop.
+    max_wheel_deceleration: 1050.0
+    # Zero latches the last cmd_vel until a new command is received. Keyboard
+    # teleop sends an explicit zero for its stop keys (k or space).
+    command_timeout: 0.0
+    publish_rate: 50.0
+    auto_start: true
+    service_timeout: 30.0
+    startup_retries: 3
+    direct_can_velocity: true
+    can_interface: can0
