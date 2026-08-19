@@ -1,4 +1,4 @@
-mecanum_epos4_controller:
+/**:
   ros__parameters:
     wheel_radius: 0.10
     # Calibrated MoMo geometry from the original ROS 1 controller config.
@@ -26,6 +26,15 @@ mecanum_epos4_controller:
     publish_rate: 50.0
     auto_start: true
     service_timeout: 30.0
-    startup_retries: 3
+    # The CANopen bus can still be mid-boot (config download to other nodes)
+    # when this node starts. Firing 'init' at a node while the bus is busy
+    # with another node's boot handshake makes the CiA402 state transition
+    # time out, which can cascade into the whole device_container crashing.
+    # Settle first, then retry patiently instead of giving up in ~3s.
+    startup_settle_delay: 30.0
+    startup_retries: 10
+    startup_retry_delay: 3.0
+    startup_drive_stagger: 2.0
     direct_can_velocity: true
     can_interface: can0
+    cmd_vel_topic: cmd_vel_switched 

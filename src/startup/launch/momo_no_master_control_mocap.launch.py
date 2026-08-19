@@ -11,7 +11,9 @@ from base_utils.launch.launch_utils import (
 )
 
 from base_utils.node_info import NodeInfo
-from localization_switcher.localization_switcher_config import LocalizationSwitcherNodeConfig
+from localization_switcher.localization_switcher_config import (
+    LocalizationSwitcherNodeConfig,
+)
 from localization_trigger.localization_trigger_node_config import (
     LocalizationTriggerNodeConfig,
 )
@@ -44,8 +46,11 @@ from mission_control.features.node_infos import (
     enable_localization_switch_node_info,
 )
 
-from mission_control.mission_control_node_config import MissionControlNodeConfig
+from mission_control.mission_control_node_config import (
+    MissionControlNodeConfig,
+)
 from launch import LaunchDescription
+from launch_ros.actions import Node
 
 from ament_index_python import get_package_share_path
 from delay.delay_node_config import DelayNodeConfig
@@ -57,8 +62,12 @@ from motor_command_switch.motor_command_switch_node_config import (
     MotorCommandSwitchNodeConfig,
 )
 from move_commander.move_commander_node_config import MoveCommanderNodeConfig
-from order_conversion.order_conversion_node_config import OrderConversionNodeConfig
-from order_management.order_management_node_config import OrderManagementNodeConfig
+from order_conversion.order_conversion_node_config import (
+    OrderConversionNodeConfig,
+)
+from order_management.order_management_node_config import (
+    OrderManagementNodeConfig,
+)
 from http_server.http_server_node_config import HttpServerNodeConfig
 from master_control_sync.master_control_sync_node_config import (
     MasterControlSyncNodeConfig,
@@ -66,18 +75,28 @@ from master_control_sync.master_control_sync_node_config import (
 from obstacle_approximation.obstacle_approximation_node_config import (
     ObstacleApproximationNodeConfig,
 )
-from qualisys_localization.qualisys_driver_node_config import QualisysDriverNodeConfig
-from qualisys_localization.qualisys_localization_node_config import QualisysLocalizationNodeConfig
+from qualisys_localization.qualisys_driver_node_config import (
+    QualisysDriverNodeConfig,
+)
+from qualisys_localization.qualisys_localization_node_config import (
+    QualisysLocalizationNodeConfig,
+)
 from rosbag_recorder.rosbag_recorder_node_config import (
     RosbagRecorderNodeConfig,
 )
 from status_monitor.status_monitor_node_config import StatusMonitorNodeConfig
 from master_control.control_circuit_node_config import ControlCircuitNodeConfig
-from costmap_clearing.costmap_clearing_node_config import CostmapClearingNodeConfig
+from costmap_clearing.costmap_clearing_node_config import (
+    CostmapClearingNodeConfig,
+)
 
 
-from cargo_storage_manager.cargo_storage_manager_node_config import CargoStorageManagerNodeConfig
-from offset_reduction.offset_reduction_node_config import OffsetReductionNodeConfig
+from cargo_storage_manager.cargo_storage_manager_node_config import (
+    CargoStorageManagerNodeConfig,
+)
+from offset_reduction.offset_reduction_node_config import (
+    OffsetReductionNodeConfig,
+)
 from teleop.teleop_node_config import TeleopNodeConfig
 
 
@@ -104,7 +123,7 @@ def generate_launch_description():
     #     "maps",
     #     "map.yaml",
     # )
-    
+
     factsheet_file_path = os.path.join(
         get_package_share_path("startup"),
         "config",
@@ -126,17 +145,17 @@ def generate_launch_description():
     master_control_drive_command_topic = "master_control/drive_commands"
     nav_mode_topic = "nav_mode"
     nav_goal_topic = "nav_goal"
-    platform_twist_topic = "cmd_vel_out"
-    autonomous_control_topic = "cmd_vel_nav2"
+    platform_twist_topic = "cmd_vel_switched"
+    autonomous_control_topic = "cmd_vel_smoothed"
     teleop_status_topic = "status/teleop"
     teleop_twist_topic = "cmd_vel_teleop"
     odom_topic = "odom"
     mocap_external_pose_topic = "itl_jackal_1/pose"
     ### END TOPICS
 
-    control_circuit_config = ControlCircuitNodeConfig(
-        drive_command_output_topic=control_circuit_twist_topic, odometry_input_topic=odom_topic
-    )
+    # control_circuit_config = ControlCircuitNodeConfig(
+    #     drive_command_output_topic=control_circuit_twist_topic, odometry_input_topic=odom_topic
+    # )
     cargo_storage_manager_config = CargoStorageManagerNodeConfig(
         load_status_output_topic=cargo_status_topic,
         config_path=cargo_storage_manager_config_path,
@@ -149,19 +168,21 @@ def generate_launch_description():
         network_interface=network_interface,
         path_to_public_folder=recordings_folder,
     )
-    localization_trigger_config = LocalizationTriggerNodeConfig(
-        twist_input_topic=platform_twist_topic,
-    )
+    # localization_trigger_config = LocalizationTriggerNodeConfig(
+    #     twist_input_topic=platform_twist_topic,
+    # )
     log_handling_config = LogHandlingNodeConfig(log_gnss_position=False)
-    master_control_config = MasterControlNodeConfig(
-        server_address=fallback_master_control_address,
-        logging_whitelist=logging_whitelist,
-        robot_name=robot_name,
-        velocity_input_topic=platform_twist_topic,
-        drive_command_output_topic=master_control_drive_command_topic,
-        dns_server_address=dns_server_address,
+    # master_control_config = MasterControlNodeConfig(
+    #     server_address=fallback_master_control_address,
+    #     logging_whitelist=logging_whitelist,
+    #     robot_name=robot_name,
+    #     velocity_input_topic=platform_twist_topic,
+    #     drive_command_output_topic=master_control_drive_command_topic,
+    #     dns_server_address=dns_server_address,
+    # )
+    mission_control_config = MissionControlNodeConfig(
+        state_machine_file=state_machine_file
     )
-    mission_control_config = MissionControlNodeConfig(state_machine_file=state_machine_file)
     motor_command_switch_config = MotorCommandSwitchNodeConfig(
         autonomous_control_input_topic=autonomous_control_topic,
         gentle_stop_input_topic=gentle_stop_twist_topic,
@@ -175,38 +196,88 @@ def generate_launch_description():
     obstacle_approximation_config = ObstacleApproximationNodeConfig(
         visualize_obstacles=True, obstacle_threshold=99
     )
-    order_management_config = OrderManagementNodeConfig(
-        scan_profiles_service_name="get_terrestrial_laserscanning_profiles",
-        factsheet_file_path=factsheet_file_path,
-        velocity_input_topic=platform_twist_topic,
-        nav_mode_input_topic=nav_mode_topic,
-        amcl_pose_input_topic="amcl_pose",
-    )
+    # order_management_config = OrderManagementNodeConfig(
+    #     scan_profiles_service_name="get_terrestrial_laserscanning_profiles",
+    #     factsheet_file_path=factsheet_file_path,
+    #     velocity_input_topic=platform_twist_topic,
+    #     nav_mode_input_topic=nav_mode_topic,
+    #     amcl_pose_input_topic="amcl_pose",
+    # )
     offset_reduction_config = OffsetReductionNodeConfig(
         omnidirectional_instead_of_differential=True
     )
-    rosbag_recorder_config = RosbagRecorderNodeConfig(path_to_recordings=recordings_folder)
-    rviz_config = os.path.join(get_package_share_path("startup"), "rviz", "mocap.rviz")
+    rosbag_recorder_config = RosbagRecorderNodeConfig(
+        path_to_recordings=recordings_folder
+    )
+    rviz_config = os.path.join(
+        get_package_share_path("startup"), "rviz", "mocap.rviz"
+    )
     qualisys_localization_config = QualisysLocalizationNodeConfig(
         rigid_body_id="MoMo",
         robot_name=robot_name,
         qualisys_localization_input_topic="/mocap/rigid_bodies",
         publish_tf=True,
+        parent_tf_frame="odom",
     )
+    # teleop_config = TeleopNodeConfig(
+    #     device=DEVICE_PORT_JOYSTICK,
+    #     twist_output_topic=teleop_twist_topic,
+    #     status_output_topic=teleop_status_topic,
+    #     master_control_teleop_cmd_input_topic=master_control_drive_command_topic,
+    #     key_index_hand_over_control=0,
+    #     key_index_cancel=2,
+    #     key_button_index_logitech_b_or_ps4_circle=1,
+    #     key_button_index_logitech_x_or_ps4_square=3,
+    # )
     teleop_config = TeleopNodeConfig(
         device=DEVICE_PORT_JOYSTICK,
         twist_output_topic=teleop_twist_topic,
         status_output_topic=teleop_status_topic,
         master_control_teleop_cmd_input_topic=master_control_drive_command_topic,
+        motor_command_input_topic=platform_twist_topic,
+        min_message_frequency_in_hz=10,
+        joy_index_drive=1,
+        joy_index_steer=3,
+        joy_index_strafe=0,
+        key_index_gear_up=5,
+        key_index_gear_down=5,
+        key_index_deadman=4,
         key_index_hand_over_control=0,
-        key_index_cancel=2,
-        key_button_index_logitech_b_or_ps4_circle=1,
-        key_button_index_logitech_x_or_ps4_square=3,
+        key_index_cancel=3,
+        key_index_pre_shutdown_1=6,
+        key_index_pre_shutdown_2=7,
+        key_index_shutdown_1=6,
+        key_index_shutdown_2=7,
+        max_linear_velocities_in_meters_per_second=[0.30, 0.7, 1.0],
+        max_angular_velocities_in_meters_per_second=[0.3, 0.6, 0.8],
     )
-
-
     return LaunchDescription(
         [
+            Node(
+                package="tf2_ros",
+                executable="static_transform_publisher",
+                name="map_to_odom",
+                namespace=robot_name,
+                remappings=[("/tf", "tf"), ("/tf_static", "tf_static")],
+                arguments=[
+                    "--x",
+                    "0",
+                    "--y",
+                    "0",
+                    "--z",
+                    "0",
+                    "--roll",
+                    "0",
+                    "--pitch",
+                    "0",
+                    "--yaw",
+                    "0",
+                    "--frame-id",
+                    "map",
+                    "--child-frame-id",
+                    "odom",
+                ],
+            ),
             launch_map_server(map_file, robot_name),
             launch_mocap_driver(
                 QualisysDriverNodeConfig(),
@@ -333,6 +404,5 @@ def generate_launch_description():
             #     ),
             #     robot_name,
             # ),
-
         ]
     )
