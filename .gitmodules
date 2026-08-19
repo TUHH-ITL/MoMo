@@ -5,5 +5,5 @@
 	path = src/robotics_base
 	url = git@collaborating.tuhh.de:w-6/forschung/robotics/robotics_base.git
 [submodule "mocap4ros2_qualisys"]
-	path = mocap4ros2_qualisys
+	path = src/mocap4ros2_qualisys
 	url = https://github.com/MOCAP4ROS2-Project/mocap4ros2_qualisys
