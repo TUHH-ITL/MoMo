@@ -58,6 +58,9 @@ from gentle_stop.gentle_stop_node_config import GentleStopNodeConfig
 from localization_watcher.localization_watcher_node_config import (
     LocalizationWatcherNodeConfig,
 )
+from localization_trigger.localization_trigger_node_config import (
+    LocalizationTriggerNodeConfig,
+)
 from motor_command_switch.motor_command_switch_node_config import (
     MotorCommandSwitchNodeConfig,
 )
@@ -102,12 +105,12 @@ from teleop.teleop_node_config import TeleopNodeConfig
 
 def generate_launch_description():
     robot_name = os.getenv("ROBOT_NAME", "MoMo")
-    fallback_master_control_address = "1134.28.140.229:50051"
+    fallback_master_control_address = "134.28.108.82:50051"
     dns_server_address = "134.28.108.75:8500"
     state_machine_file = os.path.join(
         find_pkg_share(mission_control_node_info),
         "state_machine_definitions",
-        "no_master_control_mocap.py",
+        "jackal_in_master_control_mocap.py",
     )
     recordings_folder = f"{find_pkg_share(http_server_node_info)}/public"
     network_interface = "wlo1"
@@ -153,9 +156,10 @@ def generate_launch_description():
     mocap_external_pose_topic = "itl_jackal_1/pose"
     ### END TOPICS
 
-    # control_circuit_config = ControlCircuitNodeConfig(
-    #     drive_command_output_topic=control_circuit_twist_topic, odometry_input_topic=odom_topic
-    # )
+    control_circuit_config = ControlCircuitNodeConfig(
+        drive_command_output_topic=control_circuit_twist_topic,
+        odometry_input_topic=odom_topic,
+    )
     cargo_storage_manager_config = CargoStorageManagerNodeConfig(
         load_status_output_topic=cargo_status_topic,
         config_path=cargo_storage_manager_config_path,
@@ -168,18 +172,18 @@ def generate_launch_description():
         network_interface=network_interface,
         path_to_public_folder=recordings_folder,
     )
-    # localization_trigger_config = LocalizationTriggerNodeConfig(
-    #     twist_input_topic=platform_twist_topic,
-    # )
+    localization_trigger_config = LocalizationTriggerNodeConfig(
+        twist_input_topic=platform_twist_topic,
+    )
     log_handling_config = LogHandlingNodeConfig(log_gnss_position=False)
-    # master_control_config = MasterControlNodeConfig(
-    #     server_address=fallback_master_control_address,
-    #     logging_whitelist=logging_whitelist,
-    #     robot_name=robot_name,
-    #     velocity_input_topic=platform_twist_topic,
-    #     drive_command_output_topic=master_control_drive_command_topic,
-    #     dns_server_address=dns_server_address,
-    # )
+    master_control_config = MasterControlNodeConfig(
+        server_address=fallback_master_control_address,
+        logging_whitelist=logging_whitelist,
+        robot_name=robot_name,
+        velocity_input_topic=platform_twist_topic,
+        drive_command_output_topic=master_control_drive_command_topic,
+        dns_server_address=dns_server_address,
+    )
     mission_control_config = MissionControlNodeConfig(
         state_machine_file=state_machine_file
     )
@@ -196,13 +200,14 @@ def generate_launch_description():
     obstacle_approximation_config = ObstacleApproximationNodeConfig(
         visualize_obstacles=True, obstacle_threshold=99
     )
-    # order_management_config = OrderManagementNodeConfig(
-    #     scan_profiles_service_name="get_terrestrial_laserscanning_profiles",
-    #     factsheet_file_path=factsheet_file_path,
-    #     velocity_input_topic=platform_twist_topic,
-    #     nav_mode_input_topic=nav_mode_topic,
-    #     pose_input_topic="amcl_pose",
-    # )
+    order_management_config = OrderManagementNodeConfig(
+        scan_profiles_service_name="get_terrestrial_laserscanning_profiles",
+        factsheet_file_path=factsheet_file_path,
+        velocity_input_topic=platform_twist_topic,
+        nav_mode_input_topic=nav_mode_topic,
+        pose_input_topic="/MoMo/MoMo/pose",
+        pose_input_topic_uses_pose_stamped=True,
+    )
     offset_reduction_config = OffsetReductionNodeConfig(
         omnidirectional_instead_of_differential=True
     )
@@ -219,16 +224,7 @@ def generate_launch_description():
         publish_tf=True,
         parent_tf_frame="odom",
     )
-    # teleop_config = TeleopNodeConfig(
-    #     device=DEVICE_PORT_JOYSTICK,
-    #     twist_output_topic=teleop_twist_topic,
-    #     status_output_topic=teleop_status_topic,
-    #     master_control_teleop_cmd_input_topic=master_control_drive_command_topic,
-    #     key_index_hand_over_control=0,
-    #     key_index_cancel=2,
-    #     key_button_index_logitech_b_or_ps4_circle=1,
-    #     key_button_index_logitech_x_or_ps4_square=3,
-    # )
+
     teleop_config = TeleopNodeConfig(
         device=DEVICE_PORT_JOYSTICK,
         twist_output_topic=teleop_twist_topic,
@@ -317,11 +313,11 @@ def generate_launch_description():
                 http_server_config,
                 robot_name,
             ),
-            # launch_node(
-            #     localization_trigger_node_info,
-            #     localization_trigger_config,
-            #     robot_name,
-            # ),
+            launch_node(
+                localization_trigger_node_info,
+                localization_trigger_config,
+                robot_name,
+            ),
             # launch_node(
             #     localization_watcher_node_info,
             #     LocalizationWatcherNodeConfig(),
@@ -332,16 +328,16 @@ def generate_launch_description():
                 log_handling_config,
                 robot_name,
             ),
-            # launch_node(
-            #     master_control_node_info,
-            #     master_control_config,
-            #     robot_name,
-            # ),
-            # launch_node(
-            #     master_control_sync_node_info,
-            #     MasterControlSyncNodeConfig(),
-            #     robot_name,
-            # ),
+            launch_node(
+                master_control_node_info,
+                master_control_config,
+                robot_name,
+            ),
+            launch_node(
+                master_control_sync_node_info,
+                MasterControlSyncNodeConfig(),
+                robot_name,
+            ),
             launch_node(
                 mission_control_node_info,
                 mission_control_config,
@@ -362,16 +358,16 @@ def generate_launch_description():
                 obstacle_approximation_config,
                 robot_name,
             ),
-            # launch_node(
-            #     order_conversion_node_info,
-            #     OrderConversionNodeConfig(),
-            #     robot_name,
-            # ),
-            # launch_node(
-            #     order_management_node_info,
-            #     order_management_config,
-            #     robot_name,
-            # ),
+            launch_node(
+                order_conversion_node_info,
+                OrderConversionNodeConfig(),
+                robot_name,
+            ),
+            launch_node(
+                order_management_node_info,
+                order_management_config,
+                robot_name,
+            ),
             launch_node(
                 qualisys_localization_node_info,
                 qualisys_localization_config,
@@ -397,12 +393,12 @@ def generate_launch_description():
                 CostmapClearingNodeConfig(),
                 robot_name,
             ),
-            # launch_node(
-            #     enable_localization_switch_node_info,
-            #     LocalizationSwitcherNodeConfig(
-            #         external_pose_stamped_input_topic=mocap_external_pose_topic
-            #     ),
-            #     robot_name,
-            # ),
+            launch_node(
+                enable_localization_switch_node_info,
+                LocalizationSwitcherNodeConfig(
+                    external_pose_stamped_input_topic=mocap_external_pose_topic
+                ),
+                robot_name,
+            ),
         ]
     )

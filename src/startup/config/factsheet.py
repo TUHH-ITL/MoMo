@@ -13,7 +13,7 @@ def get() -> FactsheetFactory:
     assert robot_name is not None
     factory.set_serial_number(robot_name)
     factory.set_name(robot_name)
-    factory.set_dimensions(0.43, 0.3, 0.53)
+    factory.set_dimensions(length=0.76, width=0.64, height=0.4)
     factory.set_kinematic("omni")
 
     factory.set_linear_velocity(0, 0)
@@ -26,12 +26,8 @@ def get() -> FactsheetFactory:
     )
 
     factory.add_actions(
-        actions.detectApriltag,
-        actions.finePositioning,
-        actions.setControlCircuitNavigationMode,
-        actions.setNav2NavigationMode,
         actions.reduceNodeOffset,
-        # actions.setLocalizationMethod,
+        actions.setLocalizationMethod,
         actions.updateLoads,
     )
 

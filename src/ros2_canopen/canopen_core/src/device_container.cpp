@@ -332,7 +332,21 @@ bool DeviceContainer::load_drivers()
         return false;
       }
       add_node_to_executor(registered_drivers_[node_id.value()]->get_node_base_interface());
-      registered_drivers_[node_id.value()]->init();
+      try
+      {
+        registered_drivers_[node_id.value()]->init();
+      }
+      catch (const std::exception & e)
+      {
+        // A single drive exhausting its boot retries (see add_to_master) must
+        // not abort the whole container -- that would take every other,
+        // healthy drive down with it. Log and keep loading the rest; this
+        // node's services simply stay unavailable, which callers (e.g.
+        // mecanum_epos4_controller.py) already handle as a normal timeout.
+        RCLCPP_ERROR(
+          this->get_logger(), "Error: Driver init failed for node_id(%hu): %s", node_id.value(),
+          e.what());
+      }
     }
   }
   return true;

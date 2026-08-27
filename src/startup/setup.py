@@ -2,28 +2,30 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'startup'
+package_name = "startup"
 
 setup(
     name=package_name,
-    version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    version="0.0.0",
+    packages=find_packages(exclude=["test"]),
     data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
-        ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name), glob('launch/*.launch.py')),
-        (os.path.join('share', package_name, 'config'), glob('config/*.yaml'))
+        (
+            "share/ament_index/resource_index/packages",
+            ["resource/" + package_name],
+        ),
+        ("share/" + package_name, ["package.xml"]),
+        (os.path.join("share", package_name), glob("launch/*.launch.py")),
+        (os.path.join("share", package_name, "config"), glob("config/*")),
+        (os.path.join("share", package_name, "rviz"), glob("rviz/*.rviz")),
     ],
-    install_requires=['setuptools'],
+    install_requires=["setuptools"],
     zip_safe=True,
-    maintainer='Markus Knitt',
-    maintainer_email='markus.knitt@tuhh.de',
-    description='The MoMo startup package',
-    license='BSD-3-Clause',
-    tests_require=['pytest'],
+    maintainer="Markus Knitt",
+    maintainer_email="markus.knitt@tuhh.de",
+    description="The MoMo startup package",
+    license="BSD-3-Clause",
+    tests_require=["pytest"],
     entry_points={
-        'console_scripts': [
-        ],
+        "console_scripts": [],
     },
 )

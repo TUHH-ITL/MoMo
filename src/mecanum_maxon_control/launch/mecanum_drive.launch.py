@@ -27,10 +27,21 @@ def generate_launch_description():
         }.items(),
     )
     controller = TimerAction(
-        period=LaunchConfiguration('controller_delay'),
+        period=LaunchConfiguration('controller_delay', default='45.0'),
         actions=[Node(
             package='mecanum_maxon_control',
             executable='mecanum_epos4_controller.py',
+            parameters=[os.path.join(package_share, 'config', 'controller.yaml')],
+            output='screen',
+        )],
+    )
+    # Doesn't depend on the controller being ready -- it only reads the
+    # CANopen drivers' encoder feedback, which is live as soon as the bus is up.
+    wheel_odometry = TimerAction(
+        period=LaunchConfiguration('controller_delay', default='45.0'),
+        actions=[Node(
+            package='mecanum_maxon_control',
+            executable='mecanum_wheel_odometry.py',
             parameters=[os.path.join(package_share, 'config', 'controller.yaml')],
             output='screen',
         )],
@@ -40,4 +51,5 @@ def generate_launch_description():
         DeclareLaunchArgument('controller_delay', default_value='45.0'),
         can_bus,
         controller,
+        wheel_odometry,
     ])

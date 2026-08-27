@@ -21,7 +21,7 @@ def generate_launch_description():
         output="screen",
         arguments=[
             launch_file_path,
-            "hostname:=192.168.0.41",
+            "hostname:=192.168.1.17",
             "frame_id:=tim_1",
             # Measured relative to base_link (x forward, y left, z up):
             # -8.5cm x, -14cm y from back_left_wheel (-0.2735, 0.318),
@@ -55,10 +55,10 @@ def generate_launch_description():
         output="screen",
         arguments=[
             launch_file_path,
-            # Re-IP'd off 192.168.0.0/24 onto its own subnet: it's now
-            # reached over a separate USB adapter (enxd03745b8ffee), and two
-            # interfaces sharing one subnet gives Linux an ambiguous route.
-            "hostname:=192.168.1.42",
+            # Reached over separate USB adapter (enxd03745b8ffee) on its own
+            # subnet -- two interfaces sharing one subnet gives Linux an
+            # ambiguous route.
+            "hostname:=192.168.137.247",
             "frame_id:=tim_2",
             # Measured relative to base_link (x forward, y left, z up):
             # +14cm x, +8cm y from front_right_wheel (0.26849, -0.238),

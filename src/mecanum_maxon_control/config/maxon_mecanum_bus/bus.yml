@@ -18,8 +18,11 @@ defaults:
   polling: true
   diagnostics_enabled: false
   # EPOS4 persists many PDO/SDO writes during boot; a complete configuration
-  # can take roughly 25 seconds per drive on the physical Kvaser bus.
-  boot_timeout_ms: 60000
+  # can take roughly 25 seconds per drive on the physical Kvaser bus, but
+  # timing varies enough between drives/boots that 60s occasionally isn't
+  # enough margin and boot fails on whichever drive happens to run slow that
+  # time (not a specific bad drive -- observed failures rotate across nodes).
+  boot_timeout_ms: 90000
   sdo_timeout_ms: 10000
   heartbeat_producer: 1000
   scale_pos_to_dev: 1.0

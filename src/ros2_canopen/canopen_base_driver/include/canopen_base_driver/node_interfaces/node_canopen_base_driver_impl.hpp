@@ -14,6 +14,9 @@
 
 #ifndef NODE_CANOPEN_BASE_DRIVER_IMPL
 #define NODE_CANOPEN_BASE_DRIVER_IMPL
+#include <chrono>
+#include <thread>
+
 #include "canopen_base_driver/node_interfaces/node_canopen_base_driver.hpp"
 #include "canopen_core/driver_error.hpp"
 
@@ -311,10 +314,24 @@ void NodeCanopenBaseDriver<NODETYPE>::add_to_master()
 
         if (boot_attempts < max_boot_attempts)
         {
-          RCLCPP_INFO(this->node_->get_logger(), "Sending NMT reset before retrying boot");
-          this->lely_driver_->nmt_command(canopen::NmtCommand::RESET_NODE);
-          this->lely_driver_->Boot();  // Trigger boot again
-          RCLCPP_WARN(this->node_->get_logger(), "Retrying boot configuration...");
+          try
+          {
+            // A brief wait before the retry: nmt_command/Boot can throw EAGAIN
+            // ("Resource temporarily unavailable") if lely's async command
+            // queue hasn't drained yet from the just-failed boot attempt, and
+            // an uncaught exception here would abort the whole container --
+            // taking every other device down with it, not just this one.
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));
+            RCLCPP_INFO(this->node_->get_logger(), "Sending NMT reset before retrying boot");
+            this->lely_driver_->nmt_command(canopen::NmtCommand::RESET_NODE);
+            this->lely_driver_->Boot();  // Trigger boot again
+            RCLCPP_WARN(this->node_->get_logger(), "Retrying boot configuration...");
+          }
+          catch (const std::exception & retry_e)
+          {
+            RCLCPP_ERROR(
+              this->node_->get_logger(), "Boot retry setup failed: %s", retry_e.what());
+          }
         }
         else
         {
