@@ -33,7 +33,9 @@ class DoubleTalker(Node):
         self.period = 0.1
         self.value = 0.0
         self.group = MutuallyExclusiveCallbackGroup()
-        self.timer = self.create_timer(self.period, self.timer_callback, callback_group=self.group)
+        self.timer = self.create_timer(
+            self.period, self.timer_callback, callback_group=self.group
+        )
         self.req = COTargetDouble.Request()
 
     def timer_callback(self):

@@ -33,7 +33,12 @@ from launch import LaunchDescription
 import launch.actions
 from launch.actions import DeclareLaunchArgument
 from launch.actions import OpaqueFunction
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.actions import IncludeLaunchDescription
@@ -45,7 +50,6 @@ from launch_ros.actions import PushROSNamespace
 
 
 def launch_setup(context, *args, **kwargs):
-
     name = LaunchConfiguration("name")
     prefix = LaunchConfiguration("prefix")
 
@@ -66,7 +70,11 @@ def launch_setup(context, *args, **kwargs):
     master_config_file = LaunchConfiguration("master_config_file")
     # master configuration file full path
     master_config = PathJoinSubstitution(
-        [FindPackageShare(master_config_package), master_config_directory, master_config_file]
+        [
+            FindPackageShare(master_config_package),
+            master_config_directory,
+            master_config_file,
+        ]
     )
 
     # can interface name
@@ -80,7 +88,12 @@ def launch_setup(context, *args, **kwargs):
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare(description_package), "urdf", "cia402_system", description_file]
+                [
+                    FindPackageShare(description_package),
+                    "urdf",
+                    "cia402_system",
+                    description_file,
+                ]
             ),
             " ",
             "name:=",
@@ -193,10 +206,11 @@ def launch_setup(context, *args, **kwargs):
 
 
 def generate_launch_description():
-
     declared_arguments = []
     declared_arguments.append(
-        DeclareLaunchArgument("bot_ns", description="Namespace for these nodes", default_value="")
+        DeclareLaunchArgument(
+            "bot_ns", description="Namespace for these nodes", default_value=""
+        )
     )
     declared_arguments.append(
         DeclareLaunchArgument(
@@ -292,4 +306,6 @@ def generate_launch_description():
         )
     )
 
-    return LaunchDescription(declared_arguments + [OpaqueFunction(function=launch_setup)])
+    return LaunchDescription(
+        declared_arguments + [OpaqueFunction(function=launch_setup)]
+    )

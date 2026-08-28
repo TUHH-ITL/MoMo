@@ -26,7 +26,9 @@ class SimpleTestNode(Node):
     def __init__(self, name="test_node"):
         super().__init__(name)
 
-    def checkRpdoTpdo(self, node_name, index: int, subindex: int, type: int, data: int) -> bool:
+    def checkRpdoTpdo(
+        self, node_name, index: int, subindex: int, type: int, data: int
+    ) -> bool:
         publisher = self.create_publisher(COData, "/" + node_name + "/tpdo", 10)
         subscriber = self.create_subscription(
             COData, "/" + node_name + "/rpdo", self.rpdo_callback, 10
@@ -64,10 +66,14 @@ def main(args=None):
     rclpy.init(args=args)
     node = SimpleTestNode()
 
-    result = node.checkRpdoTpdo("proxy_device_1", index=0x4000, subindex=0, type=32, data=999)
+    result = node.checkRpdoTpdo(
+        "proxy_device_1", index=0x4000, subindex=0, type=32, data=999
+    )
     print("RESULT: " + str(result))
 
-    result = node.checkRpdoTpdo("proxy_device_2", index=0x4000, subindex=0, type=32, data=999)
+    result = node.checkRpdoTpdo(
+        "proxy_device_2", index=0x4000, subindex=0, type=32, data=999
+    )
     print("RESULT: " + str(result))
 
     node.destroy_node()

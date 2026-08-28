@@ -27,7 +27,9 @@ class TestNode(Node):
 
     def checkTransition(self, node_name: str, state: int, tranisition: int) -> bool:
         get_state_client = self.create_client(GetState, node_name + "/get_state")
-        change_state_client = self.create_client(ChangeState, node_name + "/change_state")
+        change_state_client = self.create_client(
+            ChangeState, node_name + "/change_state"
+        )
         if not get_state_client.wait_for_service(timeout_sec=3.0):
             get_state_client.destroy()
             change_state_client.destroy()
@@ -53,7 +55,9 @@ class TestNode(Node):
         return True
 
     def checkTrigger(self, node_name, service_name) -> bool:
-        trigger_client = self.create_client(Trigger, "/" + node_name + "/" + service_name)
+        trigger_client = self.create_client(
+            Trigger, "/" + node_name + "/" + service_name
+        )
         if not trigger_client.wait_for_service(timeout_sec=3.0):
             return False
         req = Trigger.Request()

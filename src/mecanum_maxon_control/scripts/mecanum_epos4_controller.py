@@ -52,17 +52,11 @@ class MecanumEpos4Controller(Node):
         self.max_angular_velocity = float(
             self.get_parameter("max_angular_velocity").value
         )
-        self.max_accel = float(
-            self.get_parameter("max_wheel_acceleration").value
-        )
-        self.max_decel = float(
-            self.get_parameter("max_wheel_deceleration").value
-        )
+        self.max_accel = float(self.get_parameter("max_wheel_acceleration").value)
+        self.max_decel = float(self.get_parameter("max_wheel_deceleration").value)
         self.timeout = float(self.get_parameter("command_timeout").value)
         self.rate = float(self.get_parameter("publish_rate").value)
-        self.service_timeout = float(
-            self.get_parameter("service_timeout").value
-        )
+        self.service_timeout = float(self.get_parameter("service_timeout").value)
         self.startup_retries = int(self.get_parameter("startup_retries").value)
         self.startup_retry_delay = float(
             self.get_parameter("startup_retry_delay").value
@@ -73,16 +67,10 @@ class MecanumEpos4Controller(Node):
         self.startup_drive_stagger = float(
             self.get_parameter("startup_drive_stagger").value
         )
-        self.direct_can_velocity = bool(
-            self.get_parameter("direct_can_velocity").value
-        )
+        self.direct_can_velocity = bool(self.get_parameter("direct_can_velocity").value)
         self.can_interface = str(self.get_parameter("can_interface").value)
         self.cmd_vel_topic = str(self.get_parameter("cmd_vel_topic").value)
-        if (
-            self.radius <= 0.0
-            or self.gear_ratio <= 0.0
-            or len(self.directions) != 4
-        ):
+        if self.radius <= 0.0 or self.gear_ratio <= 0.0 or len(self.directions) != 4:
             raise ValueError(
                 "wheel_radius and gear_ratio must be positive; motor_directions needs 4 entries"
             )
@@ -134,9 +122,7 @@ class MecanumEpos4Controller(Node):
             threading.Thread(target=self.start_drives, daemon=True).start()
         else:
             self.ready = True
-        self.get_logger().info(
-            "Mecanum controller waiting for four EPOS4 drives"
-        )
+        self.get_logger().info("Mecanum controller waiting for four EPOS4 drives")
 
     def cmd_vel_callback(self, msg: TwistStamped):
         msg = msg.twist
@@ -177,9 +163,7 @@ class MecanumEpos4Controller(Node):
         for operation in ("init", "velocity_mode"):
             for i, clients in enumerate(self.trigger_clients):
                 client = clients[operation]
-                if not client.wait_for_service(
-                    timeout_sec=self.service_timeout
-                ):
+                if not client.wait_for_service(timeout_sec=self.service_timeout):
                     self.get_logger().error(
                         f"Drive {i + 1} {operation} service unavailable"
                     )
@@ -203,9 +187,7 @@ class MecanumEpos4Controller(Node):
                     )
                     time.sleep(self.startup_retry_delay)
                 if not succeeded:
-                    self.get_logger().error(
-                        f"Drive {i + 1} failed {operation}"
-                    )
+                    self.get_logger().error(f"Drive {i + 1} failed {operation}")
                     return
                 if self.startup_drive_stagger > 0:
                     time.sleep(self.startup_drive_stagger)
@@ -289,9 +271,7 @@ class MecanumEpos4Controller(Node):
                 )
         except Exception as exc:
             self.service_targets[wheel] = None
-            self.get_logger().error(
-                f"Drive {wheel + 1} target call failed: {exc}"
-            )
+            self.get_logger().error(f"Drive {wheel + 1} target call failed: {exc}")
 
     def stop_drives(self):
         """Best-effort zero command followed by CiA 402 halt during clean shutdown."""

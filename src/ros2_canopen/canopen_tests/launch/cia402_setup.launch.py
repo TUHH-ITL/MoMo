@@ -22,13 +22,18 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     slave_eds_path = os.path.join(
-        get_package_share_directory("canopen_tests"), "config", "cia402", "cia402_slave.eds"
+        get_package_share_directory("canopen_tests"),
+        "config",
+        "cia402",
+        "cia402_slave.eds",
     )
 
     slave_node_1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/cia402_slave.launch.py",
             ]
         ),

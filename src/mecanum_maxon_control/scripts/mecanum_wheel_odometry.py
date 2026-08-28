@@ -45,9 +45,7 @@ class MecanumWheelOdometry(Node):
         self.twist_cov_diag = list(
             self.get_parameter("twist_covariance_diagonal").value
         )
-        self.pose_cov_diag = list(
-            self.get_parameter("pose_covariance_diagonal").value
-        )
+        self.pose_cov_diag = list(self.get_parameter("pose_covariance_diagonal").value)
 
         self.wheel_velocity = [0.0] * 4
         self.x = 0.0
@@ -59,22 +57,16 @@ class MecanumWheelOdometry(Node):
             self.create_subscription(
                 JointState,
                 f"/cia402_device_{index}/joint_states",
-                lambda msg, wheel=index - 1: self._joint_state_callback(
-                    msg, wheel
-                ),
+                lambda msg, wheel=index - 1: self._joint_state_callback(msg, wheel),
                 10,
             )
 
         self.odom_pub = self.create_publisher(
             Odometry, str(self.get_parameter("odom_topic").value), 10
         )
-        self.tf_broadcaster = (
-            TransformBroadcaster(self) if self.publish_tf else None
-        )
+        self.tf_broadcaster = TransformBroadcaster(self) if self.publish_tf else None
         self.create_timer(1.0 / self.rate, self._update)
-        self.get_logger().info(
-            "Wheel odometry node started (dead-reckoning only)"
-        )
+        self.get_logger().info("Wheel odometry node started (dead-reckoning only)")
 
     def _joint_state_callback(self, msg: JointState, wheel: int):
         if not msg.velocity:

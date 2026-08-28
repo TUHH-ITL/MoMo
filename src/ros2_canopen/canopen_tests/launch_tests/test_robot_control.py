@@ -35,7 +35,6 @@ import unittest
 
 @pytest.mark.rostest
 def generate_test_description():
-
     launch_desc = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -88,5 +87,7 @@ class TestSDO(unittest.TestCase):
         message = Float64MultiArray()
         message.data = [1.0, 0.0]
 
-        self.node.publish_message("forward_position_controller", Float64MultiArray, message)
+        self.node.publish_message(
+            "forward_position_controller", Float64MultiArray, message
+        )
         time.sleep(1.0)

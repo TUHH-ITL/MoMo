@@ -34,7 +34,6 @@ from canopen_interfaces.msg import COData
 
 @pytest.mark.rostest
 def generate_test_description():
-
     launch_desc = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [

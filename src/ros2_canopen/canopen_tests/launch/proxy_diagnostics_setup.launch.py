@@ -23,12 +23,17 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     slave_eds_path = os.path.join(
-        get_package_share_directory("canopen_tests"), "config", "simple_diagnostics", "simple.eds"
+        get_package_share_directory("canopen_tests"),
+        "config",
+        "simple_diagnostics",
+        "simple.eds",
     )
     slave_node_1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/basic_slave.launch.py",
             ]
         ),
@@ -42,7 +47,9 @@ def generate_launch_description():
     slave_node_2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/basic_slave.launch.py",
             ]
         ),

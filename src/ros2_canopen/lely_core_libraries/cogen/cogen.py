@@ -22,7 +22,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="Expands the CANopen bus.yml for further processing."
     )
-    parser.add_argument("--input-file", type=str, help="The name of the input file", required=True)
+    parser.add_argument(
+        "--input-file", type=str, help="The name of the input file", required=True
+    )
     parser.add_argument(
         "--output-file", type=str, help="The name of the output file", required=True
     )

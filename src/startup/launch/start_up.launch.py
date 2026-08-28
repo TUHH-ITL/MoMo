@@ -18,11 +18,7 @@ def generate_launch_description():
     description_share = get_package_share_directory("momo_description")
     description = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [
-                os.path.join(
-                    description_share, "launch", "description.launch.py"
-                )
-            ]
+            [os.path.join(description_share, "launch", "description.launch.py")]
         ),
     )
     startup_share = get_package_share_directory("startup")

@@ -32,7 +32,9 @@ def generate_launch_description():
     slave_node_1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/cia402_slave.launch.py",
             ]
         ),
@@ -45,7 +47,9 @@ def generate_launch_description():
     slave_node_2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/cia402_slave.launch.py",
             ]
         ),
@@ -58,7 +62,9 @@ def generate_launch_description():
     slave_node_3 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/cia402_slave.launch.py",
             ]
         ),
@@ -116,5 +122,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription(
-        [slave_node_1, slave_node_2, slave_node_3, device_container, diagnostics_aggregator_node]
+        [
+            slave_node_1,
+            slave_node_2,
+            slave_node_3,
+            device_container,
+            diagnostics_aggregator_node,
+        ]
     )

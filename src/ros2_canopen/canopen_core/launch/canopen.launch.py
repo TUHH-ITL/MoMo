@@ -31,7 +31,6 @@ import lifecycle_msgs.msg
 
 
 def generate_launch_description():
-
     bus_conf_arg = DeclareLaunchArgument(
         "bus_config",
         default_value=TextSubstitution(text=""),

@@ -34,7 +34,6 @@ import unittest
 
 @pytest.mark.rostest
 def generate_test_description():
-
     launch_desc = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -105,4 +104,6 @@ class TestSDO(unittest.TestCase):
         target_res = COTargetDouble.Response()
         target_res.success = True
 
-        self.node.call_service("cia402_device_1/target", COTargetDouble, target_req, target_res)
+        self.node.call_service(
+            "cia402_device_1/target", COTargetDouble, target_req, target_res
+        )

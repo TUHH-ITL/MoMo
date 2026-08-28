@@ -14,7 +14,12 @@
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import (
+    Command,
+    FindExecutable,
+    LaunchConfiguration,
+    PathJoinSubstitution,
+)
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.actions import IncludeLaunchDescription
@@ -22,7 +27,6 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def generate_launch_description():
-
     robot_description_content = Command(
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
@@ -38,7 +42,11 @@ def generate_launch_description():
     )
     robot_description = {"robot_description": robot_description_content}
     robot_control_config = PathJoinSubstitution(
-        [FindPackageShare("canopen_tests"), "config/robot_control", "ros2_controllers.yaml"]
+        [
+            FindPackageShare("canopen_tests"),
+            "config/robot_control",
+            "ros2_controllers.yaml",
+        ]
     )
 
     rviz_config_file = PathJoinSubstitution(
@@ -55,7 +63,11 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+        arguments=[
+            "joint_state_broadcaster",
+            "--controller-manager",
+            "/controller_manager",
+        ],
     )
 
     robot_controller_spawner = Node(
@@ -67,7 +79,11 @@ def generate_launch_description():
     forward_position_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["forward_position_controller", "--controller-manager", "/controller_manager"],
+        arguments=[
+            "forward_position_controller",
+            "--controller-manager",
+            "/controller_manager",
+        ],
     )
 
     robot_state_publisher_node = Node(

@@ -34,7 +34,6 @@ import unittest
 
 @pytest.mark.rostest
 def generate_test_description():
-
     launch_desc = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
@@ -76,7 +75,9 @@ class TestNMT(unittest.TestCase):
         request = Trigger.Request()
         response = Trigger.Response()
         response.success = True
-        self.node.call_service("proxy_device_2/nmt_reset_node", Trigger, request, response)
+        self.node.call_service(
+            "proxy_device_2/nmt_reset_node", Trigger, request, response
+        )
         time.sleep(1)
 
 

@@ -36,7 +36,10 @@ class Ros2ActiveIoHandler:
 
     def checkInRos2Stream(self, process, expected_output: str):
         resolved_procs = launch_testing.util.resolveProcesses(
-            info_obj=self.proc_output, process=process, cmd_args=None, strict_proc_matching=True
+            info_obj=self.proc_output,
+            process=process,
+            cmd_args=None,
+            strict_proc_matching=True,
         )
 
         pat = re.compile(r".*\]: " + expected_output)
@@ -58,14 +61,18 @@ class Ros2ActiveIoHandler:
             # We can optimize this by making a note of where we left off searching and only
             # searching new messages when we return from the wait.
             success = self.proc_output._sync_lock.wait_for(
-                lambda: self.checkInRos2Stream(process=process, expected_output=expected_output),
+                lambda: self.checkInRos2Stream(
+                    process=process, expected_output=expected_output
+                ),
                 timeout=timeout,
             )
 
         return success
 
     def assertWaitFor(self, process, expected_output: str, timeout: float = 1.0):
-        success = self.waitFor(process=process, expected_output=expected_output, timeout=timeout)
+        success = self.waitFor(
+            process=process, expected_output=expected_output, timeout=timeout
+        )
         assert success, f"Waiting for output {expected_output} timed out"
 
 
@@ -86,13 +93,14 @@ class LaunchTestNode(Node):
         proc_output: launch_testing.ActiveIoHandler,
         process=None,
     ):
-
         self.publish_delayed(publisher, msg, 0.1)
         Ros2ActiveIoHandler(proc_output).assertWaitFor(
             process=process, expected_output=expected_output
         )
 
-    def subscribe_and_wait_for_message(self, topic: str, msg_type, msg, timeout: float = 1.0):
+    def subscribe_and_wait_for_message(
+        self, topic: str, msg_type, msg, timeout: float = 1.0
+    ):
         condition = Condition()
         self.received = False
 
@@ -103,14 +111,21 @@ class LaunchTestNode(Node):
                 if self.received:
                     condition.notify()
 
-        subscription: Subscription = self.create_subscription(msg_type, topic, callback, 1)
+        subscription: Subscription = self.create_subscription(
+            msg_type, topic, callback, 1
+        )
         with condition:
             condition.wait(timeout=timeout)
         self.destroy_subscription(subscription)
         assert self.received, "Did not receive the expected message."
 
     def call_service(
-        self, service_name: str, srv_type, service_request, expected_response, timeout: float = 2.0
+        self,
+        service_name: str,
+        srv_type,
+        service_request,
+        expected_response,
+        timeout: float = 2.0,
     ):
         condition = Condition()
 

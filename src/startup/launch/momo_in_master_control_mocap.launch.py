@@ -214,9 +214,7 @@ def generate_launch_description():
     rosbag_recorder_config = RosbagRecorderNodeConfig(
         path_to_recordings=recordings_folder
     )
-    rviz_config = os.path.join(
-        get_package_share_path("startup"), "rviz", "mocap.rviz"
-    )
+    rviz_config = os.path.join(get_package_share_path("startup"), "rviz", "mocap.rviz")
     qualisys_localization_config = QualisysLocalizationNodeConfig(
         rigid_body_id="MoMo",
         robot_name=robot_name,

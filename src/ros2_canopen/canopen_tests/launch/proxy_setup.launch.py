@@ -28,7 +28,9 @@ def generate_launch_description():
     slave_node_1 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/basic_slave.launch.py",
             ]
         ),
@@ -42,7 +44,9 @@ def generate_launch_description():
     slave_node_2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                os.path.join(get_package_share_directory("canopen_fake_slaves"), "launch"),
+                os.path.join(
+                    get_package_share_directory("canopen_fake_slaves"), "launch"
+                ),
                 "/basic_slave.launch.py",
             ]
         ),

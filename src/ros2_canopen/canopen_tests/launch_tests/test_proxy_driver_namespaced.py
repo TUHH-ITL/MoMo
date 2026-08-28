@@ -34,7 +34,6 @@ import unittest
 
 @pytest.mark.rostest
 def generate_test_description():
-
     launch_desc = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
