@@ -1,252 +1,342 @@
 void loop() {
-  pixelsLinks.setBrightness(brightnessLinks); // sets the inital brightness of the neopixels
-  pixelsRechts.setBrightness(brightnessRechts); // sets the inital brightness of the neopixels
-  int analog_Battarieweachter_GRUEN = analogRead(Battarieweachter_GRUEN);
-  int analog_Battarieweachter_ROT = analogRead(Battarieweachter_ROT);
+  while (Serial.available() > 0) {
+    byte cmd = Serial.read();
+    switch (cmd) {
+      case 'R': readyFromPC = true; break; // main PC finished booting
+      case 'G': rosColorState = 2;  break; // GREEN: autonomous mission underway
+      case 'Y': rosColorState = 17; break; // YELLOW: paused / standing by
+      case 'B': rosColorState = 3;  break; // BLUE: under manual/teleop control
+      case 'E': rosColorState = 1;  break; // RED: gentle-stop / software emergency
+      case 'W': rosColorState = 18; break; // WHITE: state machine not active yet
+      case 'P': rosColorState = 19; break; // pulsing: motors booting
+      case 'F': rosColorState = 20; break; // RED-ORANGE: motor driver crashed / boot failed
+      case 'S': rosColorState = 21; break; // pulsing PURPLE: arm searching/scanning for a grasp
+      case 'A': rosColorState = 22; break; // chasing YELLOW: arm approaching/executing a grasp
+      case 'X': rosColorState = 23; break; // flashing RED: grasp failed / slipped / unreachable
+      case 'K': rosColorState = 24; break; // flashing GREEN: verified grasp success
+      case 'M': rosColorState = 25; break; // solid CYAN: arm under manual/joystick remote control
+      default: break;
+    }
+  }
+  if (readyFromPC && !bereitAnnounced) {
+    myMP3.play(8); // "Ich bin bereit"
+    bereitAnnounced = true;
+  }
+  pixelsLeft.setBrightness(brightnessLeft); // sets the inital brightness of the neopixels
+  pixelsRight.setBrightness(brightnessRight); // sets the inital brightness of the neopixels
+  int analog_BatteryWatcher_Green = analogRead(BatteryWatcher_Green);
+  int analog_BatteryWatcher_Red = analogRead(BatteryWatcher_Red);
   int analog_voltage = analogRead(voltage);
   //Serial.println(analog_voltage);
   delay(50);
-  if ((analog_Battarieweachter_ROT>500) && (analog_Battarieweachter_GRUEN<500)){ // Abschaltung
-    digitalWrite(Taster_Farbe_Rot, HIGH); digitalWrite(Taster_Farbe_Gruen, LOW); digitalWrite(Taster_Farbe_Blau, LOW); 
-    zahla = 1; zahlb = 1;
+  if ((analog_BatteryWatcher_Red>500) && (analog_BatteryWatcher_Green<500)){ // Shutdown
+    digitalWrite(Button_Color_Red, HIGH); digitalWrite(Button_Color_Green, LOW); digitalWrite(Button_Color_Blue, LOW);
+    ledStateLeft = 1; ledStateRight = 1;
     delay(100);
      }
-  if ((analog_Battarieweachter_GRUEN>500) && (analog_Battarieweachter_ROT<500) && (analog_voltage<500)){ // kein Alarm
-     digitalWrite(Taster_Farbe_Rot, LOW); digitalWrite(Taster_Farbe_Blau, HIGH);
+  if ((analog_BatteryWatcher_Green>500) && (analog_BatteryWatcher_Red<500) && (analog_voltage<500)){ // no alarm
+     digitalWrite(Button_Color_Red, LOW); digitalWrite(Button_Color_Blue, HIGH);
      myMP3.stop();
-     zahla = 11; zahlb = 11;
-     if (alarm==false){myMP3.play(8); alarm = true;}
+     ledStateLeft = (rosColorState != 0) ? rosColorState : 18; // mission state color from PC, WHITE until the state machine is active
+     ledStateRight = ledStateLeft;
+     alarm = true;
      delay(100);
      }
-  if ((analog_Battarieweachter_ROT>500) && (analog_Battarieweachter_GRUEN>500) && (analog_voltage<500)){ // battarie Warnung
-     digitalWrite(Taster_Farbe_Rot, HIGH); digitalWrite(Taster_Farbe_Gruen, LOW); digitalWrite(Taster_Farbe_Blau, LOW); 
-     zahla = 3; zahlb = 3; 
+  if ((analog_BatteryWatcher_Red>500) && (analog_BatteryWatcher_Green>500) && (analog_voltage<500)){ // battery warning
+     digitalWrite(Button_Color_Red, HIGH); digitalWrite(Button_Color_Green, LOW); digitalWrite(Button_Color_Blue, LOW);
+     ledStateLeft = 16; ledStateRight = 16; // ORANGE: battery warning
      //delay(20); alarm = true;
      myMP3.loop(3);
      delay(100);
     }
-  if ((analog_Battarieweachter_ROT<500) && (analog_Battarieweachter_GRUEN>500) && (analogRead(voltage)>500)){ // NotAUS aktiv
-     digitalWrite(Taster_Farbe_Rot, HIGH); digitalWrite(Taster_Farbe_Blau, LOW); 
+  if ((analog_BatteryWatcher_Red<500) && (analog_BatteryWatcher_Green>500) && (analogRead(voltage)>500)){ // e-stop active
+     digitalWrite(Button_Color_Red, HIGH); digitalWrite(Button_Color_Blue, LOW);
      if (alarm==true){myMP3.play(9); alarm = false;}
-     zahla = 1; zahlb = 1;
+     ledStateLeft = 1; ledStateRight = 1;
      delay(100);
     }
-  switch (zahla) { // LED LINKS
+  switch (ledStateLeft) { // LED LEFT
     case 1:
-      writeLEDSLinks(255, 0, 0);//write RED to all pixels
+      flashingLeft();//flash RED (gentle-stop / emergency) -- accessibility: never rely on solid red/green alone
       break;
     case 2:
-      writeLEDSLinks(0, 255, 0);//write GREEN to all pixels
+      writeLEDSLeft(0, 255, 0);//write GREEN to all pixels
       break;
     case 3:
-      writeLEDSLinks(0, 0, 255);//write BLUE to all pixels
+      writeLEDSLeft(0, 0, 255);//write BLUE to all pixels
       break;
     case 4:
-      ALLLinks();
+      ALLLeft();
       break;
     case 5:
-      newColorWipeLinks();
+      newColorWipeLeft();
       break;
     case 6:
-      newTheatreChaseLinks();
+      newTheatreChaseLeft();
       break;
     case 7:
-      newRainbowLinks();
+      newRainbowLeft();
       break;
     case 8:
-      writeLEDSLinks(85, 85, 85);
+      writeLEDSLeft(85, 85, 85);
       break;
     case 9:
-      newTheatreChaseRainbowLinks();
+      newTheatreChaseRainbowLeft();
       break;
     case 10:
-      colorCyclerLinks();
-      cylonChaserLinks();
+      colorCyclerLeft();
+      cylonChaserLeft();
       break;
     case 11:
-      newRainbowCycleLinks();
+      newRainbowCycleLeft();
       break;
     case 12:
-      colorCyclerLinks();
-      breathingLinks();
+      colorCyclerLeft();
+      breathingLeft();
       break;
     case 13:
-      colorCyclerLinks();
-      heartbeatLinks();
+      colorCyclerLeft();
+      heartbeatLeft();
       break;
     case 14:
-      christmasChaseLinks();
+      christmasChaseLeft();
       break;
     case 15:
-      FireLinks();
+      FireLeft();
+      break;
+    case 16:
+      writeLEDSLeft(255, 140, 0);//write ORANGE to all pixels (battery warning)
+      break;
+    case 17:
+      writeLEDSLeft(255, 255, 0);//write YELLOW to all pixels (paused/standby)
+      break;
+    case 18:
+      writeLEDSLeft(255, 255, 255);//write WHITE to all pixels (state machine not active yet)
+      break;
+    case 19:
+      activeColorLeft[0] = 255; activeColorLeft[1] = 255; activeColorLeft[2] = 255;
+      breathingLeft(); //pulse WHITE (motors booting)
+      break;
+    case 20:
+      writeLEDSLeft(255, 60, 0);//write RED-ORANGE to all pixels (motor driver crashed / boot failed)
+      break;
+    case 21:
+      activeColorLeft[0] = 150; activeColorLeft[1] = 0; activeColorLeft[2] = 255;
+      breathingLeft(); //pulse PURPLE (arm searching/scanning)
+      break;
+    case 22:
+      TCColorLeft = 4;
+      newTheatreChaseLeft(); //chase YELLOW (arm approaching/executing)
+      break;
+    case 23:
+      flashingLeft(); //flash RED (grasp failed/slipped/unreachable)
+      break;
+    case 24:
+      flashingGreenLeft(); //flash GREEN (verified grasp success)
+      break;
+    case 25:
+      writeLEDSLeft(0, 255, 255); //write CYAN (arm under manual/joystick remote control)
       break;
 
     default:
-      writeLEDSLinks(0, 0, 0); //sets all the pixels to off;
+      writeLEDSLeft(0, 0, 0); //sets all the pixels to off;
       break;
   }
-  switch (zahlb) { // LED RECHTS
+  switch (ledStateRight) { // LED RIGHT
     case 1:
-      writeLEDSRechts(255, 0, 0);//write RED to all pixels
+      flashingRight();//flash RED (gentle-stop / emergency) -- accessibility: never rely on solid red/green alone
       break;
     case 2:
-      writeLEDSRechts(0, 255, 0);//write GREEN to all pixels
+      writeLEDSRight(0, 255, 0);//write GREEN to all pixels
       break;
     case 3:
-      writeLEDSRechts(0, 0, 255);//write BLUE to all pixels
+      writeLEDSRight(0, 0, 255);//write BLUE to all pixels
       break;
     case 4:
-      ALLRechts();
+      ALLRight();
       break;
     case 5:
-      newColorWipeRechts();
+      newColorWipeRight();
       break;
     case 6:
-      newTheatreChaseRechts();
+      newTheatreChaseRight();
       break;
     case 7:
-      newRainbowRechts();
+      newRainbowRight();
       break;
     case 8:
-      writeLEDSRechts(85, 85, 85);
+      writeLEDSRight(85, 85, 85);
       break;
     case 9:
-      newTheatreChaseRainbowRechts();
+      newTheatreChaseRainbowRight();
       break;
     case 10:
-      colorCyclerRechts();
-      cylonChaserRechts();
+      colorCyclerRight();
+      cylonChaserRight();
       break;
     case 11:
-      newRainbowCycleRechts();
+      newRainbowCycleRight();
       break;
     case 12:
-      colorCyclerRechts();
-      breathingRechts();
+      colorCyclerRight();
+      breathingRight();
       break;
     case 13:
-      colorCyclerRechts();
-      heartbeatRechts();
+      colorCyclerRight();
+      heartbeatRight();
       break;
     case 14:
-      christmasChaseRechts();
+      christmasChaseRight();
       break;
     case 15:
-      FireRechts();
+      FireRight();
+      break;
+    case 16:
+      writeLEDSRight(255, 140, 0);//write ORANGE to all pixels (battery warning)
+      break;
+    case 17:
+      writeLEDSRight(255, 255, 0);//write YELLOW to all pixels (paused/standby)
+      break;
+    case 18:
+      writeLEDSRight(255, 255, 255);//write WHITE to all pixels (state machine not active yet)
+      break;
+    case 19:
+      activeColorRight[0] = 255; activeColorRight[1] = 255; activeColorRight[2] = 255;
+      breathingRight(); //pulse WHITE (motors booting)
+      break;
+    case 20:
+      writeLEDSRight(255, 60, 0);//write RED-ORANGE to all pixels (motor driver crashed / boot failed)
+      break;
+    case 21:
+      activeColorRight[0] = 150; activeColorRight[1] = 0; activeColorRight[2] = 255;
+      breathingRight(); //pulse PURPLE (arm searching/scanning)
+      break;
+    case 22:
+      TCColorRight = 4;
+      newTheatreChaseRight(); //chase YELLOW (arm approaching/executing)
+      break;
+    case 23:
+      flashingRight(); //flash RED (grasp failed/slipped/unreachable)
+      break;
+    case 24:
+      flashingGreenRight(); //flash GREEN (verified grasp success)
+      break;
+    case 25:
+      writeLEDSRight(0, 255, 255); //write CYAN (arm under manual/joystick remote control)
       break;
 
     default:
-      writeLEDSRechts(0, 0, 0); //sets all the pixels to off;
+      writeLEDSRight(0, 0, 0); //sets all the pixels to off;
       break;
   }
   /*
-  switch (zahlc) { // LED MITTE1
+  switch (ledStateMiddle1) { // LED MIDDLE1
     case 1:
-      writeLEDSMitte1(255, 0, 0);//write RED to all pixels
-      Serial.println("writeLEDSMitte1ROT");
+      writeLEDSMiddle1(255, 0, 0);//write RED to all pixels
+      Serial.println("writeLEDSMiddle1ROT");
       break;
     case 2:
-      writeLEDSMitte1(0, 255, 0);//write GREEN to all pixels
+      writeLEDSMiddle1(0, 255, 0);//write GREEN to all pixels
       break;
     case 3:
-      writeLEDSMitte1(0, 0, 255);//write BLUE to all pixels
+      writeLEDSMiddle1(0, 0, 255);//write BLUE to all pixels
       break;
     case 4:
-      ALLMitte1();
+      ALLMiddle1();
       break;
     case 5:
-      newColorWipeMitte1();
+      newColorWipeMiddle1();
       break;
     case 6:
-      newTheatreChaseMitte1();
+      newTheatreChaseMiddle1();
       break;
     case 7:
-      newRainbowMitte1();
+      newRainbowMiddle1();
       break;
     case 8:
-      writeLEDSMitte1(85, 85, 85);
+      writeLEDSMiddle1(85, 85, 85);
       break;
     case 9:
-      newTheatreChaseRainbowMitte1();
+      newTheatreChaseRainbowMiddle1();
       break;
     case 10:
-      colorCyclerMitte1();
-      cylonChaserMitte1();
+      colorCyclerMiddle1();
+      cylonChaserMiddle1();
       break;
     case 11:
-      newRainbowCycleMitte1();
+      newRainbowCycleMiddle1();
       break;
     case 12:
-      colorCyclerMitte1();
-      breathingMitte1();
+      colorCyclerMiddle1();
+      breathingMiddle1();
       break;
     case 13:
-      colorCyclerMitte1();
-      heartbeatMitte1();
+      colorCyclerMiddle1();
+      heartbeatMiddle1();
       break;
     case 14:
-      christmasChaseMitte1();
+      christmasChaseMiddle1();
       break;
     case 15:
-      FireMitte1();
+      FireMiddle1();
       break;
     default:
-      writeLEDSMitte1(0, 0, 0); //sets all the pixels to off;
+      writeLEDSMiddle1(0, 0, 0); //sets all the pixels to off;
       break;
   }
   */
-  switch (zahld) { // LED MITTE2
+  switch (ledStateMiddle2) { // LED MIDDLE2
     case 1:
-      writeLEDSMitte2(255, 0, 0);//write RED to all pixels
-      //Serial.println("writeLEDSMitte2ROT");
+      writeLEDSMiddle2(255, 0, 0);//write RED to all pixels
+      //Serial.println("writeLEDSMiddle2ROT");
       break;
     case 2:
-      writeLEDSMitte2(0, 255, 0);//write GREEN to all pixels
+      writeLEDSMiddle2(0, 255, 0);//write GREEN to all pixels
       break;
     case 3:
-      writeLEDSMitte2(0, 0, 255);//write BLUE to all pixels
+      writeLEDSMiddle2(0, 0, 255);//write BLUE to all pixels
       break;
     case 4:
-      ALLMitte2();
+      ALLMiddle2();
       break;
     case 5:
-      newColorWipeMitte2();
+      newColorWipeMiddle2();
       break;
     case 6:
-      newTheatreChaseMitte2();
+      newTheatreChaseMiddle2();
       break;
     case 7:
-      newRainbowMitte2();
+      newRainbowMiddle2();
       break;
     case 8:
-      writeLEDSMitte2(85, 85, 85);
+      writeLEDSMiddle2(85, 85, 85);
       break;
     case 9:
-      newTheatreChaseRainbowMitte2();
+      newTheatreChaseRainbowMiddle2();
       break;
     case 10:
-      colorCyclerMitte2();
-      cylonChaserMitte2();
+      colorCyclerMiddle2();
+      cylonChaserMiddle2();
       break;
     case 11:
-      newRainbowCycleMitte2();
+      newRainbowCycleMiddle2();
       break;
     case 12:
-      colorCyclerMitte2();
-      breathingMitte2();
+      colorCyclerMiddle2();
+      breathingMiddle2();
       break;
     case 13:
-      colorCyclerMitte2();
-      heartbeatMitte2();
+      colorCyclerMiddle2();
+      heartbeatMiddle2();
       break;
     case 14:
-      christmasChaseMitte2();
+      christmasChaseMiddle2();
       break;
     case 15:
-      FireMitte2();
+      FireMiddle2();
       break;
     default:
-      writeLEDSMitte2(0, 0, 0); //sets all the pixels to off;
+      writeLEDSMiddle2(0, 0, 0); //sets all the pixels to off;
       break;
   }
 }

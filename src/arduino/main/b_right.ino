@@ -1,40 +1,40 @@
-uint32_t WheelRechts(byte WheelPosRechts) { //neopixel wheel function, pick from 256 colors
-  WheelPosRechts = 255 - WheelPosRechts;
-  if (WheelPosRechts < 85) {
-    return pixelsRechts.Color(255 - WheelPosRechts * 3, 0, WheelPosRechts * 3);
+uint32_t WheelRight(byte WheelPosRight) { //neopixel wheel function, pick from 256 colors
+  WheelPosRight = 255 - WheelPosRight;
+  if (WheelPosRight < 85) {
+    return pixelsRight.Color(255 - WheelPosRight * 3, 0, WheelPosRight * 3);
   }
-  if (WheelPosRechts < 170) {
-    WheelPosRechts -= 85;
-    return pixelsRechts.Color(0, WheelPosRechts * 3, 255 - WheelPosRechts * 3);
+  if (WheelPosRight < 170) {
+    WheelPosRight -= 85;
+    return pixelsRight.Color(0, WheelPosRight * 3, 255 - WheelPosRight * 3);
   }
-  WheelPosRechts -= 170;
-  return pixelsRechts.Color(WheelPosRechts * 3, 255 - WheelPosRechts * 3, 0);
+  WheelPosRight -= 170;
+  return pixelsRight.Color(WheelPosRight * 3, 255 - WheelPosRight * 3, 0);
 }
-void writeLEDSRechts(byte R, byte G, byte B) { //basic write colors to the neopixels with RGB values
-  for (int i = 0; i < pixelsRechts.numPixels(); i ++)
+void writeLEDSRight(byte R, byte G, byte B) { //basic write colors to the neopixels with RGB values
+  for (int i = 0; i < pixelsRight.numPixels(); i ++)
   {
-    pixelsRechts.setPixelColor(i, pixelsRechts.Color(R, G, B));
+    pixelsRight.setPixelColor(i, pixelsRight.Color(R, G, B));
   }
-  pixelsRechts.show();
+  pixelsRight.show();
 }
-void writeLEDSRechts(byte R, byte G, byte B, byte bright) { //same as above with brightness added
+void writeLEDSRight(byte R, byte G, byte B, byte bright) { //same as above with brightness added
   float fR = (R / 255) * bright;
   float fG = (G / 255) * bright;
   float fB = (B / 255) * bright;
-  for (int i = 0; i < pixelsRechts.numPixels(); i ++)
+  for (int i = 0; i < pixelsRight.numPixels(); i ++)
   {
-    pixelsRechts.setPixelColor(i, pixelsRechts.Color(R, G, B));
+    pixelsRight.setPixelColor(i, pixelsRight.Color(R, G, B));
   }
-  pixelsRechts.show();
+  pixelsRight.show();
 }
-void writeLEDSRechts(byte R, byte G, byte B, byte bright, byte LED) { // same as above only with individual LEDS
+void writeLEDSRight(byte R, byte G, byte B, byte bright, byte LED) { // same as above only with individual LEDS
   float fR = (R / 255) * bright;
   float fG = (G / 255) * bright;
   float fB = (B / 255) * bright;
-  pixelsRechts.setPixelColor(LED, pixelsRechts.Color(R, G, B));
-  pixelsRechts.show();
+  pixelsRight.setPixelColor(LED, pixelsRight.Color(R, G, B));
+  pixelsRight.show();
 }
-unsigned int RGBValueRechts(const char * s) { //converts the value to an RGB value
+unsigned int RGBValueRight(const char * s) { //converts the value to an RGB value
   unsigned int result = 0;
   int c ;
   if ('0' == *s && 'x' == *(s + 1)) {
@@ -50,7 +50,7 @@ unsigned int RGBValueRechts(const char * s) { //converts the value to an RGB val
   }
   return result;
 }
-uint8_t splitColorRechts ( uint32_t c, char value ) {
+uint8_t splitColorRight ( uint32_t c, char value ) {
   switch ( value ) {
     case 'r': return (uint8_t)(c >> 16);
     case 'g': return (uint8_t)(c >>  8);
@@ -59,432 +59,456 @@ uint8_t splitColorRechts ( uint32_t c, char value ) {
   }
 }
 
-void ALLRechts() {
-  if (millis() - lastAllCycleRechts > 60000)
+void ALLRight() {
+  if (millis() - lastAllCycleRight > 60000)
   {
-    qRechts ++;
-    if ((qRechts < 5) || (qRechts > 14))
+    qRight ++;
+    if ((qRight < 5) || (qRight > 14))
     {
-      qRechts = 5;
+      qRight = 5;
 
     }
-    lastAllCycleRechts = millis();
+    lastAllCycleRight = millis();
   }
-  if (qRechts == 5) // if the option has been selected keep running the function for that option
+  if (qRight == 5) // if the option has been selected keep running the function for that option
   {
-    newColorWipeRechts();
+    newColorWipeRight();
   }
-  if (qRechts == 6)
+  if (qRight == 6)
   {
-    newTheatreChaseRechts();
+    newTheatreChaseRight();
   }
-  if (qRechts == 7)
+  if (qRight == 7)
   {
-    newRainbowRechts();
+    newRainbowRight();
   }
-  if (qRechts == 8)
+  if (qRight == 8)
   {
-    newTheatreChaseRainbowRechts();
+    newTheatreChaseRainbowRight();
   }
-  if (qRechts == 9)
+  if (qRight == 9)
   {
-    colorCyclerRechts();
-    cylonChaserRechts();
+    colorCyclerRight();
+    cylonChaserRight();
   }
-  if (qRechts == 10)
+  if (qRight == 10)
   {
-    newRainbowCycleRechts();
+    newRainbowCycleRight();
   }
-  if (qRechts == 11)
+  if (qRight == 11)
   {
-    colorCyclerRechts();
-    breathingRechts();
+    colorCyclerRight();
+    breathingRight();
   }
-  if (qRechts == 12)
+  if (qRight == 12)
   {
-    colorCyclerRechts();
-    heartbeatRechts();
+    colorCyclerRight();
+    heartbeatRight();
   }
-  if (qRechts == 13)
+  if (qRight == 13)
   {
-    christmasChaseRechts();
+    christmasChaseRight();
   }
-  if (qRechts == 14)
+  if (qRight == 14)
   {
-    FireRechts();
-  }
-}
-void colorCyclerRechts() {
-  if (millis() - previousColorMillisRechts > intervalRechts)
-  {
-    lastColorRechts ++;
-    if (lastColorRechts > 255)
-    {
-      lastColorRechts = 0;
-    }
-    uint32_t newColor = WheelRechts(lastColorRechts);
-    activeColorRechts[0] = splitColorRechts(newColor, 'r');
-    activeColorRechts[1] = splitColorRechts(newColor, 'g');
-    activeColorRechts[2] = splitColorRechts(newColor, 'b');
-    previousColorMillisRechts = millis();
+    FireRight();
   }
 }
-void christmasChaseRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 10)//if the time between the function being last run is greater than intervel * 2 - run it
+void colorCyclerRight() {
+  if (millis() - previousColorMillisRight > intervalRight)
   {
-    for (int qRechtsRechts = 0; qRechtsRechts < NUMPIXELSRechts + 4; qRechtsRechts ++)
+    lastColorRight ++;
+    if (lastColorRight > 255)
     {
-      pixelsRechts.setPixelColor(qRechtsRechts, pixelsRechts.Color(255, 0, 0));
+      lastColorRight = 0;
     }
-    if (oRechts < 4)
+    uint32_t newColor = WheelRight(lastColorRight);
+    activeColorRight[0] = splitColorRight(newColor, 'r');
+    activeColorRight[1] = splitColorRight(newColor, 'g');
+    activeColorRight[2] = splitColorRight(newColor, 'b');
+    previousColorMillisRight = millis();
+  }
+}
+void christmasChaseRight() {
+  if (millis() - previousMillisRight > intervalRight * 10)//if the time between the function being last run is greater than intervel * 2 - run it
+  {
+    for (int qRightRight = 0; qRightRight < NUMPIXELSRight + 4; qRightRight ++)
     {
-      for (int p = oRechts; p < NUMPIXELSRechts + 4; p = p + 4)
+      pixelsRight.setPixelColor(qRightRight, pixelsRight.Color(255, 0, 0));
+    }
+    if (oRight < 4)
+    {
+      for (int p = oRight; p < NUMPIXELSRight + 4; p = p + 4)
       {
         if (p == 0)
         {
-          pixelsRechts.setPixelColor(p, pixelsRechts.Color(0, 255, 0));
+          pixelsRight.setPixelColor(p, pixelsRight.Color(0, 255, 0));
         }
-        else if ((p > 0) && (p < NUMPIXELSRechts + 4 ))
+        else if ((p > 0) && (p < NUMPIXELSRight + 4 ))
         {
-          pixelsRechts.setPixelColor(p, pixelsRechts.Color(0, 255, 0));
-          pixelsRechts.setPixelColor(p - 1, pixelsRechts.Color(0, 255, 0));
+          pixelsRight.setPixelColor(p, pixelsRight.Color(0, 255, 0));
+          pixelsRight.setPixelColor(p - 1, pixelsRight.Color(0, 255, 0));
         }
-        if ( (p == 2) && (NUMPIXELSRechts % 4) == 2) {
-          pixelsRechts.setPixelColor(NUMPIXELSRechts - 1, pixelsRechts.Color(0, 255, 0));
+        if ( (p == 2) && (NUMPIXELSRight % 4) == 2) {
+          pixelsRight.setPixelColor(NUMPIXELSRight - 1, pixelsRight.Color(0, 255, 0));
         }
       }
-      pixelsRechts.show();
-      oRechts++;
+      pixelsRight.show();
+      oRight++;
     }
-    if (oRechts >= 4)
-      oRechts = 0;
-    previousMillisRechts = millis();
+    if (oRight >= 4)
+      oRight = 0;
+    previousMillisRight = millis();
   }
 }
-void heartbeatRechts() {
+void heartbeatRight() {
 #if defined DEBUG
-  Serial.print("testintervalRechts");
-  Serial.println(millis() - previousMillisRechts);
+  Serial.print("testintervalRight");
+  Serial.println(millis() - previousMillisRight);
 #endif
-  if (millis() - previousMillisRechts > intervalRechts * 2)//if the time between the function being last run is greater than intervel * 2 - run it
+  if (millis() - previousMillisRight > intervalRight * 2)//if the time between the function being last run is greater than intervel * 2 - run it
   {
-    if ((beatRechts == true) && (beatsRechts == 0) && (millis() - previousMillisRechts > intervalRechts * 7)) //if the beatRechts is on and it's the first beatRechts (beatRechtss==0) and the time between them is enough
+    if ((beatRight == true) && (beatsRight == 0) && (millis() - previousMillisRight > intervalRight * 7)) //if the beatRight is on and it's the first beatRight (beatRights==0) and the time between them is enough
     {
       for (int h = 50; h <= 255; h = h + 15)//turn on the pixels at 50 and bring it up to 255 in 15 level increments
       {
-        writeLEDSRechts((activeColorRechts[0] / 255) * h, (activeColorRechts[1] / 255) * h, (activeColorRechts[2] / 255) * h);
+        writeLEDSRight((activeColorRight[0] / 255) * h, (activeColorRight[1] / 255) * h, (activeColorRight[2] / 255) * h);
         delay(3);
       }
-      beatRechts = false;//sets the next beatRechts to off
-      previousMillisRechts = millis();//starts the timer again
+      beatRight = false;//sets the next beatRight to off
+      previousMillisRight = millis();//starts the timer again
 
 
     }
-    else if ((beatRechts == false) && (beatsRechts == 0))//if the beat is off and the beat cycle is still in the first beat
+    else if ((beatRight == false) && (beatsRight == 0))//if the beat is off and the beat cycle is still in the first beat
     {
       for (int h = 255; h >= 0; h = h - 15)//turn off the pixels
       {
-        writeLEDSRechts((activeColorRechts[0] / 255) * h, (activeColorRechts[1] / 255) * h, (activeColorRechts[2] / 255) * h);
+        writeLEDSRight((activeColorRight[0] / 255) * h, (activeColorRight[1] / 255) * h, (activeColorRight[2] / 255) * h);
         delay(3);
       }
-      beatRechts = true;//sets the beatRechts to On
-      beatsRechts = 1;//sets the next beat to the second beat
-      previousMillisRechts = millis();
+      beatRight = true;//sets the beatRight to On
+      beatsRight = 1;//sets the next beat to the second beat
+      previousMillisRight = millis();
     }
-    else if ((beatRechts == true) && (beatsRechts == 1) && (millis() - previousMillisRechts > intervalRechts * 2))//if the beatRechts is on and it's the second beatRechts and the intervalRechts is enough
+    else if ((beatRight == true) && (beatsRight == 1) && (millis() - previousMillisRight > intervalRight * 2))//if the beatRight is on and it's the second beatRight and the intervalRight is enough
     {
       for (int h = 50; h <= 255; h = h + 15)
       {
-        writeLEDSRechts((activeColorRechts[0] / 255) * h, (activeColorRechts[1] / 255) * h, (activeColorRechts[2] / 255) * h); //turn on the pixels
+        writeLEDSRight((activeColorRight[0] / 255) * h, (activeColorRight[1] / 255) * h, (activeColorRight[2] / 255) * h); //turn on the pixels
         delay(3);
       }
-      beatRechts = false;//sets the next beatRechts to off
-      previousMillisRechts = millis();
+      beatRight = false;//sets the next beatRight to off
+      previousMillisRight = millis();
     }
-    else if ((beatRechts == false) && (beatsRechts == 1))//if the beat is off and it's the second beat
+    else if ((beatRight == false) && (beatsRight == 1))//if the beat is off and it's the second beat
     {
       for (int h = 255; h >= 0; h = h - 15)
       {
-        writeLEDSRechts((activeColorRechts[0] / 255) * h, (activeColorRechts[1] / 255) * h, (activeColorRechts[2] / 255) * h); //turn off the pixels
+        writeLEDSRight((activeColorRight[0] / 255) * h, (activeColorRight[1] / 255) * h, (activeColorRight[2] / 255) * h); //turn off the pixels
         delay(3);
       }
-      beatRechts = true;//sets the next beat to on
-      beatsRechts = 0;//starts the sequence again
-      previousMillisRechts = millis();
+      beatRight = true;//sets the next beat to on
+      beatsRight = 0;//starts the sequence again
+      previousMillisRight = millis();
     }
 #if defined DEBUG
-    Serial.print("previousMillisRechts:");
-    Serial.println(previousMillisRechts);
+    Serial.print("previousMillisRight:");
+    Serial.println(previousMillisRight);
 #endif
   }
 }
-void breathingRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2) //if the timer has reached its delay value
+void breathingRight() {
+  // Step 10 (was 5) halves the boot pulse period vs the previous tuning,
+  // same gate. (Actual update rate is still capped
+  // by the main loop()'s own blocking delay(50)/delay(100) calls elsewhere,
+  // so this is the achievable smoothness without touching that.)
+  if (millis() - previousMillisRight > intervalRight * 2 / 3) //if the timer has reached its delay value
   {
-    writeLEDSRechts((activeColorRechts[0] / 255) * breatherRechts, (activeColorRechts[1] / 255) * breatherRechts, (activeColorRechts[2] / 255) * breatherRechts); //write the leds to the color and brightness level
-    if (dirRechts == true)//if the lights are coming on
+    writeLEDSRight((activeColorRight[0] / 255) * breatherRight, (activeColorRight[1] / 255) * breatherRight, (activeColorRight[2] / 255) * breatherRight); //write the leds to the color and brightness level
+    if (dirRight == true)//if the lights are coming on
     {
-      if (breatherRechts < 255)//once the value is less than 255
+      if (breatherRight < 255)//once the value is less than 255
       {
-        breatherRechts = breatherRechts + 15;//adds 15 to the brightness level for the next time
+        breatherRight = breatherRight + 10;//adds 10 to the brightness level for the next time
+        if (breatherRight > 255) breatherRight = 255;//clamp: step 10 doesn't divide 255 evenly, would overshoot and byte-wrap
       }
-      else if (breatherRechts >= 255)//if the brightness is greater or equal to 255
+      else if (breatherRight >= 255)//if the brightness is greater or equal to 255
       {
-        dirRechts = false;//sets the direction to false
+        dirRight = false;//sets the direction to false
       }
     }
-    if (dirRechts == false)//if the lights are going off
+    if (dirRight == false)//if the lights are going off
     {
-      if (breatherRechts > 0)
+      if (breatherRight > 0)
       {
-        breatherRechts = breatherRechts - 15;//takes 15 away from the brightness level
+        breatherRight = breatherRight - 10;//takes 10 away from the brightness level
+        if (breatherRight < 0) breatherRight = 0;//clamp: step 10 doesn't divide 255 evenly, would undershoot and byte-wrap
       }
-      else if (breatherRechts <= 0)//if the brightness level is nothing
-        dirRechts = true;//changes the direction again to on
+      else if (breatherRight <= 0)//if the brightness level is nothing
+        dirRight = true;//changes the direction again to on
     }
-    previousMillisRechts = millis();
+    previousMillisRight = millis();
   }
 }
-void cylonChaserRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 5 / 3) //intervalRechts * 2 / 3)
+void cylonChaserRight() {
+  if (millis() - previousMillisRight > intervalRight * 5 / 3) //intervalRight * 2 / 3)
   {
-    for (int h = 0; h < pixelsRechts.numPixels(); h++)
+    for (int h = 0; h < pixelsRight.numPixels(); h++)
     {
-      pixelsRechts.setPixelColor(h, 0);//sets all pixels to off
+      pixelsRight.setPixelColor(h, 0);//sets all pixels to off
     }
-    if (pixelsRechts.numPixels() <= 10)//if the number of pixels in the strip is 10 or less only activate 3 leds in the strip
+    if (pixelsRight.numPixels() <= 10)//if the number of pixels in the strip is 10 or less only activate 3 leds in the strip
     {
-      pixelsRechts.setPixelColor(nRechts, pixelsRechts.Color(activeColorRechts[0], activeColorRechts[1], activeColorRechts[2]));//sets the main pixel to full brightness
-      pixelsRechts.setPixelColor(nRechts + 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50)); //sets the surrounding pixels brightness to 50
-      pixelsRechts.setPixelColor(nRechts - 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50));
-      if (dirRechts == true)//if the pixels are going up in value
+      pixelsRight.setPixelColor(nRight, pixelsRight.Color(activeColorRight[0], activeColorRight[1], activeColorRight[2]));//sets the main pixel to full brightness
+      pixelsRight.setPixelColor(nRight + 1, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50)); //sets the surrounding pixels brightness to 50
+      pixelsRight.setPixelColor(nRight - 1, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50));
+      if (dirRight == true)//if the pixels are going up in value
       {
-        if (nRechts <  (pixelsRechts.numPixels() - 1))//if the pixels are moving forward and havent reach the end of the strip "-1" to allow for the surrounding pixels
+        if (nRight <  (pixelsRight.numPixels() - 1))//if the pixels are moving forward and havent reach the end of the strip "-1" to allow for the surrounding pixels
         {
-          nRechts++;//increase N ie move one more forward the next time
+          nRight++;//increase N ie move one more forward the next time
         }
-        else if (nRechts >= (pixelsRechts.numPixels() - 1))//if the pixels have reached the end of the strip
+        else if (nRight >= (pixelsRight.numPixels() - 1))//if the pixels have reached the end of the strip
         {
-          dirRechts = false;//change the direction
+          dirRight = false;//change the direction
         }
       }
-      if (dirRechts == false)//if the pixels are going down in value
+      if (dirRight == false)//if the pixels are going down in value
       {
-        if (nRechts > 1)//if the pixel number is greater than 1 (to allow for the surrounding pixels)
+        if (nRight > 1)//if the pixel number is greater than 1 (to allow for the surrounding pixels)
         {
-          nRechts--; //decrease the active pixel number
+          nRight--; //decrease the active pixel number
         }
-        else if (nRechts <= 1)//if the pixel number has reached 1
+        else if (nRight <= 1)//if the pixel number has reached 1
         {
-          dirRechts = true;//change the direction
-        }
-      }
-    }
-    if ((pixelsRechts.numPixels() > 10) && (pixelsRechts.numPixels() <= 20))//if there are between 11 and 20 pixels in the strip add 2 pixels on either side of the main pixel
-    {
-      pixelsRechts.setPixelColor(nRechts, pixelsRechts.Color(activeColorRechts[0], activeColorRechts[1], activeColorRechts[2]));//same as above only with 2 pixels either side
-      pixelsRechts.setPixelColor(nRechts + 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 150, (activeColorRechts[1] / 255) * 150, (activeColorRechts[2] / 255) * 150));
-      pixelsRechts.setPixelColor(nRechts + 2, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50));
-      pixelsRechts.setPixelColor(nRechts - 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 150, (activeColorRechts[1] / 255) * 150, (activeColorRechts[2] / 255) * 150));
-      pixelsRechts.setPixelColor(nRechts - 2, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50));
-      if (dirRechts == true)
-      {
-        if (nRechts <  (pixelsRechts.numPixels() - 2))
-        {
-          nRechts++;
-        }
-        else if (nRechts >= (pixelsRechts.numPixels() - 2))
-        {
-          dirRechts = false;
-        }
-      }
-      if (dirRechts == false)
-      {
-        if (nRechts > 2)
-        {
-          nRechts--;
-        }
-        else if (nRechts <= 2)
-        {
-          dirRechts = true;
+          dirRight = true;//change the direction
         }
       }
     }
-    if (pixelsRechts.numPixels() > 20)//if there are more than 20 pixels in the strip add 3 pixels either side of the main pixel
+    if ((pixelsRight.numPixels() > 10) && (pixelsRight.numPixels() <= 20))//if there are between 11 and 20 pixels in the strip add 2 pixels on either side of the main pixel
     {
-      pixelsRechts.setPixelColor(nRechts, pixelsRechts.Color((activeColorRechts[0] / 255) * 255, (activeColorRechts[1] / 255) * 255, (activeColorRechts[2] / 255) * 255));
-      pixelsRechts.setPixelColor(nRechts + 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 150, (activeColorRechts[1] / 255) * 150, (activeColorRechts[2] / 255) * 150));
-      pixelsRechts.setPixelColor(nRechts + 2, pixelsRechts.Color((activeColorRechts[0] / 255) * 100, (activeColorRechts[1] / 255) * 100, (activeColorRechts[2] / 255) * 100));
-      pixelsRechts.setPixelColor(nRechts + 3, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50));
-      pixelsRechts.setPixelColor(nRechts - 1, pixelsRechts.Color((activeColorRechts[0] / 255) * 150, (activeColorRechts[1] / 255) * 150, (activeColorRechts[2] / 255) * 150));
-      pixelsRechts.setPixelColor(nRechts - 2, pixelsRechts.Color((activeColorRechts[0] / 255) * 100, (activeColorRechts[1] / 255) * 100, (activeColorRechts[2] / 255) * 100));
-      pixelsRechts.setPixelColor(nRechts - 3, pixelsRechts.Color((activeColorRechts[0] / 255) * 50, (activeColorRechts[1] / 255) * 50, (activeColorRechts[2] / 255) * 50));
-      if (dirRechts == true)
+      pixelsRight.setPixelColor(nRight, pixelsRight.Color(activeColorRight[0], activeColorRight[1], activeColorRight[2]));//same as above only with 2 pixels either side
+      pixelsRight.setPixelColor(nRight + 1, pixelsRight.Color((activeColorRight[0] / 255) * 150, (activeColorRight[1] / 255) * 150, (activeColorRight[2] / 255) * 150));
+      pixelsRight.setPixelColor(nRight + 2, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50));
+      pixelsRight.setPixelColor(nRight - 1, pixelsRight.Color((activeColorRight[0] / 255) * 150, (activeColorRight[1] / 255) * 150, (activeColorRight[2] / 255) * 150));
+      pixelsRight.setPixelColor(nRight - 2, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50));
+      if (dirRight == true)
       {
-        if (nRechts <  (pixelsRechts.numPixels() - 3))
+        if (nRight <  (pixelsRight.numPixels() - 2))
         {
-          nRechts++;
+          nRight++;
         }
-        else if (nRechts >= (pixelsRechts.numPixels() - 3))
+        else if (nRight >= (pixelsRight.numPixels() - 2))
         {
-          dirRechts = false;
+          dirRight = false;
         }
       }
-      if (dirRechts == false)
+      if (dirRight == false)
       {
-        if (nRechts > 3)
+        if (nRight > 2)
         {
-          nRechts--;
+          nRight--;
         }
-        else if (nRechts <= 3)
+        else if (nRight <= 2)
         {
-          dirRechts = true;
+          dirRight = true;
         }
       }
     }
-    pixelsRechts.show();//show the pixels
-    previousMillisRechts = millis();
+    if (pixelsRight.numPixels() > 20)//if there are more than 20 pixels in the strip add 3 pixels either side of the main pixel
+    {
+      pixelsRight.setPixelColor(nRight, pixelsRight.Color((activeColorRight[0] / 255) * 255, (activeColorRight[1] / 255) * 255, (activeColorRight[2] / 255) * 255));
+      pixelsRight.setPixelColor(nRight + 1, pixelsRight.Color((activeColorRight[0] / 255) * 150, (activeColorRight[1] / 255) * 150, (activeColorRight[2] / 255) * 150));
+      pixelsRight.setPixelColor(nRight + 2, pixelsRight.Color((activeColorRight[0] / 255) * 100, (activeColorRight[1] / 255) * 100, (activeColorRight[2] / 255) * 100));
+      pixelsRight.setPixelColor(nRight + 3, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50));
+      pixelsRight.setPixelColor(nRight - 1, pixelsRight.Color((activeColorRight[0] / 255) * 150, (activeColorRight[1] / 255) * 150, (activeColorRight[2] / 255) * 150));
+      pixelsRight.setPixelColor(nRight - 2, pixelsRight.Color((activeColorRight[0] / 255) * 100, (activeColorRight[1] / 255) * 100, (activeColorRight[2] / 255) * 100));
+      pixelsRight.setPixelColor(nRight - 3, pixelsRight.Color((activeColorRight[0] / 255) * 50, (activeColorRight[1] / 255) * 50, (activeColorRight[2] / 255) * 50));
+      if (dirRight == true)
+      {
+        if (nRight <  (pixelsRight.numPixels() - 3))
+        {
+          nRight++;
+        }
+        else if (nRight >= (pixelsRight.numPixels() - 3))
+        {
+          dirRight = false;
+        }
+      }
+      if (dirRight == false)
+      {
+        if (nRight > 3)
+        {
+          nRight--;
+        }
+        else if (nRight <= 3)
+        {
+          dirRight = true;
+        }
+      }
+    }
+    pixelsRight.show();//show the pixels
+    previousMillisRight = millis();
   }
 }
-void newTheatreChaseRainbowRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2)
+void newTheatreChaseRainbowRight() {
+  if (millis() - previousMillisRight > intervalRight * 2)
   {
-    for (int h = 0; h < pixelsRechts.numPixels(); h = h + 3) {
-      pixelsRechts.setPixelColor(h + (jRechts - 1), 0);    //turn every third pixel off from the last cycle
-      pixelsRechts.setPixelColor(NUMPIXELSRechts - 1, 0);
+    for (int h = 0; h < pixelsRight.numPixels(); h = h + 3) {
+      pixelsRight.setPixelColor(h + (jRight - 1), 0);    //turn every third pixel off from the last cycle
+      pixelsRight.setPixelColor(NUMPIXELSRight - 1, 0);
     }
-    for (int h = 0; h < pixelsRechts.numPixels(); h = h + 3)
+    for (int h = 0; h < pixelsRight.numPixels(); h = h + 3)
     {
-      pixelsRechts.setPixelColor(h + jRechts, WheelRechts( ( h + lRechts) % 255));//turn every third pixel on and cycle the color
+      pixelsRight.setPixelColor(h + jRight, WheelRight( ( h + lRight) % 255));//turn every third pixel on and cycle the color
     }
-    pixelsRechts.show();
-    jRechts++;
-    if (jRechts >= 3)
-      jRechts = 0;
-    lRechts++;
-    if (lRechts >= 256)
-      lRechts = 0;
-    previousMillisRechts = millis();
+    pixelsRight.show();
+    jRight++;
+    if (jRight >= 3)
+      jRight = 0;
+    lRight++;
+    if (lRight >= 256)
+      lRight = 0;
+    previousMillisRight = millis();
   }
 }
-void newRainbowCycleRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2)
+void newRainbowCycleRight() {
+  if (millis() - previousMillisRight > intervalRight * 2)
   {
-    for (int h = 0; h < pixelsRechts.numPixels(); h++)
+    for (int h = 0; h < pixelsRight.numPixels(); h++)
     {
-      pixelsRechts.setPixelColor(h, WheelRechts(((h * 256 / pixelsRechts.numPixels()) + mRechts) & 255));
+      pixelsRight.setPixelColor(h, WheelRight(((h * 256 / pixelsRight.numPixels()) + mRight) & 255));
     }
-    mRechts++;
-    if (mRechts >= 256 * 5)
-      mRechts = 0;
-    pixelsRechts.show();
-    previousMillisRechts = millis();
+    mRight++;
+    if (mRight >= 256 * 5)
+      mRight = 0;
+    pixelsRight.show();
+    previousMillisRight = millis();
   }
 }
-void newRainbowRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2)
+void newRainbowRight() {
+  if (millis() - previousMillisRight > intervalRight * 2)
   {
-    for (int h = 0; h < pixelsRechts.numPixels(); h++)
+    for (int h = 0; h < pixelsRight.numPixels(); h++)
     {
-      pixelsRechts.setPixelColor(h, WheelRechts((h + lRechts) & 255));
+      pixelsRight.setPixelColor(h, WheelRight((h + lRight) & 255));
     }
-    lRechts++;
-    if (lRechts >= 256)
-      lRechts = 0;
-    pixelsRechts.show();
-    previousMillisRechts = millis();
+    lRight++;
+    if (lRight >= 256)
+      lRight = 0;
+    pixelsRight.show();
+    previousMillisRight = millis();
   }
 }
-void newTheatreChaseRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2)
+void newTheatreChaseRight() {
+  if (millis() - previousMillisRight > intervalRight * 2)
   {
     uint32_t color;
-    int k = jRechts - 3;
-    jRechts = iRechts;
+    int k = jRight - 3;
+    jRight = iRight;
     while (k >= 0)
     {
-      pixelsRechts.setPixelColor(k, 0);
+      pixelsRight.setPixelColor(k, 0);
       k = k - 3;
     }
-    if (TCColorRechts == 0)
+    if (TCColorRight == 0)
     {
-      color = pixelsRechts.Color(255, 0, 0);
+      color = pixelsRight.Color(255, 0, 0);
     }
-    else if (TCColorRechts == 1)
+    else if (TCColorRight == 1)
     {
-      color = pixelsRechts.Color(0, 255, 0);
+      color = pixelsRight.Color(0, 255, 0);
     }
-    else if (TCColorRechts == 2)
+    else if (TCColorRight == 2)
     {
-      color = pixelsRechts.Color(0, 0, 255);
+      color = pixelsRight.Color(0, 0, 255);
     }
-    else if (TCColorRechts == 3)
+    else if (TCColorRight == 3)
     {
-      color = pixelsRechts.Color(255, 255, 255);
+      color = pixelsRight.Color(255, 255, 255);
     }
-    while (jRechts < NUMPIXELSRechts)
+    else if (TCColorRight == 4)
     {
-      pixelsRechts.setPixelColor(jRechts, color);
-      jRechts = jRechts + 3;
+      color = pixelsRight.Color(255, 255, 0);
     }
-    pixelsRechts.show();
-    if (cycleRechts == 10)
+    while (jRight < NUMPIXELSRight)
     {
-      TCColorRechts ++;
-      cycleRechts = 0;
-      if (TCColorRechts == 4)
-        TCColorRechts = 0;
+      pixelsRight.setPixelColor(jRight, color);
+      jRight = jRight + 3;
     }
-    iRechts++;
-    if (iRechts >= 3)
+    pixelsRight.show();
+    if (cycleRight == 10)
     {
-      iRechts = 0;
-      cycleRechts ++;
+      TCColorRight ++;
+      cycleRight = 0;
+      if (TCColorRight == 4)
+        TCColorRight = 0;
     }
-    previousMillisRechts = millis();
+    iRight++;
+    if (iRight >= 3)
+    {
+      iRight = 0;
+      cycleRight ++;
+    }
+    previousMillisRight = millis();
   }
 }
-void newColorWipeRechts() {
-  if (millis() - previousMillisRechts > intervalRechts * 2)
+void flashingRight() { // rapid on/off RED blink, no held state needed
+  if ((millis() / 150) % 2 == 0) {
+    writeLEDSRight(255, 0, 0);
+  } else {
+    writeLEDSRight(0, 0, 0);
+  }
+}
+void flashingGreenRight() { // rapid on/off GREEN blink, no held state needed
+  if ((millis() / 150) % 2 == 0) {
+    writeLEDSRight(0, 255, 0);
+  } else {
+    writeLEDSRight(0, 0, 0);
+  }
+}
+void newColorWipeRight() {
+  if (millis() - previousMillisRight > intervalRight * 2)
   {
     uint32_t color;
-    if (CWColorRechts == 0)
+    if (CWColorRight == 0)
     {
-      color = pixelsRechts.Color(255, 0, 0);
+      color = pixelsRight.Color(255, 0, 0);
     }
-    else if (CWColorRechts == 1)
+    else if (CWColorRight == 1)
     {
-      color = pixelsRechts.Color(0, 255, 0);
+      color = pixelsRight.Color(0, 255, 0);
     }
-    else if (CWColorRechts == 2)
+    else if (CWColorRight == 2)
     {
-      color = pixelsRechts.Color(0, 0, 255);
+      color = pixelsRight.Color(0, 0, 255);
     }
-    pixelsRechts.setPixelColor(iRechts, color);
-    pixelsRechts.show();
-    iRechts++;
-    if (iRechts == NUMPIXELSRechts)
+    pixelsRight.setPixelColor(iRight, color);
+    pixelsRight.show();
+    iRight++;
+    if (iRight == NUMPIXELSRight)
     {
-      iRechts = 0;
-      CWColorRechts++;
-      if (CWColorRechts == 3)
-        CWColorRechts = 0;
+      iRight = 0;
+      CWColorRight++;
+      if (CWColorRight == 3)
+        CWColorRight = 0;
     }
-    previousMillisRechts = millis();
+    previousMillisRight = millis();
   }
 }
-void FireRechts()
+void FireRight()
 {
   FireR(55,120);
 }  
 
   void FireR(int Cooling, int Sparking) {
-  static int heat[NUMPIXELSRechts];
+  static int heat[NUMPIXELSRight];
   int cooldown;
   
   // Step 1.  Cool down every cell a little
-  for( int i = 0; i < NUMPIXELSRechts; i++) {
-    cooldown = random(0, ((Cooling * 10) / NUMPIXELSRechts) + 2);
+  for( int i = 0; i < NUMPIXELSRight; i++) {
+    cooldown = random(0, ((Cooling * 10) / NUMPIXELSRight) + 2);
     
     if(cooldown>heat[i]) {
       heat[i]=0;
@@ -494,7 +518,7 @@ void FireRechts()
   }
   
   // Step 2.  Heat from each cell drifts 'up' and diffuses a little
-  for( int k= NUMPIXELSRechts - 1; k >= 2; k--) {
+  for( int k= NUMPIXELSRight - 1; k >= 2; k--) {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2]) / 3;
   }
     
@@ -506,15 +530,15 @@ void FireRechts()
   }
 
   // Step 4.  Convert heat to LED colors
-  for( int j = 0; j < NUMPIXELSRechts; j++) {
-    setPixelHeatColorRechts(j, heat[j] );
+  for( int j = 0; j < NUMPIXELSRight; j++) {
+    setPixelHeatColorRight(j, heat[j] );
   }
 
-  showStripRechts();
-  delay(intervalRechts);
+  showStripRight();
+  delay(intervalRight);
 }
 
-void setPixelHeatColorRechts (int PixelR, byte temperature) {
+void setPixelHeatColorRight (int PixelR, byte temperature) {
   // Scale 'heat' down from 0-255 to 0-191
   byte t192 = round((temperature/255.0)*191);
  
@@ -524,19 +548,19 @@ void setPixelHeatColorRechts (int PixelR, byte temperature) {
  
   // figure out which third of the spectrum we're in:
   if( t192 > 0x80) {                     // hottest
-    setPixelRechts(PixelR, 255, 255, heatramp);
+    setPixelRight(PixelR, 255, 255, heatramp);
   } else if( t192 > 0x40 ) {             // middle
-    setPixelRechts(PixelR, 255, heatramp, 0);
+    setPixelRight(PixelR, 255, heatramp, 0);
   } else {                               // coolest
-    setPixelRechts(PixelR, heatramp, 0, 0);
+    setPixelRight(PixelR, heatramp, 0, 0);
   }
 }
 // *** REPLACE TO HERE ***
 
-void showStripRechts() {
+void showStripRight() {
  #ifdef ADAFRUIT_NEOPIXEL_H 
    // NeoPixel
-   pixelsRechts.show();
+   pixelsRight.show();
  #endif
  #ifndef ADAFRUIT_NEOPIXEL_H
    // FastLED
@@ -544,10 +568,10 @@ void showStripRechts() {
  #endif
 }
 
-void setPixelRechts(int PixelR, byte red, byte green, byte blue) {
+void setPixelRight(int PixelR, byte red, byte green, byte blue) {
  #ifdef ADAFRUIT_NEOPIXEL_H 
    // NeoPixel
-   pixelsRechts.setPixelColor(PixelR, pixelsRechts.Color(red, green, blue));
+   pixelsRight.setPixelColor(PixelR, pixelsRight.Color(red, green, blue));
  #endif
  #ifndef ADAFRUIT_NEOPIXEL_H 
    // FastLED
@@ -557,9 +581,9 @@ void setPixelRechts(int PixelR, byte red, byte green, byte blue) {
  #endif
 }
 
-void setAllRechts(byte red, byte green, byte blue) {
-  for(int i = 0; i < NUMPIXELSRechts; i++ ) {
-    setPixelRechts(i, red, green, blue); 
+void setAllRight(byte red, byte green, byte blue) {
+  for(int i = 0; i < NUMPIXELSRight; i++ ) {
+    setPixelRight(i, red, green, blue); 
   }
-  showStripRechts();
+  showStripRight();
 }

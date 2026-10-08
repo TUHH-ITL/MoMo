@@ -10,6 +10,7 @@ cogen_dcf(maxon_mecanum_bus)
 install(PROGRAMS
   scripts/mecanum_epos4_controller.py
   scripts/mecanum_wheel_odometry.py
+  scripts/arduino_status_indicator.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -10,6 +10,8 @@ from canopen_interfaces.srv import COTargetDouble
 from geometry_msgs.msg import TwistStamped
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
+from rclpy.qos import DurabilityPolicy, QoSProfile
+from std_msgs.msg import Bool
 from std_srvs.srv import Trigger
 
 
@@ -37,6 +39,9 @@ class MecanumEpos4Controller(Node):
         self.declare_parameter("direct_can_velocity", True)
         self.declare_parameter("can_interface", "can0")
         self.declare_parameter("cmd_vel_topic", "/cmd_vel")
+        # Consecutive failed RPDO sends before declaring the drives unpowered.
+        # At publish_rate 50 Hz with four wheels per cycle, 20 is ~0.1 s.
+        self.declare_parameter("unpowered_threshold", 20)
 
         self.radius = float(self.get_parameter("wheel_radius").value)
         self.k = 0.5 * (
@@ -70,6 +75,7 @@ class MecanumEpos4Controller(Node):
         self.direct_can_velocity = bool(self.get_parameter("direct_can_velocity").value)
         self.can_interface = str(self.get_parameter("can_interface").value)
         self.cmd_vel_topic = str(self.get_parameter("cmd_vel_topic").value)
+        self.unpowered_threshold = int(self.get_parameter("unpowered_threshold").value)
         if self.radius <= 0.0 or self.gear_ratio <= 0.0 or len(self.directions) != 4:
             raise ValueError(
                 "wheel_radius and gear_ratio must be positive; motor_directions needs 4 entries"
@@ -79,6 +85,8 @@ class MecanumEpos4Controller(Node):
         self.outputs = [0.0] * 4
         self.last_cmd = self.get_clock().now()
         self.ready = False
+        self.send_failures = 0
+        self.drives_unpowered = False
         self.pending = [False] * 4
         self.last_sent = [None] * 4
         self.service_targets = [None] * 4
@@ -117,11 +125,29 @@ class MecanumEpos4Controller(Node):
         self.create_subscription(
             TwistStamped, self.cmd_vel_topic, self.cmd_vel_callback, 10
         )
+        self.motors_ready_publisher = self.create_publisher(
+            Bool,
+            "motors_ready",
+            QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL),
+        )
+        self.motors_failed_publisher = self.create_publisher(
+            Bool,
+            "motors_failed",
+            QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL),
+        )
+        # Latched so a late subscriber (the status Arduino node respawning, say)
+        # still learns the drives are dead instead of showing a stale color.
+        self.drives_unpowered_publisher = self.create_publisher(
+            Bool,
+            "drives_unpowered",
+            QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL),
+        )
         self.create_timer(1.0 / self.rate, self.control_loop)
         if bool(self.get_parameter("auto_start").value):
             threading.Thread(target=self.start_drives, daemon=True).start()
         else:
             self.ready = True
+            self.motors_ready_publisher.publish(Bool(data=True))
         self.get_logger().info("Mecanum controller waiting for four EPOS4 drives")
 
     def cmd_vel_callback(self, msg: TwistStamped):
@@ -167,6 +193,7 @@ class MecanumEpos4Controller(Node):
                     self.get_logger().error(
                         f"Drive {i + 1} {operation} service unavailable"
                     )
+                    self.motors_failed_publisher.publish(Bool(data=True))
                     return
                 succeeded = False
                 for attempt in range(1, self.startup_retries + 1):
@@ -188,10 +215,12 @@ class MecanumEpos4Controller(Node):
                     time.sleep(self.startup_retry_delay)
                 if not succeeded:
                     self.get_logger().error(f"Drive {i + 1} failed {operation}")
+                    self.motors_failed_publisher.publish(Bool(data=True))
                     return
                 if self.startup_drive_stagger > 0:
                     time.sleep(self.startup_drive_stagger)
         self.ready = True
+        self.motors_ready_publisher.publish(Bool(data=True))
         self.get_logger().info(
             "All four EPOS4 drives initialized in profile velocity mode"
         )
@@ -246,6 +275,9 @@ class MecanumEpos4Controller(Node):
                 lambda _future, wheel=i: self._target_done(wheel, _future)
             )
 
+        if self.can_socket is not None:
+            self._publish_power_state()
+
     def _send_velocity_rpdo(self, wheel, target_rad_s):
         """Send controlword, profile velocity and mode through configured RPDO1."""
         target_rpm = int(round(target_rad_s * 60.0 / (2.0 * math.pi)))
@@ -254,11 +286,35 @@ class MecanumEpos4Controller(Node):
         frame = struct.pack("=IB3x8s", 0x201 + wheel, len(payload), payload)
         try:
             self.can_socket.send(frame)
+            self.send_failures = 0
         except OSError as exc:
+            # ENOBUFS here is the emergency stop's signature: with the drives
+            # de-energized nothing acknowledges on the bus, so the socket's TX
+            # queue fills and every send is refused.
+            self.send_failures += 1
             self.get_logger().error(
                 f"Drive {wheel + 1} direct CAN command failed: {exc}",
                 throttle_duration_sec=2.0,
             )
+
+    def _publish_power_state(self):
+        """Flag the drives as unpowered once RPDO sends stop going through.
+
+        Recovers on its own: the first successful send after the emergency stop
+        is released resets the counter, so the LEDs go back to their normal
+        color without anything having to be restarted.
+        """
+        unpowered = self.send_failures >= self.unpowered_threshold
+        if unpowered == self.drives_unpowered:
+            return
+        self.drives_unpowered = unpowered
+        self.drives_unpowered_publisher.publish(Bool(data=unpowered))
+        if unpowered:
+            self.get_logger().error(
+                "Drives stopped acknowledging on CAN -- emergency stop pressed?"
+            )
+        else:
+            self.get_logger().info("Drives are answering on CAN again.")
 
     def _target_done(self, wheel, future):
         self.pending[wheel] = False

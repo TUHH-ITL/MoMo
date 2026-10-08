@@ -151,6 +151,16 @@ install(TARGETS device_container_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
+# device_container_node needs CAP_NET_ADMIN/CAP_NET_RAW to manage CAN
+# controller state (bus-off recovery) without running as root. Capabilities
+# live on the installed file's inode; colcon copies (not symlinks) compiled
+# executables even with --symlink-install, so the build-tree binary from a
+# POST_BUILD step is the wrong file. Runs at install time instead, once the
+# real target exists at its final path.
+install(CODE
+  "execute_process(COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/set_can_capabilities.sh \"${CMAKE_INSTALL_PREFIX}/lib/${PROJECT_NAME}/device_container_node\")"
+)
+
 if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
   find_package(ament_cmake_gmock REQUIRED)

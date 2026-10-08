@@ -32,9 +32,25 @@
     # time out, which can cascade into the whole device_container crashing.
     # Settle first, then retry patiently instead of giving up in ~3s.
     startup_settle_delay: 30.0
-    startup_retries: 10
+    # The retry budget has to outlast the slowest possible CANopen boot, or
+    # init is abandoned on a drive that was about to come up. Observed
+    # 2026-09-11: drive 3 took 59.9s to boot (the bus.yml master
+    # boot_timeout: 60000 expiring) and reported ready 0.1s AFTER attempt
+    # 10/10 failed -- the launch failed by a tenth of a second. bus.yml allows
+    # boot_timeout_ms: 90000 per drive, so budget for more than that:
+    # 30s settle + 40 * 3s = 150s. Cost is only that a genuinely dead drive
+    # takes longer to be declared dead.
+    startup_retries: 40
     startup_retry_delay: 3.0
     startup_drive_stagger: 2.0
     direct_can_velocity: true
     can_interface: can0
-    cmd_vel_topic: cmd_vel_switched 
+    cmd_vel_topic: cmd_vel_switched
+    # odom->base_link TF broadcast from mecanum_wheel_odometry. OFF for live
+    # operation: the Qualisys mocap publishes map->base_link directly, and
+    # base_link cannot have two TF parents. Turn this on only for bag replay
+    # with AMCL, which needs an odom->base_link edge -- and then make sure
+    # qualisys_localization_node is NOT running in that session.
+    # epos4_controller does not read this param, so sharing it on the /**
+    # wildcard block is safe.
+    publish_tf: false

@@ -1,11 +1,11 @@
 void setup() {
   // put your setup code here, to run once:
-  pixelsLinks.begin(); //starts the neopixels
-  pixelsRechts.begin(); //starts the neopixels
-  pixelsMitte2.begin(); //starts the neopixels
-  writeLEDSLinks(0, 0, 0); //sets all the pixels to off
-  writeLEDSRechts(0, 0, 0); //sets all the pixels to off
-  writeLEDSMitte2(0, 0, 0); //sets all the pixels to off
+  pixelsLeft.begin(); //starts the neopixels
+  pixelsRight.begin(); //starts the neopixels
+  pixelsMiddle2.begin(); //starts the neopixels
+  writeLEDSLeft(0, 0, 0); //sets all the pixels to off
+  writeLEDSRight(0, 0, 0); //sets all the pixels to off
+  writeLEDSMiddle2(0, 0, 0); //sets all the pixels to off
   Serial.begin(9600);
   mySerial.begin(9600);
   myMP3.begin(mySerial, true);
@@ -20,16 +20,16 @@ void setup() {
   Serial.println(F("DFPlayer Mini online."));
   myMP3.volume(30);
   //myMP3.play(8);
-  pinMode(Taster_Farbe_Rot, OUTPUT);
-  pinMode(Taster_Farbe_Gruen, OUTPUT);
-  pinMode(Taster_Farbe_Blau, OUTPUT);
+  pinMode(Button_Color_Red, OUTPUT);
+  pinMode(Button_Color_Green, OUTPUT);
+  pinMode(Button_Color_Blue, OUTPUT);
 
-  pinMode(Battarieweachter_ROT, INPUT);
-  pinMode(Battarieweachter_GRUEN, INPUT);
+  pinMode(BatteryWatcher_Red, INPUT);
+  pinMode(BatteryWatcher_Green, INPUT);
 
   
-  digitalWrite(Taster_Farbe_Rot, LOW);
-  digitalWrite(Taster_Farbe_Gruen, LOW);
-  digitalWrite(Taster_Farbe_Blau, LOW);
+  digitalWrite(Button_Color_Red, LOW);
+  digitalWrite(Button_Color_Green, LOW);
+  digitalWrite(Button_Color_Blue, LOW);
   delay(1000);
 }

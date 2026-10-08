@@ -5,7 +5,7 @@ master:
   node_id: 6
   driver: "ros2_canopen::MasterDriver"
   package: "canopen_master_driver"
-  sync_period: 10000
+  sync_period: 50000
   boot_time: 10000
   boot_timeout: 60000
 
@@ -24,7 +24,7 @@ defaults:
   # time (not a specific bad drive -- observed failures rotate across nodes).
   boot_timeout_ms: 90000
   sdo_timeout_ms: 10000
-  heartbeat_producer: 1000
+  heartbeat_producer: 2000
   scale_pos_to_dev: 1.0
   scale_pos_from_dev: 1.0
   # target service uses wheel rad/s. EPOS expects motor rpm; 60/(2*pi) is

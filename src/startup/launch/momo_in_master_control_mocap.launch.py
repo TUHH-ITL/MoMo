@@ -2,6 +2,7 @@ import os
 from base_utils.launch.launch_utils import (
     find_pkg_share,
     launch_lifecycle_manager,
+    launch_manipulation_node,
     launch_map_server,
     launch_mocap_driver,
     launch_nav2,
@@ -105,12 +106,14 @@ from teleop.teleop_node_config import TeleopNodeConfig
 
 def generate_launch_description():
     robot_name = os.getenv("ROBOT_NAME", "MoMo")
-    fallback_master_control_address = "134.28.108.82:50051"
+    fallback_master_control_address = os.getenv(
+        "MASTER_CONTROL_ADDRESS", "134.28.189.159:50051"
+    )
     dns_server_address = "134.28.108.75:8500"
     state_machine_file = os.path.join(
         find_pkg_share(mission_control_node_info),
         "state_machine_definitions",
-        "jackal_in_master_control_mocap.py",
+        "momo_in_master_control_mocap.py",
     )
     recordings_folder = f"{find_pkg_share(http_server_node_info)}/public"
     network_interface = "wlo1"
@@ -131,6 +134,11 @@ def generate_launch_description():
         get_package_share_path("startup"),
         "config",
         "factsheet.py",
+    )
+    manipulation_config_path = os.path.join(
+        get_package_share_path("manipulation"),
+        "config",
+        "manipulation.yaml",
     )
     cargo_storage_manager_config_path = os.path.join(
         get_package_share_path("startup"),
@@ -214,9 +222,11 @@ def generate_launch_description():
     rosbag_recorder_config = RosbagRecorderNodeConfig(
         path_to_recordings=recordings_folder
     )
-    rviz_config = os.path.join(get_package_share_path("startup"), "rviz", "mocap.rviz")
+    rviz_config = os.path.join(
+        get_package_share_path("startup"), "rviz", "mocap.rviz"
+    )
     qualisys_localization_config = QualisysLocalizationNodeConfig(
-        rigid_body_id="MoMo",
+        rigid_body_name="MoMo",
         robot_name=robot_name,
         qualisys_localization_input_topic="/mocap/rigid_bodies",
         publish_tf=True,
@@ -286,6 +296,10 @@ def generate_launch_description():
                 robot_name,
             ),
             launch_rviz(rviz_config, robot_name),
+            launch_manipulation_node(
+                manipulation_config_path,
+                robot_name,
+            ),
             launch_node(
                 cargo_storage_manager_node_info,
                 cargo_storage_manager_config,

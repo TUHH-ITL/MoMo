@@ -8,8 +8,16 @@ from base_utils.launch.launch_utils import (
     launch_node,
     launch_ps4_teleop,
     launch_rviz,
+    shutdown_launch_on_node_crash,
 )
-
+from launch.actions import (
+    DeclareLaunchArgument,
+    GroupAction,
+    IncludeLaunchDescription,
+)
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from base_utils.node_info import NodeInfo
 from localization_switcher.localization_switcher_config import (
     LocalizationSwitcherNodeConfig,
@@ -89,6 +97,7 @@ from master_control.control_circuit_node_config import ControlCircuitNodeConfig
 from costmap_clearing.costmap_clearing_node_config import (
     CostmapClearingNodeConfig,
 )
+from ament_index_python.packages import get_package_share_directory
 
 
 from cargo_storage_manager.cargo_storage_manager_node_config import (
@@ -209,9 +218,15 @@ def generate_launch_description():
     rosbag_recorder_config = RosbagRecorderNodeConfig(
         path_to_recordings=recordings_folder
     )
-    rviz_config = os.path.join(get_package_share_path("startup"), "rviz", "mocap.rviz")
+    rviz_config = os.path.join(
+        get_package_share_path("startup"), "rviz", "mocap.rviz"
+    )
+    # RViz needs a display. When this launch file runs unattended from the
+    # momo-mocap-control systemd unit there is none, so the unit passes
+    # use_rviz:=false and starts rviz2 by hand after connecting over RDP.
+    use_rviz = LaunchConfiguration("use_rviz")
     qualisys_localization_config = QualisysLocalizationNodeConfig(
-        rigid_body_id="MoMo",
+        rigid_body_name="MoMo",
         robot_name=robot_name,
         qualisys_localization_input_topic="/mocap/rigid_bodies",
         publish_tf=True,
@@ -249,8 +264,26 @@ def generate_launch_description():
         max_linear_velocities_in_meters_per_second=[0.30, 0.7, 1.0],
         max_angular_velocities_in_meters_per_second=[0.3, 0.6, 0.8],
     )
+    navigation_share = get_package_share_directory("momo_navigation")
+    navigation = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                navigation_share, "launch", "momo_navigation.launch.py"
+            )
+        )
+    )
     return LaunchDescription(
         [
+            DeclareLaunchArgument(
+                "use_rviz",
+                default_value="true",
+                description=(
+                    "Start RViz alongside the stack. Set to false when "
+                    "launching headless, e.g. from a systemd unit at boot."
+                ),
+            ),
+            shutdown_launch_on_node_crash(),
+            navigation,
             Node(
                 package="tf2_ros",
                 executable="static_transform_publisher",
@@ -289,7 +322,9 @@ def generate_launch_description():
                 teleop_config,
                 robot_name,
             ),
-            launch_rviz(rviz_config, robot_name),
+            launch_rviz(
+                rviz_config, robot_name, condition=IfCondition(use_rviz)
+            ),
             launch_node(
                 cargo_storage_manager_node_info,
                 cargo_storage_manager_config,

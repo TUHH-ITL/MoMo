@@ -17,12 +17,15 @@
   <exec_depend>canopen_402_driver</exec_depend>
   <exec_depend>canopen_interfaces</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>interfaces</exec_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>python3-serial</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
   <exec_depend>std_srvs</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>tf2_ros</exec_depend>

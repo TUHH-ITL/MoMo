@@ -103,11 +103,8 @@ All four EPOS4 drives initialized in profile velocity mode
 
 The CANopen container needs raw SocketCAN access (`CAP_NET_RAW`/`CAP_NET_ADMIN`),
 granted via a file capability on the built binary rather than running the whole
-launch as root:
-
-```bash
-sudo setcap cap_net_raw,cap_net_admin+ep build/canopen_core/device_container_node
-```
+launch as root. Without it, `device_container_node` aborts on startup with
+`CanController: Operation not permitted`.
 
 Running everything as your normal user (instead of `sudo -E`) matters beyond
 convenience: DDS discovery breaks across UIDs. FastDDS's shared-memory
@@ -117,9 +114,34 @@ root-launched nodes and non-root `ros2` CLI tools (`ros2 node list`,
 still flows fine *between* same-UID nodes.
 
 **The capability must be re-applied after every rebuild** of `canopen_core`
-(colcon overwrites the binary, wiping the capability bit). Run the `setcap`
-command above again after `colcon build --symlink-install`, then verify with
-`getcap build/canopen_core/device_container_node`.
+(colcon reinstalling the binary wipes the capability bit — this happens even
+with `--symlink-install`, since that flag symlinks scripts/config but still
+*copies* compiled executables). This is now automatic:
+`canopen_core/CMakeLists.txt` runs
+`canopen_core/scripts/set_can_capabilities.sh` via `install(CODE ...)`,
+directly on `install/canopen_core/lib/canopen_core/device_container_node`
+once that file exists at its final path.
+
+The script calls `sudo -n setcap` (non-interactive), so it needs a one-time
+NOPASSWD sudoers rule scoped to that exact command on a new machine:
+
+```bash
+echo "$USER ALL=(root) NOPASSWD: /usr/sbin/setcap cap_net_admin,cap_net_raw+ep $(pwd)/../../install/canopen_core/lib/canopen_core/device_container_node" \
+  | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/momo-can-capabilities
+sudo visudo -c
+```
+(run from `src/mecanum_maxon_control`, or substitute the absolute install
+path directly). `visudo -c` must report "parsed OK" — if not, remove
+`/etc/sudoers.d/momo-can-capabilities` and fix it before doing anything else,
+since a broken sudoers file can lock out `sudo` entirely.
+
+Without that sudoers rule the build still succeeds — the script just prints a
+warning and leaves the binary without the capability, same failure as before.
+Verify manually any time with:
+
+```bash
+getcap install/canopen_core/lib/canopen_core/device_container_node
+```
 
 File capabilities put the binary into the dynamic linker's "secure-execution
 mode" (the same rule as setuid binaries), which makes `ld.so` **ignore
@@ -239,6 +261,52 @@ Use `k` or the space bar to send zero velocity and stop the robot.
 
 Mecanum strafing uses `linear.y`; forward/reverse uses `linear.x`; rotation uses
 `angular.z`.
+
+## LED / speaker status indicator
+
+`arduino_status_indicator.py` runs alongside the drive controller (launched by
+`mecanum_drive.launch.py`) and drives the robot's LED strips and speaker
+Arduino (`src/arduino/main`) over USB serial. It replaces the old behavior
+where the Arduino played "Ich bin bereit" the instant it got power and ran a
+decorative rainbow animation instead of showing anything meaningful.
+
+There are two independent color sources, and the Arduino's own hardware
+sensing always wins over ROS:
+
+- **Hardware layer** (local to the Arduino sketch): reads the two
+  battery-watcher pins directly and forces RED (shutdown/e-stop) or ORANGE
+  (battery warning), regardless of what ROS is doing.
+- **ROS layer** (this node): only shown while the hardware layer reports "no
+  alarm". Reflects the `mission_control` state machine's active features.
+
+The node subscribes to:
+
+- `motors_ready` (published by `mecanum_epos4_controller.py` once all four
+  EPOS4 drives are initialized) — sends `'R'` once so the Arduino announces
+  "Ich bin bereit" at the right time instead of immediately on power-up.
+- `mission_control/state_change` — maps `active_features` to a single color
+  byte, checked in priority order:
+
+| Active feature | Byte sent | Color | Meaning |
+|---|---|---|---|
+| `gentle_stop` | `'E'` | RED | safety stop (obstacle / software e-stop) |
+| `accept_remote_drive_commands` | `'B'` | BLUE | joystick/teleop has control |
+| `command_movement` | `'G'` | GREEN | actively driving a mission |
+| *(none of the above)* | `'Y'` | YELLOW | idle, paused, or waiting for controller |
+
+Before the state machine has published anything at all, the Arduino defaults
+to **WHITE** on its own (no byte needs to be sent for this — it's the
+sketch's power-on default), so the LEDs never silently show green before the
+robot is actually doing anything.
+
+Configured via the `status_indicator_port` launch argument (default
+`/dev/ttyArduinoStatus`, `mecanum_drive.launch.py`). No udev rule exists yet
+for this Arduino — add one under
+`robotics_base/hardware_description/files/udev/`, following the existing
+`44-rfid.rules`/`43-weighing_scale.rules` pattern, once the board's
+`idVendor`/`idProduct` (and `serial` if it collides with another board) are
+known from `udevadm info -a -n /dev/ttyACMx`. Until then the port name is
+whatever the kernel assigns and can change across reboots/replugs.
 
 ## MoMo drivetrain calibration
 

@@ -1,41 +1,41 @@
-uint32_t WheelMitte2(byte WheelPosMitte2) { //neopixel wheel function, pick from 256 colors
+uint32_t WheelMiddle2(byte WheelPosMiddle2) { //neopixel wheel function, pick from 256 colors
 
-  WheelPosMitte2 = 255 - WheelPosMitte2;
-  if (WheelPosMitte2 < 85) {
-    return pixelsMitte2.Color(255 - WheelPosMitte2 * 3, 0, WheelPosMitte2 * 3);
+  WheelPosMiddle2 = 255 - WheelPosMiddle2;
+  if (WheelPosMiddle2 < 85) {
+    return pixelsMiddle2.Color(255 - WheelPosMiddle2 * 3, 0, WheelPosMiddle2 * 3);
   }
-  if (WheelPosMitte2 < 170) {
-    WheelPosMitte2 -= 85;
-    return pixelsMitte2.Color(0, WheelPosMitte2 * 3, 255 - WheelPosMitte2 * 3);
+  if (WheelPosMiddle2 < 170) {
+    WheelPosMiddle2 -= 85;
+    return pixelsMiddle2.Color(0, WheelPosMiddle2 * 3, 255 - WheelPosMiddle2 * 3);
   }
-  WheelPosMitte2 -= 170;
-  return pixelsMitte2.Color(WheelPosMitte2 * 3, 255 - WheelPosMitte2 * 3, 0);
+  WheelPosMiddle2 -= 170;
+  return pixelsMiddle2.Color(WheelPosMiddle2 * 3, 255 - WheelPosMiddle2 * 3, 0);
 }
-void writeLEDSMitte2(byte R, byte G, byte B) { //basic write colors to the neopixels with RGB values
-  for (int i = 0; i < pixelsMitte2.numPixels(); i ++)
+void writeLEDSMiddle2(byte R, byte G, byte B) { //basic write colors to the neopixels with RGB values
+  for (int i = 0; i < pixelsMiddle2.numPixels(); i ++)
   {
-    pixelsMitte2.setPixelColor(i, pixelsMitte2.Color(R, G, B));
+    pixelsMiddle2.setPixelColor(i, pixelsMiddle2.Color(R, G, B));
   }
-  pixelsMitte2.show();
+  pixelsMiddle2.show();
 }
-void writeLEDSMitte2(byte R, byte G, byte B, byte bright) { //same as above with brightness added
+void writeLEDSMiddle2(byte R, byte G, byte B, byte bright) { //same as above with brightness added
   float fR = (R / 255) * bright;
   float fG = (G / 255) * bright;
   float fB = (B / 255) * bright;
-  for (int i = 0; i < pixelsMitte2.numPixels(); i ++)
+  for (int i = 0; i < pixelsMiddle2.numPixels(); i ++)
   {
-    pixelsMitte2.setPixelColor(i, pixelsMitte2.Color(R, G, B));
+    pixelsMiddle2.setPixelColor(i, pixelsMiddle2.Color(R, G, B));
   }
-  pixelsMitte2.show();
+  pixelsMiddle2.show();
 }
-void writeLEDSMitte2(byte R, byte G, byte B, byte bright, byte LED) { // same as above only with individual LEDS
+void writeLEDSMiddle2(byte R, byte G, byte B, byte bright, byte LED) { // same as above only with individual LEDS
   float fR = (R / 255) * bright;
   float fG = (G / 255) * bright;
   float fB = (B / 255) * bright;
-  pixelsMitte2.setPixelColor(LED, pixelsMitte2.Color(R, G, B));
-  pixelsMitte2.show();
+  pixelsMiddle2.setPixelColor(LED, pixelsMiddle2.Color(R, G, B));
+  pixelsMiddle2.show();
 }
-unsigned int RGBValueMitte2(const char * s) { //converts the value to an RGB value
+unsigned int RGBValueMiddle2(const char * s) { //converts the value to an RGB value
   unsigned int result = 0;
   int c ;
   if ('0' == *s && 'x' == *(s + 1)) {
@@ -51,7 +51,7 @@ unsigned int RGBValueMitte2(const char * s) { //converts the value to an RGB val
   }
   return result;
 }
-uint8_t splitColorMitte2 ( uint32_t c, char value ) {
+uint8_t splitColorMiddle2 ( uint32_t c, char value ) {
   switch ( value ) {
     case 'r': return (uint8_t)(c >> 16);
     case 'g': return (uint8_t)(c >>  8);
@@ -60,432 +60,432 @@ uint8_t splitColorMitte2 ( uint32_t c, char value ) {
   }
 }
 
-void ALLMitte2() {
-  if (millis() - lastAllCycleMitte2 > 60000)
+void ALLMiddle2() {
+  if (millis() - lastAllCycleMiddle2 > 60000)
   {
-    qMitte2 ++;
-    if ((qMitte2 < 5) || (qMitte2 > 14))
+    qMiddle2 ++;
+    if ((qMiddle2 < 5) || (qMiddle2 > 14))
     {
-      qMitte2 = 5;
+      qMiddle2 = 5;
 
     }
-    lastAllCycleMitte2 = millis();
+    lastAllCycleMiddle2 = millis();
   }
-  if (qMitte2 == 5) // if the option has been selected keep running the function for that option
+  if (qMiddle2 == 5) // if the option has been selected keep running the function for that option
   {
-    newColorWipeMitte2();
+    newColorWipeMiddle2();
   }
-  if (qMitte2 == 6)
+  if (qMiddle2 == 6)
   {
-    newTheatreChaseMitte2();
+    newTheatreChaseMiddle2();
   }
-  if (qMitte2 == 7)
+  if (qMiddle2 == 7)
   {
-    newRainbowMitte2();
+    newRainbowMiddle2();
   }
-  if (qMitte2 == 8)
+  if (qMiddle2 == 8)
   {
-    newTheatreChaseRainbowMitte2();
+    newTheatreChaseRainbowMiddle2();
   }
-  if (qMitte2 == 9)
+  if (qMiddle2 == 9)
   {
-    colorCyclerMitte2();
-    cylonChaserMitte2();
+    colorCyclerMiddle2();
+    cylonChaserMiddle2();
   }
-  if (qMitte2 == 10)
+  if (qMiddle2 == 10)
   {
-    newRainbowCycleMitte2();
+    newRainbowCycleMiddle2();
   }
-  if (qMitte2 == 11)
+  if (qMiddle2 == 11)
   {
-    colorCyclerMitte2();
-    breathingMitte2();
+    colorCyclerMiddle2();
+    breathingMiddle2();
   }
-  if (qMitte2 == 12)
+  if (qMiddle2 == 12)
   {
-    colorCyclerMitte2();
-    heartbeatMitte2();
+    colorCyclerMiddle2();
+    heartbeatMiddle2();
   }
-  if (qMitte2 == 13)
+  if (qMiddle2 == 13)
   {
-    christmasChaseMitte2();
+    christmasChaseMiddle2();
   }
-  if (qMitte2 == 14)
+  if (qMiddle2 == 14)
   {
-    FireMitte2();
-  }
-}
-void colorCyclerMitte2() {
-  if (millis() - previousColorMillisMitte2 > intervalMitte2)
-  {
-    lastColorMitte2 ++;
-    if (lastColorMitte2 > 255)
-    {
-      lastColorMitte2 = 0;
-    }
-    uint32_t newColor = WheelMitte2(lastColorMitte2);
-    activeColorMitte2[0] = splitColorMitte2(newColor, 'r');
-    activeColorMitte2[1] = splitColorMitte2(newColor, 'g');
-    activeColorMitte2[2] = splitColorMitte2(newColor, 'b');
-    previousColorMillisMitte2 = millis();
+    FireMiddle2();
   }
 }
-void christmasChaseMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 10)//if the time between the function being last run is greater than intervel * 2 - run it
+void colorCyclerMiddle2() {
+  if (millis() - previousColorMillisMiddle2 > intervalMiddle2)
   {
-    for (int qMitte2Mitte2 = 0; qMitte2Mitte2 < NUMPIXELSMitte2 + 4; qMitte2Mitte2 ++)
+    lastColorMiddle2 ++;
+    if (lastColorMiddle2 > 255)
     {
-      pixelsMitte2.setPixelColor(qMitte2Mitte2, pixelsMitte2.Color(255, 0, 0));
+      lastColorMiddle2 = 0;
     }
-    if (oMitte2 < 4)
+    uint32_t newColor = WheelMiddle2(lastColorMiddle2);
+    activeColorMiddle2[0] = splitColorMiddle2(newColor, 'r');
+    activeColorMiddle2[1] = splitColorMiddle2(newColor, 'g');
+    activeColorMiddle2[2] = splitColorMiddle2(newColor, 'b');
+    previousColorMillisMiddle2 = millis();
+  }
+}
+void christmasChaseMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 10)//if the time between the function being last run is greater than intervel * 2 - run it
+  {
+    for (int qMiddle2Middle2 = 0; qMiddle2Middle2 < NUMPIXELSMiddle2 + 4; qMiddle2Middle2 ++)
     {
-      for (int p = oMitte2; p < NUMPIXELSMitte2 + 4; p = p + 4)
+      pixelsMiddle2.setPixelColor(qMiddle2Middle2, pixelsMiddle2.Color(255, 0, 0));
+    }
+    if (oMiddle2 < 4)
+    {
+      for (int p = oMiddle2; p < NUMPIXELSMiddle2 + 4; p = p + 4)
       {
         if (p == 0)
         {
-          pixelsMitte2.setPixelColor(p, pixelsMitte2.Color(0, 255, 0));
+          pixelsMiddle2.setPixelColor(p, pixelsMiddle2.Color(0, 255, 0));
         }
-        else if ((p > 0) && (p < NUMPIXELSMitte2 + 4 ))
+        else if ((p > 0) && (p < NUMPIXELSMiddle2 + 4 ))
         {
-          pixelsMitte2.setPixelColor(p, pixelsMitte2.Color(0, 255, 0));
-          pixelsMitte2.setPixelColor(p - 1, pixelsMitte2.Color(0, 255, 0));
+          pixelsMiddle2.setPixelColor(p, pixelsMiddle2.Color(0, 255, 0));
+          pixelsMiddle2.setPixelColor(p - 1, pixelsMiddle2.Color(0, 255, 0));
         }
-        if ( (p == 2) && (NUMPIXELSMitte2 % 4) == 2) {
-          pixelsMitte2.setPixelColor(NUMPIXELSMitte2 - 1, pixelsMitte2.Color(0, 255, 0));
+        if ( (p == 2) && (NUMPIXELSMiddle2 % 4) == 2) {
+          pixelsMiddle2.setPixelColor(NUMPIXELSMiddle2 - 1, pixelsMiddle2.Color(0, 255, 0));
         }
       }
-      pixelsMitte2.show();
-      oMitte2++;
+      pixelsMiddle2.show();
+      oMiddle2++;
     }
-    if (oMitte2 >= 4)
-      oMitte2 = 0;
-    previousMillisMitte2 = millis();
+    if (oMiddle2 >= 4)
+      oMiddle2 = 0;
+    previousMillisMiddle2 = millis();
   }
 }
-void heartbeatMitte2() {
+void heartbeatMiddle2() {
 #if defined DEBUG
-  Serial.print("testintervalMitte2");
-  Serial.println(millis() - previousMillisMitte2);
+  Serial.print("testintervalMiddle2");
+  Serial.println(millis() - previousMillisMiddle2);
 #endif
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)//if the time between the function being last run is greater than intervel * 2 - run it
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)//if the time between the function being last run is greater than intervel * 2 - run it
   {
-    if ((beatMitte2 == true) && (beatsMitte2 == 0) && (millis() - previousMillisMitte2 > intervalMitte2 * 7)) //if the beatMitte2 is on and it's the first beatMitte2 (beatMitte2s==0) and the time between them is enough
+    if ((beatMiddle2 == true) && (beatsMiddle2 == 0) && (millis() - previousMillisMiddle2 > intervalMiddle2 * 7)) //if the beatMiddle2 is on and it's the first beatMiddle2 (beatMiddle2s==0) and the time between them is enough
     {
       for (int h = 50; h <= 255; h = h + 15)//turn on the pixels at 50 and bring it up to 255 in 15 level increments
       {
-        writeLEDSMitte2((activeColorMitte2[0] / 255) * h, (activeColorMitte2[1] / 255) * h, (activeColorMitte2[2] / 255) * h);
+        writeLEDSMiddle2((activeColorMiddle2[0] / 255) * h, (activeColorMiddle2[1] / 255) * h, (activeColorMiddle2[2] / 255) * h);
         delay(3);
       }
-      beatMitte2 = false;//sets the next beatMitte2 to off
-      previousMillisMitte2 = millis();//starts the timer again
+      beatMiddle2 = false;//sets the next beatMiddle2 to off
+      previousMillisMiddle2 = millis();//starts the timer again
 
 
     }
-    else if ((beatMitte2 == false) && (beatsMitte2 == 0))//if the beat is off and the beat cycle is still in the first beat
+    else if ((beatMiddle2 == false) && (beatsMiddle2 == 0))//if the beat is off and the beat cycle is still in the first beat
     {
       for (int h = 255; h >= 0; h = h - 15)//turn off the pixels
       {
-        writeLEDSMitte2((activeColorMitte2[0] / 255) * h, (activeColorMitte2[1] / 255) * h, (activeColorMitte2[2] / 255) * h);
+        writeLEDSMiddle2((activeColorMiddle2[0] / 255) * h, (activeColorMiddle2[1] / 255) * h, (activeColorMiddle2[2] / 255) * h);
         delay(3);
       }
-      beatMitte2 = true;//sets the beatMitte2 to On
-      beatsMitte2 = 1;//sets the next beat to the second beat
-      previousMillisMitte2 = millis();
+      beatMiddle2 = true;//sets the beatMiddle2 to On
+      beatsMiddle2 = 1;//sets the next beat to the second beat
+      previousMillisMiddle2 = millis();
     }
-    else if ((beatMitte2 == true) && (beatsMitte2 == 1) && (millis() - previousMillisMitte2 > intervalMitte2 * 2))//if the beatMitte2 is on and it's the second beatMitte2 and the intervalMitte2 is enough
+    else if ((beatMiddle2 == true) && (beatsMiddle2 == 1) && (millis() - previousMillisMiddle2 > intervalMiddle2 * 2))//if the beatMiddle2 is on and it's the second beatMiddle2 and the intervalMiddle2 is enough
     {
       for (int h = 50; h <= 255; h = h + 15)
       {
-        writeLEDSMitte2((activeColorMitte2[0] / 255) * h, (activeColorMitte2[1] / 255) * h, (activeColorMitte2[2] / 255) * h); //turn on the pixels
+        writeLEDSMiddle2((activeColorMiddle2[0] / 255) * h, (activeColorMiddle2[1] / 255) * h, (activeColorMiddle2[2] / 255) * h); //turn on the pixels
         delay(3);
       }
-      beatMitte2 = false;//sets the next beatMitte2 to off
-      previousMillisMitte2 = millis();
+      beatMiddle2 = false;//sets the next beatMiddle2 to off
+      previousMillisMiddle2 = millis();
     }
-    else if ((beatMitte2 == false) && (beatsMitte2 == 1))//if the beat is off and it's the second beat
+    else if ((beatMiddle2 == false) && (beatsMiddle2 == 1))//if the beat is off and it's the second beat
     {
       for (int h = 255; h >= 0; h = h - 15)
       {
-        writeLEDSMitte2((activeColorMitte2[0] / 255) * h, (activeColorMitte2[1] / 255) * h, (activeColorMitte2[2] / 255) * h); //turn off the pixels
+        writeLEDSMiddle2((activeColorMiddle2[0] / 255) * h, (activeColorMiddle2[1] / 255) * h, (activeColorMiddle2[2] / 255) * h); //turn off the pixels
         delay(3);
       }
-      beatMitte2 = true;//sets the next beat to on
-      beatsMitte2 = 0;//starts the sequence again
-      previousMillisMitte2 = millis();
+      beatMiddle2 = true;//sets the next beat to on
+      beatsMiddle2 = 0;//starts the sequence again
+      previousMillisMiddle2 = millis();
     }
 #if defined DEBUG
-    Serial.print("previousMillisMitte2:");
-    Serial.println(previousMillisMitte2);
+    Serial.print("previousMillisMiddle2:");
+    Serial.println(previousMillisMiddle2);
 #endif
   }
 }
-void breathingMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2) //if the timer has reached its delay value
+void breathingMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2) //if the timer has reached its delay value
   {
-    writeLEDSMitte2((activeColorMitte2[0] / 255) * breatherMitte2, (activeColorMitte2[1] / 255) * breatherMitte2, (activeColorMitte2[2] / 255) * breatherMitte2); //write the leds to the color and brightness level
-    if (dirMitte2 == true)//if the lights are coming on
+    writeLEDSMiddle2((activeColorMiddle2[0] / 255) * breatherMiddle2, (activeColorMiddle2[1] / 255) * breatherMiddle2, (activeColorMiddle2[2] / 255) * breatherMiddle2); //write the leds to the color and brightness level
+    if (dirMiddle2 == true)//if the lights are coming on
     {
-      if (breatherMitte2 < 255)//once the value is less than 255
+      if (breatherMiddle2 < 255)//once the value is less than 255
       {
-        breatherMitte2 = breatherMitte2 + 15;//adds 15 to the brightness level for the next time
+        breatherMiddle2 = breatherMiddle2 + 15;//adds 15 to the brightness level for the next time
       }
-      else if (breatherMitte2 >= 255)//if the brightness is greater or equal to 255
+      else if (breatherMiddle2 >= 255)//if the brightness is greater or equal to 255
       {
-        dirMitte2 = false;//sets the direction to false
+        dirMiddle2 = false;//sets the direction to false
       }
     }
-    if (dirMitte2 == false)//if the lights are going off
+    if (dirMiddle2 == false)//if the lights are going off
     {
-      if (breatherMitte2 > 0)
+      if (breatherMiddle2 > 0)
       {
-        breatherMitte2 = breatherMitte2 - 15;//takes 15 away from the brightness level
+        breatherMiddle2 = breatherMiddle2 - 15;//takes 15 away from the brightness level
       }
-      else if (breatherMitte2 <= 0)//if the brightness level is nothing
-        dirMitte2 = true;//changes the direction again to on
+      else if (breatherMiddle2 <= 0)//if the brightness level is nothing
+        dirMiddle2 = true;//changes the direction again to on
     }
-    previousMillisMitte2 = millis();
+    previousMillisMiddle2 = millis();
   }
 }
-void cylonChaserMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 5 / 3) //intervalMitte2 * 2 / 3)
+void cylonChaserMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 5 / 3) //intervalMiddle2 * 2 / 3)
   {
-    for (int h = 0; h < pixelsMitte2.numPixels(); h++)
+    for (int h = 0; h < pixelsMiddle2.numPixels(); h++)
     {
-      pixelsMitte2.setPixelColor(h, 0);//sets all pixels to off
+      pixelsMiddle2.setPixelColor(h, 0);//sets all pixels to off
     }
-    if (pixelsMitte2.numPixels() <= 10)//if the number of pixels in the strip is 10 or less only activate 3 leds in the strip
+    if (pixelsMiddle2.numPixels() <= 10)//if the number of pixels in the strip is 10 or less only activate 3 leds in the strip
     {
-      pixelsMitte2.setPixelColor(nMitte2, pixelsMitte2.Color(activeColorMitte2[0], activeColorMitte2[1], activeColorMitte2[2]));//sets the main pixel to full brightness
-      pixelsMitte2.setPixelColor(nMitte2 + 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50)); //sets the surrounding pixels brightness to 50
-      pixelsMitte2.setPixelColor(nMitte2 - 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50));
-      if (dirMitte2 == true)//if the pixels are going up in value
+      pixelsMiddle2.setPixelColor(nMiddle2, pixelsMiddle2.Color(activeColorMiddle2[0], activeColorMiddle2[1], activeColorMiddle2[2]));//sets the main pixel to full brightness
+      pixelsMiddle2.setPixelColor(nMiddle2 + 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50)); //sets the surrounding pixels brightness to 50
+      pixelsMiddle2.setPixelColor(nMiddle2 - 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50));
+      if (dirMiddle2 == true)//if the pixels are going up in value
       {
-        if (nMitte2 <  (pixelsMitte2.numPixels() - 1))//if the pixels are moving forward and havent reach the end of the strip "-1" to allow for the surrounding pixels
+        if (nMiddle2 <  (pixelsMiddle2.numPixels() - 1))//if the pixels are moving forward and havent reach the end of the strip "-1" to allow for the surrounding pixels
         {
-          nMitte2++;//increase N ie move one more forward the next time
+          nMiddle2++;//increase N ie move one more forward the next time
         }
-        else if (nMitte2 >= (pixelsMitte2.numPixels() - 1))//if the pixels have reached the end of the strip
+        else if (nMiddle2 >= (pixelsMiddle2.numPixels() - 1))//if the pixels have reached the end of the strip
         {
-          dirMitte2 = false;//change the direction
+          dirMiddle2 = false;//change the direction
         }
       }
-      if (dirMitte2 == false)//if the pixels are going down in value
+      if (dirMiddle2 == false)//if the pixels are going down in value
       {
-        if (nMitte2 > 1)//if the pixel number is greater than 1 (to allow for the surrounding pixels)
+        if (nMiddle2 > 1)//if the pixel number is greater than 1 (to allow for the surrounding pixels)
         {
-          nMitte2--; //decrease the active pixel number
+          nMiddle2--; //decrease the active pixel number
         }
-        else if (nMitte2 <= 1)//if the pixel number has reached 1
+        else if (nMiddle2 <= 1)//if the pixel number has reached 1
         {
-          dirMitte2 = true;//change the direction
-        }
-      }
-    }
-    if ((pixelsMitte2.numPixels() > 10) && (pixelsMitte2.numPixels() <= 20))//if there are between 11 and 20 pixels in the strip add 2 pixels on either side of the main pixel
-    {
-      pixelsMitte2.setPixelColor(nMitte2, pixelsMitte2.Color(activeColorMitte2[0], activeColorMitte2[1], activeColorMitte2[2]));//same as above only with 2 pixels either side
-      pixelsMitte2.setPixelColor(nMitte2 + 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 150, (activeColorMitte2[1] / 255) * 150, (activeColorMitte2[2] / 255) * 150));
-      pixelsMitte2.setPixelColor(nMitte2 + 2, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50));
-      pixelsMitte2.setPixelColor(nMitte2 - 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 150, (activeColorMitte2[1] / 255) * 150, (activeColorMitte2[2] / 255) * 150));
-      pixelsMitte2.setPixelColor(nMitte2 - 2, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50));
-      if (dirMitte2 == true)
-      {
-        if (nMitte2 <  (pixelsMitte2.numPixels() - 2))
-        {
-          nMitte2++;
-        }
-        else if (nMitte2 >= (pixelsMitte2.numPixels() - 2))
-        {
-          dirMitte2 = false;
-        }
-      }
-      if (dirMitte2 == false)
-      {
-        if (nMitte2 > 2)
-        {
-          nMitte2--;
-        }
-        else if (nMitte2 <= 2)
-        {
-          dirMitte2 = true;
+          dirMiddle2 = true;//change the direction
         }
       }
     }
-    if (pixelsMitte2.numPixels() > 20)//if there are more than 20 pixels in the strip add 3 pixels either side of the main pixel
+    if ((pixelsMiddle2.numPixels() > 10) && (pixelsMiddle2.numPixels() <= 20))//if there are between 11 and 20 pixels in the strip add 2 pixels on either side of the main pixel
     {
-      pixelsMitte2.setPixelColor(nMitte2, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 255, (activeColorMitte2[1] / 255) * 255, (activeColorMitte2[2] / 255) * 255));
-      pixelsMitte2.setPixelColor(nMitte2 + 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 150, (activeColorMitte2[1] / 255) * 150, (activeColorMitte2[2] / 255) * 150));
-      pixelsMitte2.setPixelColor(nMitte2 + 2, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 100, (activeColorMitte2[1] / 255) * 100, (activeColorMitte2[2] / 255) * 100));
-      pixelsMitte2.setPixelColor(nMitte2 + 3, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50));
-      pixelsMitte2.setPixelColor(nMitte2 - 1, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 150, (activeColorMitte2[1] / 255) * 150, (activeColorMitte2[2] / 255) * 150));
-      pixelsMitte2.setPixelColor(nMitte2 - 2, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 100, (activeColorMitte2[1] / 255) * 100, (activeColorMitte2[2] / 255) * 100));
-      pixelsMitte2.setPixelColor(nMitte2 - 3, pixelsMitte2.Color((activeColorMitte2[0] / 255) * 50, (activeColorMitte2[1] / 255) * 50, (activeColorMitte2[2] / 255) * 50));
-      if (dirMitte2 == true)
+      pixelsMiddle2.setPixelColor(nMiddle2, pixelsMiddle2.Color(activeColorMiddle2[0], activeColorMiddle2[1], activeColorMiddle2[2]));//same as above only with 2 pixels either side
+      pixelsMiddle2.setPixelColor(nMiddle2 + 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 150, (activeColorMiddle2[1] / 255) * 150, (activeColorMiddle2[2] / 255) * 150));
+      pixelsMiddle2.setPixelColor(nMiddle2 + 2, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50));
+      pixelsMiddle2.setPixelColor(nMiddle2 - 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 150, (activeColorMiddle2[1] / 255) * 150, (activeColorMiddle2[2] / 255) * 150));
+      pixelsMiddle2.setPixelColor(nMiddle2 - 2, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50));
+      if (dirMiddle2 == true)
       {
-        if (nMitte2 <  (pixelsMitte2.numPixels() - 3))
+        if (nMiddle2 <  (pixelsMiddle2.numPixels() - 2))
         {
-          nMitte2++;
+          nMiddle2++;
         }
-        else if (nMitte2 >= (pixelsMitte2.numPixels() - 3))
+        else if (nMiddle2 >= (pixelsMiddle2.numPixels() - 2))
         {
-          dirMitte2 = false;
+          dirMiddle2 = false;
         }
       }
-      if (dirMitte2 == false)
+      if (dirMiddle2 == false)
       {
-        if (nMitte2 > 3)
+        if (nMiddle2 > 2)
         {
-          nMitte2--;
+          nMiddle2--;
         }
-        else if (nMitte2 <= 3)
+        else if (nMiddle2 <= 2)
         {
-          dirMitte2 = true;
+          dirMiddle2 = true;
         }
       }
     }
-    pixelsMitte2.show();//show the pixels
-    previousMillisMitte2 = millis();
+    if (pixelsMiddle2.numPixels() > 20)//if there are more than 20 pixels in the strip add 3 pixels either side of the main pixel
+    {
+      pixelsMiddle2.setPixelColor(nMiddle2, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 255, (activeColorMiddle2[1] / 255) * 255, (activeColorMiddle2[2] / 255) * 255));
+      pixelsMiddle2.setPixelColor(nMiddle2 + 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 150, (activeColorMiddle2[1] / 255) * 150, (activeColorMiddle2[2] / 255) * 150));
+      pixelsMiddle2.setPixelColor(nMiddle2 + 2, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 100, (activeColorMiddle2[1] / 255) * 100, (activeColorMiddle2[2] / 255) * 100));
+      pixelsMiddle2.setPixelColor(nMiddle2 + 3, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50));
+      pixelsMiddle2.setPixelColor(nMiddle2 - 1, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 150, (activeColorMiddle2[1] / 255) * 150, (activeColorMiddle2[2] / 255) * 150));
+      pixelsMiddle2.setPixelColor(nMiddle2 - 2, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 100, (activeColorMiddle2[1] / 255) * 100, (activeColorMiddle2[2] / 255) * 100));
+      pixelsMiddle2.setPixelColor(nMiddle2 - 3, pixelsMiddle2.Color((activeColorMiddle2[0] / 255) * 50, (activeColorMiddle2[1] / 255) * 50, (activeColorMiddle2[2] / 255) * 50));
+      if (dirMiddle2 == true)
+      {
+        if (nMiddle2 <  (pixelsMiddle2.numPixels() - 3))
+        {
+          nMiddle2++;
+        }
+        else if (nMiddle2 >= (pixelsMiddle2.numPixels() - 3))
+        {
+          dirMiddle2 = false;
+        }
+      }
+      if (dirMiddle2 == false)
+      {
+        if (nMiddle2 > 3)
+        {
+          nMiddle2--;
+        }
+        else if (nMiddle2 <= 3)
+        {
+          dirMiddle2 = true;
+        }
+      }
+    }
+    pixelsMiddle2.show();//show the pixels
+    previousMillisMiddle2 = millis();
   }
 }
-void newTheatreChaseRainbowMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)
+void newTheatreChaseRainbowMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)
   {
-    for (int h = 0; h < pixelsMitte2.numPixels(); h = h + 3) {
-      pixelsMitte2.setPixelColor(h + (jMitte2 - 1), 0);    //turn every third pixel off from the last cycle
-      pixelsMitte2.setPixelColor(NUMPIXELSMitte2 - 1, 0);
+    for (int h = 0; h < pixelsMiddle2.numPixels(); h = h + 3) {
+      pixelsMiddle2.setPixelColor(h + (jMiddle2 - 1), 0);    //turn every third pixel off from the last cycle
+      pixelsMiddle2.setPixelColor(NUMPIXELSMiddle2 - 1, 0);
     }
-    for (int h = 0; h < pixelsMitte2.numPixels(); h = h + 3)
+    for (int h = 0; h < pixelsMiddle2.numPixels(); h = h + 3)
     {
-      pixelsMitte2.setPixelColor(h + jMitte2, WheelMitte2( ( h + lMitte2) % 255));//turn every third pixel on and cycle the color
+      pixelsMiddle2.setPixelColor(h + jMiddle2, WheelMiddle2( ( h + lMiddle2) % 255));//turn every third pixel on and cycle the color
     }
-    pixelsMitte2.show();
-    jMitte2++;
-    if (jMitte2 >= 3)
-      jMitte2 = 0;
-    lMitte2++;
-    if (lMitte2 >= 256)
-      lMitte2 = 0;
-    previousMillisMitte2 = millis();
+    pixelsMiddle2.show();
+    jMiddle2++;
+    if (jMiddle2 >= 3)
+      jMiddle2 = 0;
+    lMiddle2++;
+    if (lMiddle2 >= 256)
+      lMiddle2 = 0;
+    previousMillisMiddle2 = millis();
   }
 }
-void newRainbowCycleMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)
+void newRainbowCycleMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)
   {
-    for (int h = 0; h < pixelsMitte2.numPixels(); h++)
+    for (int h = 0; h < pixelsMiddle2.numPixels(); h++)
     {
-      pixelsMitte2.setPixelColor(h, WheelMitte2(((h * 256 / pixelsMitte2.numPixels()) + mMitte2) & 255));
+      pixelsMiddle2.setPixelColor(h, WheelMiddle2(((h * 256 / pixelsMiddle2.numPixels()) + mMiddle2) & 255));
     }
-    mMitte2++;
-    if (mMitte2 >= 256 * 5)
-      mMitte2 = 0;
-    pixelsMitte2.show();
-    previousMillisMitte2 = millis();
+    mMiddle2++;
+    if (mMiddle2 >= 256 * 5)
+      mMiddle2 = 0;
+    pixelsMiddle2.show();
+    previousMillisMiddle2 = millis();
   }
 }
-void newRainbowMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)
+void newRainbowMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)
   {
-    for (int h = 0; h < pixelsMitte2.numPixels(); h++)
+    for (int h = 0; h < pixelsMiddle2.numPixels(); h++)
     {
-      pixelsMitte2.setPixelColor(h, WheelMitte2((h + lMitte2) & 255));
+      pixelsMiddle2.setPixelColor(h, WheelMiddle2((h + lMiddle2) & 255));
     }
-    lMitte2++;
-    if (lMitte2 >= 256)
-      lMitte2 = 0;
-    pixelsMitte2.show();
-    previousMillisMitte2 = millis();
+    lMiddle2++;
+    if (lMiddle2 >= 256)
+      lMiddle2 = 0;
+    pixelsMiddle2.show();
+    previousMillisMiddle2 = millis();
   }
 }
-void newTheatreChaseMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)
+void newTheatreChaseMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)
   {
     uint32_t color;
-    int k = jMitte2 - 3;
-    jMitte2 = iMitte2;
+    int k = jMiddle2 - 3;
+    jMiddle2 = iMiddle2;
     while (k >= 0)
     {
-      pixelsMitte2.setPixelColor(k, 0);
+      pixelsMiddle2.setPixelColor(k, 0);
       k = k - 3;
     }
-    if (TCColorMitte2 == 0)
+    if (TCColorMiddle2 == 0)
     {
-      color = pixelsMitte2.Color(255, 0, 0);
+      color = pixelsMiddle2.Color(255, 0, 0);
     }
-    else if (TCColorMitte2 == 1)
+    else if (TCColorMiddle2 == 1)
     {
-      color = pixelsMitte2.Color(0, 255, 0);
+      color = pixelsMiddle2.Color(0, 255, 0);
     }
-    else if (TCColorMitte2 == 2)
+    else if (TCColorMiddle2 == 2)
     {
-      color = pixelsMitte2.Color(0, 0, 255);
+      color = pixelsMiddle2.Color(0, 0, 255);
     }
-    else if (TCColorMitte2 == 3)
+    else if (TCColorMiddle2 == 3)
     {
-      color = pixelsMitte2.Color(255, 255, 255);
+      color = pixelsMiddle2.Color(255, 255, 255);
     }
-    while (jMitte2 < NUMPIXELSMitte2)
+    while (jMiddle2 < NUMPIXELSMiddle2)
     {
-      pixelsMitte2.setPixelColor(jMitte2, color);
-      jMitte2 = jMitte2 + 3;
+      pixelsMiddle2.setPixelColor(jMiddle2, color);
+      jMiddle2 = jMiddle2 + 3;
     }
-    pixelsMitte2.show();
-    if (cycleMitte2 == 10)
+    pixelsMiddle2.show();
+    if (cycleMiddle2 == 10)
     {
-      TCColorMitte2 ++;
-      cycleMitte2 = 0;
-      if (TCColorMitte2 == 4)
-        TCColorMitte2 = 0;
+      TCColorMiddle2 ++;
+      cycleMiddle2 = 0;
+      if (TCColorMiddle2 == 4)
+        TCColorMiddle2 = 0;
     }
-    iMitte2++;
-    if (iMitte2 >= 3)
+    iMiddle2++;
+    if (iMiddle2 >= 3)
     {
-      iMitte2 = 0;
-      cycleMitte2 ++;
+      iMiddle2 = 0;
+      cycleMiddle2 ++;
     }
-    previousMillisMitte2 = millis();
+    previousMillisMiddle2 = millis();
   }
 }
-void newColorWipeMitte2() {
-  if (millis() - previousMillisMitte2 > intervalMitte2 * 2)
+void newColorWipeMiddle2() {
+  if (millis() - previousMillisMiddle2 > intervalMiddle2 * 2)
   {
     uint32_t color;
-    if (CWColorMitte2 == 0)
+    if (CWColorMiddle2 == 0)
     {
-      color = pixelsMitte2.Color(255, 0, 0);
+      color = pixelsMiddle2.Color(255, 0, 0);
     }
-    else if (CWColorMitte2 == 1)
+    else if (CWColorMiddle2 == 1)
     {
-      color = pixelsMitte2.Color(0, 255, 0);
+      color = pixelsMiddle2.Color(0, 255, 0);
     }
-    else if (CWColorMitte2 == 2)
+    else if (CWColorMiddle2 == 2)
     {
-      color = pixelsMitte2.Color(0, 0, 255);
+      color = pixelsMiddle2.Color(0, 0, 255);
     }
-    pixelsMitte2.setPixelColor(iMitte2, color);
-    pixelsMitte2.show();
-    iMitte2++;
-    if (iMitte2 == NUMPIXELSMitte2)
+    pixelsMiddle2.setPixelColor(iMiddle2, color);
+    pixelsMiddle2.show();
+    iMiddle2++;
+    if (iMiddle2 == NUMPIXELSMiddle2)
     {
-      iMitte2 = 0;
-      CWColorMitte2++;
-      if (CWColorMitte2 == 3)
-        CWColorMitte2 = 0;
+      iMiddle2 = 0;
+      CWColorMiddle2++;
+      if (CWColorMiddle2 == 3)
+        CWColorMiddle2 = 0;
     }
-    previousMillisMitte2 = millis();
+    previousMillisMiddle2 = millis();
   }
 }
-void FireMitte2()
+void FireMiddle2()
 {
   FireM2(55,120);
 }  
 
   void FireM2(int Cooling, int Sparking) {
-  static int heat[NUMPIXELSMitte2];
+  static int heat[NUMPIXELSMiddle2];
   int cooldown;
   
   // Step 1.  Cool down every cell a little
-  for( int i = 0; i < NUMPIXELSMitte2; i++) {
-    cooldown = random(0, ((Cooling * 10) / NUMPIXELSMitte2) + 2);
+  for( int i = 0; i < NUMPIXELSMiddle2; i++) {
+    cooldown = random(0, ((Cooling * 10) / NUMPIXELSMiddle2) + 2);
     
     if(cooldown>heat[i]) {
       heat[i]=0;
@@ -495,7 +495,7 @@ void FireMitte2()
   }
   
   // Step 2.  Heat from each cell drifts 'up' and diffuses a little
-  for( int k= NUMPIXELSMitte2 - 1; k >= 2; k--) {
+  for( int k= NUMPIXELSMiddle2 - 1; k >= 2; k--) {
     heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2]) / 3;
   }
     
@@ -507,15 +507,15 @@ void FireMitte2()
   }
 
   // Step 4.  Convert heat to LED colors
-  for( int j = 0; j < NUMPIXELSMitte2; j++) {
-    setPixelHeatColorMitte2(j, heat[j] );
+  for( int j = 0; j < NUMPIXELSMiddle2; j++) {
+    setPixelHeatColorMiddle2(j, heat[j] );
   }
 
-  showStripMitte2();
-  delay(intervalMitte2);
+  showStripMiddle2();
+  delay(intervalMiddle2);
 }
 
-void setPixelHeatColorMitte2 (int PixelM2, byte temperature) {
+void setPixelHeatColorMiddle2 (int PixelM2, byte temperature) {
   // Scale 'heat' down from 0-255 to 0-191
   byte t192 = round((temperature/255.0)*191);
  
@@ -525,19 +525,19 @@ void setPixelHeatColorMitte2 (int PixelM2, byte temperature) {
  
   // figure out which third of the spectrum we're in:
   if( t192 > 0x80) {                     // hottest
-    setPixelMitte2(PixelM2, 255, 255, heatramp);
+    setPixelMiddle2(PixelM2, 255, 255, heatramp);
   } else if( t192 > 0x40 ) {             // middle
-    setPixelMitte2(PixelM2, 255, heatramp, 0);
+    setPixelMiddle2(PixelM2, 255, heatramp, 0);
   } else {                               // coolest
-    setPixelMitte2(PixelM2, heatramp, 0, 0);
+    setPixelMiddle2(PixelM2, heatramp, 0, 0);
   }
 }
 // *** REPLACE TO HERE ***
 
-void showStripMitte2() {
+void showStripMiddle2() {
  #ifdef ADAFRUIT_NEOPIXEL_H 
    // NeoPixel
-   pixelsMitte2.show();
+   pixelsMiddle2.show();
  #endif
  #ifndef ADAFRUIT_NEOPIXEL_H
    // FastLED
@@ -545,10 +545,10 @@ void showStripMitte2() {
  #endif
 }
 
-void setPixelMitte2(int PixelM2, byte red, byte green, byte blue) {
+void setPixelMiddle2(int PixelM2, byte red, byte green, byte blue) {
  #ifdef ADAFRUIT_NEOPIXEL_H 
    // NeoPixel
-   pixelsMitte2.setPixelColor(PixelM2, pixelsMitte2.Color(red, green, blue));
+   pixelsMiddle2.setPixelColor(PixelM2, pixelsMiddle2.Color(red, green, blue));
  #endif
  #ifndef ADAFRUIT_NEOPIXEL_H 
    // FastLED
@@ -558,9 +558,9 @@ void setPixelMitte2(int PixelM2, byte red, byte green, byte blue) {
  #endif
 }
 
-void setAllMitte2(byte red, byte green, byte blue) {
-  for(int i = 0; i < NUMPIXELSMitte2; i++ ) {
-    setPixelMitte2(i, red, green, blue); 
+void setAllMiddle2(byte red, byte green, byte blue) {
+  for(int i = 0; i < NUMPIXELSMiddle2; i++ ) {
+    setPixelMiddle2(i, red, green, blue); 
   }
-  showStripMitte2();
+  showStripMiddle2();
 }

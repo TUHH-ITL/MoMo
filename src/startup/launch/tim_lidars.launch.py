@@ -29,6 +29,15 @@ def generate_launch_description():
             # Sensor faces -x, so yaw = pi.
             "tf_base_frame_id:=base_link",
             "tf_base_lidar_xyz_rpy:=-0.3585,0.178,0.27,0,0,3.14159265",
+            # Crop the sectors that always hit the robot itself (measured
+            # 2026-09-30: -135..-116.7 deg at 2-5 cm, 95..135 deg at 0-42 cm).
+            # Default is +-135 deg.
+            "min_ang:=-2.00713",  # -115 deg
+            "max_ang:=1.64061",  # +94 deg
+            # Advertise the TiM5xx minimum working range (datasheet 0.05 m) in
+            # LaserScan.range_min so consumers ignore the 0.000/0.002 m
+            # "no echo" readings. range_filter_handling stays 0, ranges unchanged.
+            "range_min:=0.05",
         ],
         # Sensor's own reported time_increment field is inconsistent with
         # its actual angle_increment/scan_time (known TiM5xx firmware
@@ -63,9 +72,22 @@ def generate_launch_description():
             # Measured relative to base_link (x forward, y left, z up):
             # +14cm x, +8cm y from front_right_wheel (0.26849, -0.238),
             # 28.5cm above the floor (base_link sits ~0cm above the floor).
-            # Sensor faces +x, so yaw = 0.
+            # Sensor faces +x, so nominally yaw = 0.
+            # x/y/yaw below are calibrated against mocap (2026-09-29, bag
+            # ~/mocap_coverage/bags/mapping_calib_01, fit_both.py): static scans
+            # from 7 spots agree best at yaw -2.06 deg, x +3.2 cm, y -4.4 cm
+            # vs the tape-measured 0.40849,-0.158,0 -- the old values smeared
+            # walls in mocap-based maps to 20+ cm.
             "tf_base_frame_id:=base_link",
-            "tf_base_lidar_xyz_rpy:=0.40849,-0.158,0.285,0,0,0",
+            "tf_base_lidar_xyz_rpy:=0.4404,-0.2015,0.285,0,0,-0.0360",
+            # Crop the sector that always hits the robot body behind-left of
+            # the sensor (measured 2026-09-30: 110.3..135 deg at 0-45 cm).
+            "min_ang:=-2.35619449",  # -135 deg (default)
+            "max_ang:=1.90241",  # +109 deg
+            # Advertise the TiM5xx minimum working range (datasheet 0.05 m) in
+            # LaserScan.range_min so consumers ignore the 0.000/0.002 m
+            # "no echo" readings. range_filter_handling stays 0, ranges unchanged.
+            "range_min:=0.05",
         ],
         parameters=[{"time_increment": 6.17222e-05}],
         remappings=[
